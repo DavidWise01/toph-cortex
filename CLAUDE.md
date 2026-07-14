@@ -22,6 +22,7 @@ call needed to find it. The read path below never spends a model call.
 ## The tools (all stdlib, offline)
 - `bin/recall.py` — READ. BM25, zero-LLM, deterministic. Same query → same results forever.
 - `bin/remember.py` — WRITE. Episodic appends; semantic stages a diff (Closure-Loop gate).
+- `bin/promote.py` — the GATE. Deterministically validates a staged fact and moves it into main memory (or a human just reviews + moves it).
 - `bin/referee.py` — deterministic metrics (citation hit-rate, staleness, skill invocations). Flags, never rewrites.
 - `bin/consolidate.py` — mechanical clustering of episodic → stages a skill draft (the battery fills the body, once).
 - `bin/cortex.py` — the overseer: dashboard + `--learn` to record the maturity snapshot.

@@ -6,15 +6,16 @@ referee.py — TOPH CORTEX · the DETERMINISTIC referee.
 Not a nested agent. It measures only what a script can measure, from the ledger,
 the git history, and the citations agents leave in their episodic logs:
 
-  * hit-rate     — how many times a semantic fact was CITED ([[topic]]) by a later
-                   session, and by how many DISTINCT agents (cross-agent = earned).
+  * hit-rate     — how many times a semantic fact was CITED ([[topic]]) by a session
+                   OTHER than its author, and by how many distinct OTHER agents
+                   (>=2 = earned its keep swarm-wide; self-citation never counts).
   * staleness    — a fact marked `supersedes:` something, or flagged contradicted;
                    FLAGGED, never silently rewritten.
   * invocations  — how often each procedural skill was referenced.
   * per-agent    — writes contributed, citations earned.
 
-The convergence signal is "diffs got small" — read from git if available.
-No embedding-drift mysticism.
+Maturity is proxied by the git commit-count on each fact (`git log`); "diffs got
+small" is the ideal, approximated here by that count. No embedding-drift mysticism.
 
 Usage: python bin/referee.py [--json]
 """
@@ -78,8 +79,10 @@ def compute():
         agent = fm.get("agent", "?")
         for ref in re.findall(r"\[\[([a-z0-9\-]+)", read(p).lower()):
             if ref in facts:
-                facts[ref]["citations"] += 1
-                facts[ref]["citing_agents"].add(agent)
+                author = facts[ref]["fm"].get("written_by")
+                if agent != author:      # self-citation does NOT count toward earning its keep
+                    facts[ref]["citations"] += 1
+                    facts[ref]["citing_agents"].add(agent)
             if ref in skills:
                 skills[ref]["invocations"] += 1
     # per-agent writes from ledger

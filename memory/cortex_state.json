@@ -1,0 +1,58 @@
+[
+ {
+  "ts": "2026-07-14T16:28:57Z",
+  "agents": [
+   "alpha",
+   "beta",
+   "delta",
+   "gamma"
+  ],
+  "n_fact": 4,
+  "n_skill": 1,
+  "earned": [
+   "battery-location",
+   "referee",
+   "substrate",
+   "swarm-shape"
+  ],
+  "cold": [],
+  "citations": {
+   "battery-location": 5,
+   "referee": 3,
+   "substrate": 4,
+   "swarm-shape": 2
+  },
+  "invocations": {
+   "recall-first": 1
+  }
+ },
+ {
+  "ts": "2026-07-14T16:42:08Z",
+  "agents": [
+   "alpha",
+   "beta",
+   "delta",
+   "gamma"
+  ],
+  "n_fact": 5,
+  "n_skill": 1,
+  "earned": [
+   "battery-location",
+   "referee",
+   "substrate"
+  ],
+  "cold": [
+   "onboarding"
+  ],
+  "citations": {
+   "battery-location": 4,
+   "onboarding": 0,
+   "referee": 2,
+   "substrate": 3,
+   "swarm-shape": 1
+  },
+  "invocations": {
+   "recall-first": 1
+  }
+ }
+]

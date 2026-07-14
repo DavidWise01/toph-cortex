@@ -10,3 +10,4 @@
 {"ts": "2026-07-14T10:05:00Z", "agent": "beta", "action": "write", "layer": "episodic", "path": "memory/episodic/beta/2026-07-14-s3.md", "hash": "sha256:d23a651ca6eef0e8", "session": "s3", "note": "builder log 2"}
 {"ts": "2026-07-14T16:27:12Z", "agent": "delta", "action": "write", "layer": "episodic", "path": "memory/episodic/delta/2026-07-14-s4.md", "hash": "sha256:96ad8dd1c338a0af", "session": "s4", "note": "new agent onboarding"}
 {"ts": "2026-07-14T16:27:12Z", "agent": "delta", "action": "stage", "layer": "semantic", "path": "memory/_staging/semantic/onboarding.md", "hash": "sha256:2c8dba8f7ab70e8a", "session": "s4", "note": "staged, awaiting validation"}
+{"ts": "2026-07-14T16:38:18Z", "agent": "delta", "action": "promote", "layer": "semantic", "path": "memory/semantic/onboarding.md", "hash": "sha256:2c8dba8f7ab70e8a", "session": "s4", "note": "validated + promoted past the gate"}

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TOPH CORTEX — multi-agent swarm memory hub</title>
+<style>
+:root{--bg:#0a0f0d;--ink:#d6ecdf;--dim:#5f7d6e;--line:#1b2a23;--green:#3affa0;--amber:#e0c040;--orange:#f0913a;--red:#e0705a;--lit:#5ad0c0;--fig:#b09ad8;--batt:#f0913a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(ellipse at 50% -8%,#10201a,#060b09 84%);color:var(--ink);
+ font-family:ui-monospace,Menlo,Consolas,monospace;padding:22px 14px 46px;min-height:100vh;font-size:12.5px;line-height:1.55}
+.wrap{max-width:900px;margin:0 auto}
+header{text-align:center;margin-bottom:14px}
+h1{font-size:24px;font-weight:800;letter-spacing:.04em;color:var(--ink);font-family:'Iowan Old Style',Georgia,serif}
+h1 .g{color:var(--green)}
+.sub{font-size:12.5px;color:#8fc9ad;max-width:700px;margin:9px auto 0;font-style:italic}
+.batt{max-width:720px;margin:12px auto 0;background:rgba(240,145,58,.06);border:1px solid rgba(240,145,58,.3);border-radius:9px;padding:10px 14px;font-size:11px;color:#d8b48a;line-height:1.6}
+.batt b{color:var(--batt)}
+h2{font-size:12px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:var(--green);margin:26px 0 10px;border-bottom:1px solid var(--line);padding-bottom:6px}
+.loop{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;justify-content:center;font-size:10.5px}
+.step{flex:1;min-width:120px;border:1px solid var(--line);border-radius:9px;padding:9px 11px;background:rgba(6,14,10,.6)}
+.step .t{font-weight:800;letter-spacing:.06em}.step .d{color:var(--dim);margin-top:4px;font-size:9.5px;line-height:1.5}
+.step.read{border-color:rgba(58,255,160,.4)}.step.read .t{color:var(--green)}
+.step.write{border-color:rgba(240,145,58,.4)}.step.write .t{color:var(--orange)}
+.step.gate{border-color:rgba(224,192,64,.4)}.step.gate .t{color:var(--amber)}
+.step .bt{display:inline-block;font-size:8px;font-weight:800;color:var(--batt);border:1px solid var(--batt);border-radius:8px;padding:0 5px;margin-top:5px}
+.arrow{align-self:center;color:var(--dim);font-size:14px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:680px){.grid2{grid-template-columns:1fr}}
+.card{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:rgba(6,14,10,.5)}
+.card h3{font-size:10px;letter-spacing:.09em;color:#8fc9ad;font-weight:800;text-transform:uppercase;margin-bottom:8px}
+.layer{display:flex;gap:8px;margin:5px 0;font-size:11px}.layer b{min-width:88px;color:var(--green)}
+.layer span{color:var(--dim)}
+.tag{display:inline-block;font-size:9px;font-weight:800;padding:1px 6px;border-radius:9px}
+.tag.lit{background:rgba(90,208,192,.14);color:var(--lit);border:1px solid var(--lit)}
+.tag.fig{background:rgba(176,154,216,.13);color:var(--fig);border:1px solid var(--fig)}
+.demo{border:1px solid rgba(58,255,160,.3);border-radius:10px;padding:13px 14px;background:rgba(6,16,11,.6)}
+.demo input{width:100%;background:#050c09;border:1px solid var(--line);border-radius:7px;color:var(--ink);
+ font-family:inherit;font-size:12px;padding:8px 11px;outline:none}
+.demo input:focus{border-color:var(--green)}
+.demo .hint{font-size:9.5px;color:var(--dim);margin:6px 0 9px}
+#results .r{border-top:1px solid var(--line);padding:7px 0;font-size:10.5px}
+#results .r .m{color:var(--dim);font-size:9px}#results .r b{color:var(--green)}
+#results .r .sn{color:#9db8ab;margin-top:2px;line-height:1.5}
+.lb{font-size:11px}.lb .row{display:flex;align-items:center;gap:8px;padding:3px 0}
+.lb .star{color:var(--amber)}.lb .nm{flex:1}.lb .ct{color:var(--dim);font-variant-numeric:tabular-nums}
+.agents{display:flex;flex-wrap:wrap;gap:7px;margin-top:2px}
+.ag{border:1px solid var(--line);border-radius:8px;padding:5px 9px;font-size:10px}
+.ag b{color:var(--green)}.ag .role{color:var(--dim);font-size:8.5px}
+pre.run{background:#050c09;border:1px solid var(--line);border-radius:8px;padding:11px 13px;font-size:10.5px;color:#9db8ab;overflow-x:auto;line-height:1.7}
+pre.run .c{color:var(--green)}pre.run .k{color:var(--dim)}
+.honest{background:rgba(58,255,160,.05);border:1px solid rgba(58,255,160,.24);border-radius:9px;padding:11px 14px;font-size:11px;color:#9dc4b2;line-height:1.65;margin-top:12px}
+.honest b{color:var(--ink)}
+footer{font-size:10.5px;color:var(--dim);line-height:1.6;border-top:1px solid var(--line);padding-top:13px;margin-top:22px;text-align:center}
+footer a{color:var(--green);text-decoration:none}
+</style></head><body><div class="wrap">
+<header>
+ <h1>TOPH <span class="g">CORTEX</span></h1>
+ <div class="sub">A multi-agent swarm memory hub. The substrate that oversees, manages, and learns from a swarm's shared memory — built on one rule: the model is the battery, so confine it to write time and make read time fully mechanical. Model writes, grep reads, git remembers.</div>
+ <div class="batt"><b>⚡ The battery, named.</b> In any self-evolving memory system the LLM is the battery — you can't remove it, because deciding <i>what to keep</i> and <i>abstracting patterns into skills</i> need judgment. TOPH CORTEX moves the battery to <b>write time only</b>. The read path never calls a model, so the corpus is usable <b>with the power out</b>. Anyone claiming a memory system needs no model is hiding the battery.</div>
+</header>
+
+<h2>the loop</h2>
+<div class="loop">
+ <div class="step read"><div class="t">◈ RECALL</div><div class="d">grep + BM25 over the memory. Deterministic, offline.</div><div class="bt">0 model calls</div></div>
+ <div class="arrow">→</div>
+ <div class="step"><div class="t">▸ ACT</div><div class="d">the agent does the task, already knowing what the swarm learned.</div></div>
+ <div class="arrow">→</div>
+ <div class="step write"><div class="t">✎ REMEMBER</div><div class="d">episodic appends; semantic <b>stages a diff</b> (never straight to main).</div><div class="bt">battery: write time</div></div>
+ <div class="arrow">→</div>
+ <div class="step gate"><div class="t">⛨ GATE</div><div class="d">validation / review before commit — the Closure Loop.</div></div>
+ <div class="arrow">→</div>
+ <div class="step"><div class="t">⎇ git</div><div class="d">git remembers. <code>git log</code> = a memory's maturity curve, free.</div></div>
+</div>
+
+<h2>try the read path — zero LLM, right here</h2>
+<div class="demo">
+ <input id="q" placeholder="search the swarm's memory…  (try: battery read, referee, swarm, git)" autocomplete="off">
+ <div class="hint">BM25 over the embedded seed memory — the <b>same deterministic algorithm as <code>bin/recall.py</code></b>, no model, in your browser. Same query → same results forever.</div>
+ <div id="results"></div>
+</div>
+
+<div class="grid2" style="margin-top:16px">
+ <div class="card"><h3>the substrate — plain files in git</h3>
+  <div class="layer"><b>semantic/</b><span>facts, one .md/topic — shared truth</span></div>
+  <div class="layer"><b>episodic/</b><span>append-only logs, per agent — cite [[topic]]</span></div>
+  <div class="layer"><b>procedural/</b><span>distilled skills = SKILL.md, read mechanically</span></div>
+  <div class="layer"><b>ledger.jsonl</b><span>append-only: who/what/when/hash</span></div>
+  <div style="font-size:10px;color:var(--dim);margin-top:8px">Every node human-readable, diffable, useful with the power out.</div>
+ </div>
+ <div class="card"><h3>the referee — deterministic, not a nested agent</h3>
+  <div class="lb" id="leaderboard"></div>
+  <div style="font-size:9.5px;color:var(--dim);margin-top:8px">hit-rate = cited by a later session; ★ = cited by ≥2 <b>distinct</b> agents (earned its keep swarm-wide). Staleness is <b>flagged, never silently rewritten</b>. Live snapshot from <code>bin/referee.py</code>.</div>
+ </div>
+</div>
+
+<h2>the swarm · toph cortex oversees it</h2>
+<div class="agents" id="agents"></div>
+<div class="card" style="margin-top:12px"><h3>oversees · manages · learns</h3>
+ <div style="font-size:11px;line-height:1.7">
+  <b style="color:var(--green)">OVERSEES</b> — the whole swarm's memory, staged changes, staleness, maturity.<br>
+  <b style="color:var(--green)">MANAGES</b> — <span style="color:var(--dim)">recommends</span> which mature facts to promote past the gate, flags the stale &amp; the cold, surfaces consolidation candidates. Promotion itself is a human / <code>bin/promote.py</code> action — never the overseer's, so the gate holds.<br>
+  <b style="color:var(--green)">LEARNS</b> — <span style="color:var(--dim)">and here is the honest part:</span> <code>cortex.py --learn</code> appends a snapshot to <code>cortex_state.json</code> recording which memories/skills have earned their keep. <b>No weights, no battery in the learning</b> — it is a deterministic, git-backed record the whole swarm can trust cold.
+ </div>
+</div>
+
+<h2>run it</h2>
+<pre class="run"><span class="k"># READ — mechanical, no model, offline</span>
+<span class="c">python bin/recall.py</span> "battery read path"
+<span class="k"># WRITE — episodic appends; semantic STAGES a diff (the gate)</span>
+<span class="c">python bin/remember.py</span> --agent me --session s5 --episodic --item "cited [[substrate]]"
+<span class="k"># CONSOLIDATE — mechanical cluster, then STAGE a skill skeleton per cluster for the battery to complete (a separate deliberate call, not this script)</span>
+<span class="c">python bin/consolidate.py</span>
+<span class="k"># GATE — validate a staged fact + promote it into main memory (deterministic, no model)</span>
+<span class="c">python bin/promote.py</span> onboarding
+<span class="k"># REFEREE + OVERSEER</span>
+<span class="c">python bin/referee.py</span>   ·   <span class="c">python bin/cortex.py</span> --learn
+<span class="k"># and a SessionEnd/Stop hook fires the mechanical half automatically.</span></pre>
+
+<div class="honest">
+ <b>The honest limit, stated plainly.</b> You still need a model for the two genuinely cognitive operations — deciding what's worth keeping, and abstracting patterns into skills. No architecture eliminates that; anyone claiming otherwise is hiding the battery. What this guarantees instead: the <b>artifact never depends on the battery after commit</b> — internet dies, you still have a greppable, verifiable, git-lineaged corpus the next session, the next model, or you with your eyeballs can use cold. <span class="tag lit">LIT</span> the tools, the substrate, and every metric are a real running system (stdlib, offline, end-to-end tested) · <span class="tag fig">FIG</span> this dashboard is a snapshot of the <b>seed / demonstration</b> swarm — the alpha/beta/gamma logs are authored fixtures showing the shape; only agents that actually run the tools generate live entries (delta's onboarding was, and it was validated through the gate). Which is, not coincidentally, just <b>AKASHA with hooks bolted on</b>.
+</div>
+
+<footer>
+ <b style="color:var(--ink)">TOPH CORTEX</b> · a real working repo: <a href="https://github.com/DavidWise01/toph-cortex">github.com/DavidWise01/toph-cortex</a> — clone it, run it offline.<br>
+ David Lee Wise (ROOT0) / TriPod LLC, with AVAN. Model writes, grep reads, git remembers.
+</footer>
+</div>
+<script>
+"use strict";
+// ---- embedded seed memory (a snapshot of the real substrate) ----
+var MEM=[
+ {p:"semantic/battery-location.md",layer:"semantic",t:"In any self-evolving memory system the LLM is the battery. TOPH CORTEX moves the battery to write time only and makes read time fully mechanical grep bm25. The read path never calls a model so the corpus is usable with the power out."},
+ {p:"semantic/substrate.md",layer:"semantic",t:"The substrate is plain files in a git repo semantic facts episodic session logs per agent procedural distilled skills ledger append-only. git is the consolidation record git log on a memory file is its maturity curve."},
+ {p:"semantic/referee.md",layer:"semantic",t:"The referee is deterministic not a nested agent. It measures retrieval hit-rate did a later session cite this memory skill-invocation count staleness a fact contradicted by a newer entry flag never silently rewrite. convergence signal is diffs got small which git shows for free."},
+ {p:"semantic/swarm-shape.md",layer:"semantic",t:"Multi-agent shape each agent keeps its own episodic log but semantic facts and procedural skills are shared. cross-agent citation is the swarm learning signal when agent beta cites a fact agent alpha wrote that fact earned its keep swarm-wide. a new agent joins already knowing cold."},
+ {p:"episodic/alpha/s1.md",layer:"episodic",t:"scout surveyed the fluxmem self-evolving memory paper the read loop calls the model that is the hidden battery wrote fact battery-location move the battery to write time handoff to beta build the tools stdlib only."},
+ {p:"episodic/beta/s2.md",layer:"episodic",t:"builder read battery-location and substrate via recall grep no model built recall.py bm25 zero-llm and remember.py append ledger confirmed read path calls no model wrote fact swarm-shape."},
+ {p:"episodic/gamma/s2.md",layer:"episodic",t:"auditor read battery-location audited the read path recall.py imports only stdlib no model on read pass wrote fact referee deterministic metrics only never a nested agent."},
+ {p:"procedural/recall-first/SKILL.md",layer:"procedural",t:"recall-first before acting on a task the swarm may have seen mechanically recall shared memory grep bm25 first start already knowing spend no model call to remember. honest limit abstracting a cluster into a skill needs the model once at write time."}
+];
+function tok(s){return (s.toLowerCase().match(/[a-z0-9]+/g)||[]);}
+MEM.forEach(function(d){d.toks=tok(d.t);});
+function bm25(query){var q=tok(query),N=MEM.length,k1=1.5,b=0.75;if(!q.length)return[];
+ var avgdl=MEM.reduce(function(a,d){return a+d.toks.length;},0)/N;var df={};
+ MEM.forEach(function(d){var seen={};d.toks.forEach(function(t){if(!seen[t]){seen[t]=1;df[t]=(df[t]||0)+1;}});});
+ var out=[];MEM.forEach(function(d){var tf={};d.toks.forEach(function(t){tf[t]=(tf[t]||0)+1;});var dl=d.toks.length||1,s=0;
+  q.forEach(function(t){if(!tf[t])return;var idf=Math.log(1+(N-(df[t]||0)+0.5)/((df[t]||0)+0.5));s+=idf*(tf[t]*(k1+1))/(tf[t]+k1*(1-b+b*dl/avgdl));});
+  if(s>0)out.push({s:s,d:d});});
+ out.sort(function(a,b){return b.s-a.s||(a.d.p<b.d.p?-1:1);});return out;}
+var qi=document.getElementById('q'),res=document.getElementById('results');
+function render(){var hits=bm25(qi.value).slice(0,4);
+ if(!qi.value.trim()){res.innerHTML='';return;}
+ if(!hits.length){res.innerHTML='<div class="r"><span class="m">no match — mechanical, no model.</span></div>';return;}
+ res.innerHTML=hits.map(function(h){return '<div class="r"><span class="m">['+h.d.layer+']</span> <b>'+h.d.p+'</b> <span class="m">'+h.s.toFixed(3)+'</span><div class="sn">'+h.d.t.slice(0,150)+'…</div></div>';}).join('');}
+qi.addEventListener('input',render);qi.value='battery read';render();
+// ---- referee leaderboard (baked from bin/referee.py output) ----
+var FACTS=[{n:"battery-location",c:4,a:3},{n:"substrate",c:3,a:2},{n:"referee",c:2,a:2},{n:"swarm-shape",c:1,a:1}];
+document.getElementById('leaderboard').innerHTML=FACTS.map(function(f){return '<div class="row"><span class="star">'+(f.a>=2?'★':'·')+'</span><span class="nm">'+f.n+'</span><span class="ct">'+f.c+' cites · '+f.a+' agents</span></div>';}).join('');
+// ---- swarm agents ----
+var AG=[{n:"alpha",r:"scout · named the battery"},{n:"beta",r:"builder · the tools"},{n:"gamma",r:"auditor · the read path"},{n:"delta",r:"new · joined cold"}];
+document.getElementById('agents').innerHTML=AG.map(function(a){return '<div class="ag"><b>'+a.n+'</b> <span class="role">'+a.r+'</span></div>';}).join('');
+</script></body></html>

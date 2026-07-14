@@ -45,21 +45,22 @@ lineage. The `SessionEnd`/`Stop` hook fires this automatically.
 ## Referee — deterministic, not a nested agent
 `bin/referee.py` measures only what a script can measure:
 - **hit-rate** — did a later session cite this memory (`[[topic]]`), and how many *distinct* agents (cross-agent ≥ 2 = earned its keep swarm-wide);
-- **staleness** — a fact contradicted/superseded by a newer entry → **flagged, never silently rewritten**;
+- **staleness** — a fact explicitly marked `supersedes:` a prior one → **flagged, never silently rewritten** (contradiction is author-tagged, not auto-detected);
 - **skill invocations**; **per-agent** contribution and citations earned.
 The convergence signal is "diffs got small" — `git log` on a memory file is its maturity
 curve, for free. No embedding-drift mysticism.
 
 ## Consolidation — offline for real
 `bin/consolidate.py` clusters episodic entries **mechanically** (token-Jaccard, no model),
-then spends the battery **once per cluster** to draft a procedural `SKILL.md`. The model
-call is at write time, its output verifiable by reading it, and the skill works forever
+then **stages a skill skeleton** per cluster for the battery to complete — one model call,
+at write time, made deliberately (not by this script). That call's output is verifiable by reading it, and the skill works forever
 without the model that wrote it — because Claude Code skills are just instructions on disk
 any future model instance reads mechanically.
 
 ## TOPH CORTEX — the overseer
 `bin/cortex.py` is the substrate watching itself: it OVERSEES the swarm (agents, memories,
-skills, staged changes), MANAGES the promote/flag decisions, and **LEARNS** — where learning
+skills, staged changes), MANAGES by **recommending** the promote/flag decisions — promotion
+itself is a human / `bin/promote.py` action, never the overseer's, so the gate holds — and **LEARNS** — where learning
 is stated plainly as *deterministic bookkeeping*: `--learn` appends a snapshot to
 `cortex_state.json` recording which memories/skills have earned their keep. **No weights,
 no battery** in the learning; it is a git-backed record the whole swarm can trust cold.
@@ -67,12 +68,15 @@ no battery** in the learning; it is a git-backed record the whole swarm can trus
 ## The swarm shape
 Each agent keeps its own episodic log; **semantic facts and procedural skills are shared**.
 Cross-agent citation is the learning signal: when agent β cites a fact agent α wrote, that
-fact earned its keep swarm-wide. A new agent joins already knowing the swarm's memory cold.
+fact earned its keep swarm-wide (self-citation never counts). A new agent joins already knowing
+the swarm's memory cold. *(The alpha/beta/gamma logs shipped here are seed / demonstration
+fixtures showing the shape; live entries come from agents actually running the tools.)*
 
 ## Run it
 ```
 python bin/recall.py "battery read path"      # mechanical read
 python bin/remember.py --agent me --session s5 --episodic --item "cited [[substrate]]"
+python bin/promote.py <topic>                  # the GATE: validate a staged fact + promote it (no model)
 python bin/consolidate.py                      # cluster -> stage skill drafts
 python bin/referee.py                          # deterministic metrics
 python bin/cortex.py --learn                   # overseer dashboard + maturity snapshot
