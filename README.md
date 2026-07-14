@@ -72,6 +72,15 @@ fact earned its keep swarm-wide (self-citation never counts). A new agent joins 
 the swarm's memory cold. *(The alpha/beta/gamma logs shipped here are seed / demonstration
 fixtures showing the shape; live entries come from agents actually running the tools.)*
 
+## The real swarm — David's git agents, linked to ud0 on 0root.ai
+The hub is pointed at ROOT0's actual agents (`memory/agents.json`), each registered through
+the real write path and linked to its git repo and its sphere on the ud0 corpus (live at
+**https://0root.ai**): **jasnah** (carbon curator, the record) ⇄ **theoria** (silicon curator,
+the seam) · **nom** (the monk — read-only provenance, *no LLM*) · **taravangian** ⇄ **nous**
+(the pagents) · **jane** (full memory for life) · **rozsa-peter** · **the-hegemon** · **nomos**
+· **foundation**. Their roles map onto the swarm-memory shape; `bin/recall.py "provenance monk"`
+finds nom cold. `bin/cortex.py` prints the roster and its 0root.ai links.
+
 ## Run it
 ```
 python bin/recall.py "battery read path"      # mechanical read

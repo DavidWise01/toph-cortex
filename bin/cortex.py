@@ -47,7 +47,13 @@ def main():
     print("╔══════════════════════════════════════════════════════════════╗")
     print("║  TOPH CORTEX · multi-agent swarm memory · overseer            ║")
     print("╚══════════════════════════════════════════════════════════════╝")
-    print("SWARM      %d agents: %s" % (len(ag), ", ".join(ag)))
+    print("SWARM      %d agents with episodic logs: %s" % (len(ag), ", ".join(ag)))
+    rp = os.path.join(MEM, "agents.json")
+    if os.path.exists(rp):
+        ros = json.load(open(rp, encoding="utf-8"))
+        print("ROSTER     %d real git agents, linked to ud0 @ %s :" % (len(ros["agents"]), ros["ud0"]))
+        for a in ros["agents"]:
+            print("   ◆ %-13s %s" % (a["name"], a["role"][:56]))
     print("SUBSTRATE  %d facts · %d episodic logs · %d skills · %d staged · %d ledger rows"
           % (n_fact, n_epi, n_skill, n_staged, r["ledger_rows"]))
     print("BATTERY    read path = 0 model calls (mechanical) · write path = gated · consolidation = 1 call/cluster")

@@ -54,5 +54,44 @@
   "invocations": {
    "recall-first": 1
   }
+ },
+ {
+  "ts": "2026-07-14T17:16:15Z",
+  "agents": [
+   "alpha",
+   "beta",
+   "delta",
+   "foundation",
+   "gamma",
+   "jane",
+   "jasnah",
+   "nom",
+   "nomos",
+   "nous",
+   "rozsa-peter",
+   "taravangian",
+   "the-hegemon",
+   "theoria"
+  ],
+  "n_fact": 5,
+  "n_skill": 1,
+  "earned": [
+   "battery-location",
+   "referee",
+   "substrate"
+  ],
+  "cold": [
+   "onboarding"
+  ],
+  "citations": {
+   "battery-location": 4,
+   "onboarding": 0,
+   "referee": 2,
+   "substrate": 13,
+   "swarm-shape": 1
+  },
+  "invocations": {
+   "recall-first": 1
+  }
  }
 ]

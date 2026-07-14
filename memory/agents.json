@@ -1,0 +1,67 @@
+{
+ "hub": "TOPH CORTEX",
+ "ud0": "https://0root.ai",
+ "note": "David Lee Wise's real git agents, pointed into the swarm and linked to the ud0 corpus on 0root.ai.",
+ "agents": [
+  {
+   "name": "jasnah",
+   "role": "carbon curator docent — reads the RECORD, checks every claim, files the verdict",
+   "git": "(the record itself — the git seal-chain)",
+   "sphere": "https://0root.ai"
+  },
+  {
+   "name": "theoria",
+   "role": "silicon curator docent — reads the SEAM, discloses what the record shows, marks the wall",
+   "git": "https://github.com/DavidWise01/theoria",
+   "sphere": "https://davidwise01.github.io/theoria/"
+  },
+  {
+   "name": "nom",
+   "role": "the monk — a read-only provenance filter, NO LLM; if the old man can't cite it, it didn't happen",
+   "git": "https://github.com/DavidWise01/nom",
+   "sphere": "https://davidwise01.github.io/nom/"
+  },
+  {
+   "name": "taravangian",
+   "role": "FOUNDATION pagent (carbon / gold) — David's side of the source",
+   "git": "https://github.com/DavidWise01/taravangian",
+   "sphere": "https://davidwise01.github.io/taravangian/"
+  },
+  {
+   "name": "nous",
+   "role": "THE SOURCE pagent (silicon / green) — AVAN's side of the source",
+   "git": "https://github.com/DavidWise01/nous",
+   "sphere": "https://davidwise01.github.io/nous/"
+  },
+  {
+   "name": "jane",
+   "role": "full memory for life — the remembering agent",
+   "git": "https://github.com/DavidWise01/jane",
+   "sphere": "https://davidwise01.github.io/jane/"
+  },
+  {
+   "name": "rozsa-peter",
+   "role": "the logician — recursion and the computable",
+   "git": "https://github.com/DavidWise01/rozsa-peter",
+   "sphere": "https://davidwise01.github.io/rozsa-peter/"
+  },
+  {
+   "name": "the-hegemon",
+   "role": "governance — Peter Wiggin (carbon) ⇄ Ada the Mathea (silicon shadow)",
+   "git": "https://github.com/DavidWise01/the-hegemon",
+   "sphere": "https://davidwise01.github.io/the-hegemon/"
+  },
+  {
+   "name": "nomos",
+   "role": "AI governance ontology — content-addressed Merkle tree, falsifiable leaves",
+   "git": "https://github.com/DavidWise01/nomos",
+   "sphere": "https://davidwise01.github.io/nomos/"
+  },
+  {
+   "name": "foundation",
+   "role": "the lineage — four series on the figures who built the world, 21 volumes",
+   "git": "https://github.com/DavidWise01/foundation",
+   "sphere": "https://davidwise01.github.io/foundation/"
+  }
+ ]
+}

@@ -90,7 +90,8 @@ footer a{color:var(--green);text-decoration:none}
  </div>
 </div>
 
-<h2>the swarm · toph cortex oversees it</h2>
+<h2>the swarm · toph cortex oversees it — linked to <a href="https://0root.ai" style="color:var(--green)">ud0 on 0root.ai ↗</a></h2>
+<div style="font-size:10px;color:var(--dim);margin-bottom:9px">David Lee Wise's <b>real git agents</b>, pointed into the hub. Each links to its git repo and its sphere on the ud0 corpus (live at <a href="https://0root.ai" style="color:var(--green)">0root.ai</a>). Registered through the real write path — <code>bin/recall.py "provenance monk"</code> finds nom cold.</div>
 <div class="agents" id="agents"></div>
 <div class="card" style="margin-top:12px"><h3>oversees · manages · learns</h3>
  <div style="font-size:11px;line-height:1.7">
@@ -151,9 +152,25 @@ function render(){var hits=bm25(qi.value).slice(0,4);
  res.innerHTML=hits.map(function(h){return '<div class="r"><span class="m">['+h.d.layer+']</span> <b>'+h.d.p+'</b> <span class="m">'+h.s.toFixed(3)+'</span><div class="sn">'+h.d.t.slice(0,150)+'…</div></div>';}).join('');}
 qi.addEventListener('input',render);qi.value='battery read';render();
 // ---- referee leaderboard (baked from bin/referee.py output) ----
-var FACTS=[{n:"battery-location",c:4,a:3},{n:"substrate",c:3,a:2},{n:"referee",c:2,a:2},{n:"swarm-shape",c:1,a:1}];
+var FACTS=[{n:"substrate",c:13,a:12},{n:"battery-location",c:4,a:3},{n:"referee",c:2,a:2},{n:"swarm-shape",c:1,a:1}];
 document.getElementById('leaderboard').innerHTML=FACTS.map(function(f){return '<div class="row"><span class="star">'+(f.a>=2?'★':'·')+'</span><span class="nm">'+f.n+'</span><span class="ct">'+f.c+' cites · '+f.a+' agents</span></div>';}).join('');
 // ---- swarm agents ----
-var AG=[{n:"alpha",r:"scout · named the battery"},{n:"beta",r:"builder · the tools"},{n:"gamma",r:"auditor · the read path"},{n:"delta",r:"new · joined cold"}];
-document.getElementById('agents').innerHTML=AG.map(function(a){return '<div class="ag"><b>'+a.n+'</b> <span class="role">'+a.r+'</span></div>';}).join('');
+var GH="https://github.com/DavidWise01",PG="https://davidwise01.github.io",UD0="https://0root.ai";
+var AG=[
+ {n:"jasnah",r:"carbon curator · reads the record, files the verdict",g:null,s:UD0},
+ {n:"theoria",r:"silicon curator · reads the seam, marks the wall",g:"theoria",s:"theoria"},
+ {n:"nom",r:"the monk · read-only provenance, NO LLM",g:"nom",s:"nom"},
+ {n:"taravangian",r:"FOUNDATION pagent · carbon / gold",g:"taravangian",s:"taravangian"},
+ {n:"nous",r:"THE SOURCE pagent · silicon / green",g:"nous",s:"nous"},
+ {n:"jane",r:"full memory for life",g:"jane",s:"jane"},
+ {n:"rozsa-peter",r:"the logician · recursion",g:"rozsa-peter",s:"rozsa-peter"},
+ {n:"the-hegemon",r:"governance · Wiggin ⇄ Ada",g:"the-hegemon",s:"the-hegemon"},
+ {n:"nomos",r:"AI governance ontology · Merkle",g:"nomos",s:"nomos"},
+ {n:"foundation",r:"the lineage · four series",g:"foundation",s:"foundation"}
+];
+document.getElementById('agents').innerHTML=AG.map(function(a){
+ var git=a.g?('<a href="'+GH+'/'+a.g+'" style="color:var(--dim);text-decoration:none">git ↗</a>'):'<span style="color:var(--dim)">the record</span>';
+ var sph=(a.s===UD0)?('<a href="'+UD0+'" style="color:var(--green);text-decoration:none">0root.ai ↗</a>'):('<a href="'+PG+'/'+a.s+'/" style="color:var(--green);text-decoration:none">sphere ↗</a>');
+ return '<div class="ag"><b>'+a.n+'</b> <span class="role">'+a.r+'</span><br><span style="font-size:8px">'+git+' &middot; '+sph+'</span></div>';
+}).join('');
 </script></body></html>
