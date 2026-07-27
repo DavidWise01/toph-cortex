@@ -2,8 +2,8 @@ ROOT0-DLW-CHAIN-v1
 index : 1397
 slug  : toph-cortex
 seal  : 8a89e50a45300ef50925963ad62959c9d8f3392cb98659432479970da002365b
-prev  : d63320321839494ff3d113b48b2ebb6c1926d6315e8f30f2314ff0a9d0ba087d
-link  : 16621d4870198c4c2049c8ea8b9e95e6bc5bc5a8dc30ff7a4bbdeb8da1db0eb4
-head  : 16621d4870198c4c2049c8ea8b9e95e6bc5bc5a8dc30ff7a4bbdeb8da1db0eb4
+prev  : c33efbe7284180176174689c07519c08fde346ea59582ae9bb7de906310e1847
+link  : 42805f0fdc6837de62876c6bf45f60ca2f90d0d10de4c05eb446092b313f76e9
+head  : c4d41afeaef76470528856d54d86cf480a0e1c2fc8ebc60fbb9eb8e442585f2b
 
 — the tether: link = sha256(index|slug|seal|prev). the chain head commits to the whole corpus.
