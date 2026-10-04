@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "seed": "-+-00K00+-+",
+  "fib_pack": "00112358",
+  "tests_total": 10,
+  "tests_passed": 10,
+  "tests": [
+    {"name":"literal_seed","pass":true,"detail":"-+-00K00+-+"},
+    {"name":"unique_K","pass":true,"detail":5},
+    {"name":"fold_unfold_roundtrip","pass":true,"detail":["00-+-","K","00+-+"]},
+    {"name":"all_toroidal_rotations_realign","pass":true,"detail":11},
+    {"name":"flay_single_mutator_exact","pass":true,"detail":{"cases":88,"failures":0}},
+    {"name":"pinned_K_corruption_detected","pass":true,"detail":7},
+    {"name":"fibonacci_pack_00112358","pass":true,"detail":[0,0,1,1,2,3,5,8]},
+    {"name":"random_corruption_detection","pass":true,"detail":{"trials":100000,"undetected":0}},
+    {"name":"carrier_center_balance","pass":true,"detail":{"path_sum":12}},
+    {"name":"antistropic_residual","pass":true,"detail":[-1,-1]}
+  ]
+}
