@@ -100,3 +100,19 @@ greppable, verifiable, git-lineaged corpus the next session — or the next mode
 with your eyeballs — can use cold.
 
 David Lee Wise (ROOT0) / TriPod LLC, with AVAN.
+
+
+## Sapphon Prime primitives
+
+Primitive registry begins with **01 / 05 — Anti-stropic Sync / Author-Provenance Residual**.
+
+```text
+..||..|i{why::ok::yes::no::mark dead::start new {{-1,0,+1}}4
+
+(x-3, y+2) :: (x+2, y-3) => (-1, -1)
+
+.|.| -+ |.|.
+1 2 1 2 -1 +1 1 2 1 2
+```
+
+The primitive binds compressed time to author/provenance, kills only the rejected local branch, appends a fresh branch, and permits unchanged state to be referenced instead of regenerated. Canonical definition: [memory/semantic/sapphon-prime-01.md](memory/semantic/sapphon-prime-01.md).
