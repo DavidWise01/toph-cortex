@@ -1,0 +1,9 @@
+{
+  "name": "sapphon-prime-01-fold-conservation-v01",
+  "status": "FROZEN / IMMUTABLE / APPEND-ONLY DESCENDANT",
+  "files": {
+    "README.md": "ec94b6a6142cc1f20504cb00342ae2557b7adb836ea7dfac7c0e6e6cee796b65",
+    "benchmark.py": "e6b7eaed3c7b060548523aefc29eb607520ec3f634ef121983da03e1eda62b35",
+    "results.json": "3f8c2d86d660324b5136dcd143a9ddbce9fac6288b71f4542d9ddbbc6c77903f"
+  }
+}
