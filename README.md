@@ -164,3 +164,22 @@ R + T = P
 ```
 
 Status: **FROZEN / IMMUTABLE / APPEND-ONLY DESCENDANT**. This does not assign Prime 02.
+
+
+### Sapphon Prime 02 / 05 — Relative Difference / Referent Delta
+
+**Status:** FROZEN / IMMUTABLE / APPEND-ONLY
+
+```text
+Δ(A,B) = B - A
+Δ(A+v,B+v) = Δ(A,B)
+```
+
+Prime 02 preserves a learned relative relation under shared translation. It is frame-relative and complements, rather than replaces, content-bound object identity.
+
+```text
+object identity REF = H(B, content, provenance, time, ...)
+relation REF        = H(C, Δ(A,B))
+```
+
+Canonical definition: [memory/semantic/sapphon-prime-02.md](memory/semantic/sapphon-prime-02.md).
