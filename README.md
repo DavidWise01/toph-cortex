@@ -116,3 +116,32 @@ Primitive registry begins with **01 / 05 — Anti-stropic Sync / Author-Provenan
 ```
 
 The primitive binds compressed time to author/provenance, kills only the rejected local branch, appends a fresh branch, and permits unchanged state to be referenced instead of regenerated. Canonical definition: [memory/semantic/sapphon-prime-01.md](memory/semantic/sapphon-prime-01.md).
+
+
+### Derived referent/time cell
+
+Append-only descendant (not Prime 02): [memory/semantic/isomorphic-referent-time-cell.md](memory/semantic/isomorphic-referent-time-cell.md)
+
+```text
+A != B
+C -> A(B)
+A + REF(B)
+B_next -> A recognizes B
+
+t = 2 x 1^(10^-36)
+T(x,y) = (x-2,y+3)
+```
+
+Hand-built relation to Prime 01:
+
+```text
+P = (-3,+2)
+U = (+2,-3)
+R = P + U = (-1,-1)
+T = (-2,+3) = -U
+
+U + T = (0,0)
+R + T = P
+```
+
+So the new teaching/referent transform is the exact inverse of Prime 01's second translation leg. Route provenance may differ while the recovered semantic state remains content-bound.
