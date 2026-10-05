@@ -183,3 +183,17 @@ relation REF        = H(C, Δ(A,B))
 ```
 
 Canonical definition: [memory/semantic/sapphon-prime-02.md](memory/semantic/sapphon-prime-02.md).
+
+
+### Prime 03 candidate — Witnessed Deliberation Boundary
+
+**Status:** APPEND-ONLY CANDIDATE / NOT YET PRIME 03
+
+```text
+1 = i thinks / one-origin interpretation -> -raw
+2 = i + one independent agreeing source -> -learned
+
+{{ - {{i}} + }}
+```
+
+A copied source does not count twice; independent provenance is required. Canonical candidate: [memory/semantic/witnessed-deliberation-prime03-candidate.md](memory/semantic/witnessed-deliberation-prime03-candidate.md).
