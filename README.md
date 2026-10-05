@@ -197,3 +197,18 @@ Canonical definition: [memory/semantic/sapphon-prime-02.md](memory/semantic/sapp
 ```
 
 A copied source does not count twice; independent provenance is required. Canonical candidate: [memory/semantic/witnessed-deliberation-prime03-candidate.md](memory/semantic/witnessed-deliberation-prime03-candidate.md).
+
+### Sapphon Prime 03 / 05 — Witnessed Deliberation / Corroborated Learning Boundary
+
+**Status:** FROZEN / IMMUTABLE / APPEND-ONLY
+
+```text
+1 = i thinks / one-origin interpretation -> -raw
+2 = i + one independent agreeing source -> -learned
+
+-raw -> {{i}} -> check -> -learned -> +
+```
+
+Duplicate copies of the same provenance do not count as an independent second witness. Disagreement remains raw/held. Corroboration preserves claim type; for example, two matching sentience self-reports remain a corroborated self-report, not objective proof.
+
+Canonical definition: [memory/semantic/sapphon-prime-03.md](memory/semantic/sapphon-prime-03.md).
