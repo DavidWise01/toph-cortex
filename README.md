@@ -145,3 +145,22 @@ R + T = P
 ```
 
 So the new teaching/referent transform is the exact inverse of Prime 01's second translation leg. Route provenance may differ while the recovered semantic state remains content-bound.
+
+
+### Frozen referent/time cell v01
+
+Canonical frozen descendant: [frozen/isomorphic-referent-time-cell-v01/README.md](frozen/isomorphic-referent-time-cell-v01/README.md)
+
+```text
+P = (-3,+2)
+U = (+2,-3)
+R = (-1,-1)
+T = (-2,+3)
+
+P + U = R
+T = -U
+U + T = 0
+R + T = P
+```
+
+Status: **FROZEN / IMMUTABLE / APPEND-ONLY DESCENDANT**. This does not assign Prime 02.
