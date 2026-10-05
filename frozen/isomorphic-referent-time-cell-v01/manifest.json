@@ -1,0 +1,23 @@
+{
+  "name": "isomorphic-referent-time-cell-v01",
+  "status": "FROZEN / IMMUTABLE / APPEND-ONLY DESCENDANT",
+  "parent": "Sapphon Prime 01 / 05",
+  "prime_assignment": null,
+  "canonical": {
+    "P": "(-3,+2)",
+    "U": "(+2,-3)",
+    "R": "(-1,-1)",
+    "T": "(-2,+3)",
+    "identities": [
+      "P+U=R",
+      "T=-U",
+      "U+T=(0,0)",
+      "R+T=P"
+    ]
+  },
+  "files_sha256": {
+    "README.md": "b5b492497420b4fa8166db6d594e0965ba8a8d2d7cfd42d118fd8ea61dd429fd",
+    "SOURCE.md": "c20173174d73c89d23f1523169a125ce2667bfa4df020ed08a84ae1ad017d00f"
+  },
+  "zip_sha256": "f71e0baf5a2e24af67bb4e012a24757e64ed5720815ca92c0ab145a598b34353"
+}
