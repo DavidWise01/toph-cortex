@@ -55,11 +55,11 @@ def audit_query(query: str) -> Dict[str, Any]:
     q = " ".join(query.strip().split())
     dome = scoped_query(q)
     asks_state = any(
-        re.search(r"\\b" + re.escape(term) + r"\\b", q, flags=re.I)
+        re.search(r"\b" + re.escape(term) + r"\b", q, flags=re.I)
         for term in INSPECTION_TERMS
     )
     global_system = bool(
-        re.search(r"\\b(?:the\\s+system|system|everything|global|current)\\b", q, flags=re.I)
+        re.search(r"\b(?:the\s+system|system|everything|global|current)\b", q, flags=re.I)
     )
     if asks_state and global_system and dome is None:
         return {
