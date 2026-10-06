@@ -244,3 +244,16 @@ DOME E :: -e+ :: naming/economic/network-expression
 ```
 
 Each dome owns an isolated local `{{ -1 :: 0 :: +1 }}` ternary register and its own TOROID-5 phase clock. Cross-dome movement is an explicit witnessed transfer; states are not silently merged. Canonical definition: [memory/semantic/substrate-biodomes-v1.md](memory/semantic/substrate-biodomes-v1.md).
+
+
+## Canonical clear-view rule
+
+```text
+NEVER ASK:
+"what state is the system in?"
+
+ALWAYS ASK:
+"what state is BIODOME X in?"
+```
+
+The rule is canonized in [memory/semantic/clear-view-rule-v1.md](memory/semantic/clear-view-rule-v1.md) and enforced recursively by `bin/clear_view.py`. Every nested node inherits its parent biodome identity unless an explicit biodome boundary changes it. `bin/test_clear_view.py` stress-walks 256 recursive levels in each of A-E and rejects unscoped state queries.
