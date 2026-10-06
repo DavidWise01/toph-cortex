@@ -26,6 +26,7 @@ MEM = os.path.join(ROOT, "memory")
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import referee  # deterministic metrics
 import toroid5  # exact five-transfer commit timing
+import clear_view  # canonical recursive biodome scoping rule
 
 STATE = os.path.join(MEM, "cortex_state.json")
 
@@ -59,6 +60,7 @@ def main():
           % (n_fact, n_epi, n_skill, n_staged, r["ledger_rows"]))
     print("BATTERY    read path = 0 model calls (mechanical) · write path = gated · consolidation = 1 call/cluster")
     print("CLOCK      TOROID-5 .||||. · 5 x 1/5 transfers · commit at 5/5 · exact rational timing")
+    print("CLEAR-VIEW %s" % clear_view.CLEAR_VIEW_RULE)
     print()
     print("LEARNED (earned swarm-wide, cited by >=2 agents):")
     for t in earned or ["  (none yet)"]:
