@@ -216,3 +216,16 @@ Canonical definition: [memory/semantic/sapphon-prime-03.md](memory/semantic/sapp
 ## TOROID-5 commit clock
 
 The shared deterministic timing gate is now `{{ . | | | | . }}`: five exact `1/5` transfers from unresolved `0` to closure witness `1`, then wrap to the next `0`. `bin/toroid5.py` uses exact rational arithmetic. All currently assigned Sapphon Primes (01-03) have append-only TOROID-5 extensions; the clock controls **when** an already-valid candidate may append and does not replace each Prime's existing validity/provenance rule.
+
+
+## Sapphon orbital ternary extension
+
+Append-only shared semantic layer: [memory/semantic/sapphon-orbital-as-above-so-below-v1.md](memory/semantic/sapphon-orbital-as-above-so-below-v1.md)
+
+```text
++1 = AS ABOVE = ORBITAL
+ 0 = {{ .0l - .9l , or abandon hope ye all who enter here :: dantes :: stoch :: }}
+-1 = SO BELOW
+```
+
+The `+1` branch inherits the five-phase orbital closure from `OaSIs_Orbital_Tether_v186`; `0` is the literal bounded Dante/STOCH register supplied by the user; `-1` is the so-below branch. This is an append-only semantic assignment and does not mutate Sapphon Prime 01-03 or claim that the literary overlay is physical orbital mechanics.
