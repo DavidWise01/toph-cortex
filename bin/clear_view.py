@@ -22,6 +22,7 @@ from typing import Any, Dict, Iterable, List, Optional
 
 CLEAR_VIEW_RULE = 'ALWAYS ASK: "what state is BIODOME X in?"'
 FORBIDDEN_GLOBAL_QUERY = 'what state is the system in?'
+INSPECTION_TERMS = ("state", "status", "phase", "branch", "provenance", "clock")
 
 SUBSTRATES: Dict[str, str] = {
     "A": "ownership/operator",
