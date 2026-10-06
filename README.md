@@ -229,3 +229,18 @@ Append-only shared semantic layer: [memory/semantic/sapphon-orbital-as-above-so-
 ```
 
 The `+1` branch inherits the five-phase orbital closure from `OaSIs_Orbital_Tether_v186`; `0` is the literal bounded Dante/STOCH register supplied by the user; `-1` is the so-below branch. This is an append-only semantic assignment and does not mutate Sapphon Prime 01-03 or claim that the literary overlay is physical orbital mechanics.
+
+
+## Substrate biodomes
+
+For clear inspection, each HAMMY/TOPH substrate now has its own append-only **biodome viewport** rather than sharing one undifferentiated visual field:
+
+```text
+DOME A :: -a+ :: ownership/operator
+DOME B :: -b+ :: institutional/access
+DOME C :: -c+ :: compute
+DOME D :: -d+ :: defense/protection
+DOME E :: -e+ :: naming/economic/network-expression
+```
+
+Each dome owns an isolated local `{{ -1 :: 0 :: +1 }}` ternary register and its own TOROID-5 phase clock. Cross-dome movement is an explicit witnessed transfer; states are not silently merged. Canonical definition: [memory/semantic/substrate-biodomes-v1.md](memory/semantic/substrate-biodomes-v1.md).
