@@ -1,0 +1,30 @@
+name: FLAY Mandel-Juliet v2 realignment
+
+on:
+  push:
+    paths:
+      - "bin/flay_toroid_v2.py"
+      - "bin/test_flay_toroid_v2.py"
+      - "memory/semantic/flay-mandel-juliet-toroid-v2.md"
+      - "memory/semantic/flay-v1-audit-v2-realignment.md"
+      - ".github/workflows/flay-toroid-v2.yml"
+  pull_request:
+    paths:
+      - "bin/flay_toroid_v2.py"
+      - "bin/test_flay_toroid_v2.py"
+      - "memory/semantic/flay-mandel-juliet-toroid-v2.md"
+      - "memory/semantic/flay-v1-audit-v2-realignment.md"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run FLAY v2 realignment tests
+        run: |
+          cd bin
+          python test_flay_toroid_v2.py
+          python flay_toroid_v2.py
