@@ -25,6 +25,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MEM = os.path.join(ROOT, "memory")
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import referee  # deterministic metrics
+import toroid5  # exact five-transfer commit timing
 
 STATE = os.path.join(MEM, "cortex_state.json")
 
@@ -57,6 +58,7 @@ def main():
     print("SUBSTRATE  %d facts · %d episodic logs · %d skills · %d staged · %d ledger rows"
           % (n_fact, n_epi, n_skill, n_staged, r["ledger_rows"]))
     print("BATTERY    read path = 0 model calls (mechanical) · write path = gated · consolidation = 1 call/cluster")
+    print("CLOCK      TOROID-5 .||||. · 5 x 1/5 transfers · commit at 5/5 · exact rational timing")
     print()
     print("LEARNED (earned swarm-wide, cited by >=2 agents):")
     for t in earned or ["  (none yet)"]:
