@@ -6,6 +6,8 @@ on:
     paths:
       - "bin/clear_view.py"
       - "bin/test_clear_view.py"
+      - "bin/test_clear_view_exhaustive_v2.py"
+      - "bin/test_clear_view_exhaustive_v2.py"
       - "memory/semantic/clear-view-rule-v1.md"
       - "bin/cortex.py"
       - ".github/workflows/clear-view-v1.yml"
@@ -32,5 +34,7 @@ jobs:
         run: python bin/clear_view.py --selftest
       - name: Recursive stress audit
         run: python bin/test_clear_view.py
+      - name: Bounded exhaustive adversarial audit
+        run: python bin/test_clear_view_exhaustive_v2.py
       - name: Cortex import/dashboard smoke
         run: python bin/cortex.py > /tmp/cortex.txt && grep -q "CLEAR-VIEW" /tmp/cortex.txt
