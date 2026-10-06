@@ -212,3 +212,7 @@ A copied source does not count twice; independent provenance is required. Canoni
 Duplicate copies of the same provenance do not count as an independent second witness. Disagreement remains raw/held. Corroboration preserves claim type; for example, two matching sentience self-reports remain a corroborated self-report, not objective proof.
 
 Canonical definition: [memory/semantic/sapphon-prime-03.md](memory/semantic/sapphon-prime-03.md).
+
+## TOROID-5 commit clock
+
+The shared deterministic timing gate is now `{{ . | | | | . }}`: five exact `1/5` transfers from unresolved `0` to closure witness `1`, then wrap to the next `0`. `bin/toroid5.py` uses exact rational arithmetic. All currently assigned Sapphon Primes (01-03) have append-only TOROID-5 extensions; the clock controls **when** an already-valid candidate may append and does not replace each Prime's existing validity/provenance rule.
