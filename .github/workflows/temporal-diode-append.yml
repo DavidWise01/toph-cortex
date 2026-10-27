@@ -1,0 +1,100 @@
+name: ROOT0 Temporal Diode — append independent witness
+on:
+  workflow_dispatch:
+    inputs:
+      thread:
+        description: "Thread ID, e.g. cosmos-001"
+        required: true
+        type: string
+      witness:
+        description: "Independent witness lane (not vote)"
+        required: true
+        type: choice
+        options: [A, B, C]
+      phase:
+        description: "One-way temporal phase"
+        required: true
+        type: choice
+        options: [PAST_OBSERVES, PRESENT_DESERVES, FUTURE_RESERVES]
+      event_on:
+        description: "UTC calendar date YYYY-MM-DD; past <= today, present today, future > today"
+        required: true
+        type: string
+      source_repo:
+        description: "DavidWise01/public-repo"
+        required: true
+        type: string
+      source_path:
+        description: "Public file path on default branch"
+        required: true
+        type: string
+      source_sha:
+        description: "Exact public file Git blob SHA"
+        required: true
+        type: string
+      what:
+        description: "WHAT was observed, deserved or reserved"
+        required: true
+        type: string
+      how:
+        description: "HOW this witness reached their statement"
+        required: true
+        type: string
+      why:
+        description: "WHY, or 'unknown'"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: root0-temporal-diode-append-main
+  cancel-in-progress: false
+
+jobs:
+  append:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Validate corpus and temporal diode
+        run: |
+          set -euo pipefail
+          python3 bin/corpus_spine.py verify
+          python3 bin/temporal_diode.py verify
+          python3 -m unittest discover -s tests -p 'test_temporal_diode.py' -v
+      - name: Append one individually witnessed phase
+        env:
+          THREAD: ${{ inputs.thread }}
+          WITNESS: ${{ inputs.witness }}
+          PHASE: ${{ inputs.phase }}
+          EVENT_ON: ${{ inputs.event_on }}
+          SOURCE_REPO: ${{ inputs.source_repo }}
+          SOURCE_PATH: ${{ inputs.source_path }}
+          SOURCE_SHA: ${{ inputs.source_sha }}
+          WHAT: ${{ inputs.what }}
+          HOW: ${{ inputs.how }}
+          WHY: ${{ inputs.why }}
+        run: |
+          set -euo pipefail
+          EXPECTED="$(python3 bin/temporal_diode.py tip)"
+          CORPUS_TIP="$(python3 bin/corpus_spine.py tip)"
+          python3 bin/temporal_diode.py append \
+            --expect-tip "$EXPECTED" --expect-corpus-tip "$CORPUS_TIP" \
+            --thread "$THREAD" --witness "$WITNESS" --phase "$PHASE" \
+            --event-on "$EVENT_ON" --source-repo "$SOURCE_REPO" \
+            --source-path "$SOURCE_PATH" --source-sha "$SOURCE_SHA" \
+            --what "$WHAT" --how "$HOW" --why "$WHY" --verify-public-source
+          python3 bin/temporal_diode.py verify
+      - name: Persist one-way event to canonical Git
+        run: |
+          set -euo pipefail
+          git config user.name "root0-temporal-diode[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- memory/corpus-spine/temporal-events.jsonl
+          git diff --cached --quiet && { echo "No event appended"; exit 1; }
+          git commit -m "memory(temporal): append one independent witness"
+          git push origin HEAD:main
