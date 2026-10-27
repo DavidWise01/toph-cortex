@@ -26,6 +26,10 @@ on:
       - "memory/corpus-spine/attribution.dlw"
       - "bin/cubit_constant.py"
       - "tests/test_cubit_constant.py"
+      - "bin/threaded_loom.py"
+      - "tests/test_gate14.py"
+      - "memory/corpus-spine/loom-events.jsonl"
+      - ".github/workflows/loom-append.yml"
       - ".github/workflows/cubit-constant-check.yml"
       - "memory/corpus-spine/referent-events.jsonl"
       - "memory/corpus-spine/research/**"
@@ -66,7 +70,9 @@ jobs:
         run: python3 bin/key_lifecycle.py verify
       - name: Verify independently watermarked referents
         run: python3 bin/referent_watermark.py verify
+      - name: Verify causal threaded loom and .dlw / cubit invariants
+        run: python3 bin/threaded_loom.py verify
       - name: Verify signed checkpoint state
         run: python3 bin/distributed_checkpoint.py verify
       - name: Run offline regression tests
-        run: python3 -m unittest discover -s tests -p 'test_corpus_spine.py' -v && python3 -m unittest discover -s tests -p 'test_temporal_diode.py' -v && python3 -m unittest discover -s tests -p 'test_gate09.py' -v && python3 -m unittest discover -s tests -p 'test_gate10.py' -v && python3 -m unittest discover -s tests -p 'test_gate11.py' -v && python3 -m unittest discover -s tests -p 'test_gate12.py' -v && python3 -m unittest discover -s tests -p 'test_gate13.py' -v && python3 -m unittest discover -s tests -p 'test_cubit_constant.py' -v
+        run: python3 -m unittest discover -s tests -p 'test_corpus_spine.py' -v && python3 -m unittest discover -s tests -p 'test_temporal_diode.py' -v && python3 -m unittest discover -s tests -p 'test_gate09.py' -v && python3 -m unittest discover -s tests -p 'test_gate10.py' -v && python3 -m unittest discover -s tests -p 'test_gate11.py' -v && python3 -m unittest discover -s tests -p 'test_gate12.py' -v && python3 -m unittest discover -s tests -p 'test_gate13.py' -v && python3 -m unittest discover -s tests -p 'test_cubit_constant.py' -v && python3 -m unittest discover -s tests -p 'test_gate14.py' -v
