@@ -1,0 +1,36 @@
+{
+  "schema": "root0.dlw-attribution/1",
+  "mark": ".dlw",
+  "attribution_claim": "David Lee Wise",
+  "attribution_namespace": "ROOT0 / Persist Cortex",
+  "canonical_repo": "DavidWise01/toph-cortex",
+  "manifest_scope": "AUTHORSHIP_CLAIM_FOR_PROVENANCE_SCHEMA_AND_RECORD_CONTAINER",
+  "third_party_material_excluded": true,
+  "independent_witness_claims_preserved": true,
+  "algorithm": "SHA-256",
+  "wire_format": ".dlw:<64 lowercase hexadecimal SHA-256>",
+  "domain": "ROOT0-DLW-ATTRIBUTION-v2",
+  "canonicalization": "UTF-8 JSON, lexicographically sorted object keys, compact separators, ensure_ascii=false",
+  "hash_subject": "all version 2 event fields except watermark and hash, including the attribution object and predecessor",
+  "envelope": {
+    "mark": ".dlw",
+    "claimant": "David Lee Wise",
+    "scope": "PROVENANCE_CONTAINER_ONLY",
+    "third_party_ownership_claim": false
+  },
+  "policy": {
+    "read_legacy_v1": true,
+    "new_writes_version": 2,
+    "append_only": true,
+    "three_independent_witnesses": [
+      "A",
+      "B",
+      "C"
+    ],
+    "no_votes": true,
+    "no_quorum": true,
+    "no_unearned_ownership_claim": true,
+    "cryptographic_watermark_not_signature": true
+  },
+  "external_referents": "Scientific American and other linked media retain their own authorship; .dlw is attribution to this provenance record/framework, not the linked material"
+}
