@@ -16,6 +16,10 @@ on:
       - "bin/append_only_diff.py"
       - "bin/witness_keytool.py"
       - "tests/test_gate10.py"
+      - "bin/distributed_checkpoint.py"
+      - "tests/test_gate11.py"
+      - "memory/corpus-spine/checkpoints.jsonl"
+      - ".github/workflows/checkpoint-append.yml"
       - "memory/corpus-spine/witness-public-keys.json"
       - "memory/corpus-spine/witness-attestations.jsonl"
       - ".github/workflows/corpus-memory-audit.yml"
@@ -44,5 +48,7 @@ jobs:
         run: python3 -m pip install "cryptography==50.0.2"
       - name: Verify signed witness history
         run: python3 bin/witness_attestation.py verify
+      - name: Verify signed checkpoint state
+        run: python3 bin/distributed_checkpoint.py verify
       - name: Run offline regression tests
-        run: python3 -m unittest discover -s tests -p 'test_corpus_spine.py' -v && python3 -m unittest discover -s tests -p 'test_temporal_diode.py' -v && python3 -m unittest discover -s tests -p 'test_gate09.py' -v && python3 -m unittest discover -s tests -p 'test_gate10.py' -v
+        run: python3 -m unittest discover -s tests -p 'test_corpus_spine.py' -v && python3 -m unittest discover -s tests -p 'test_temporal_diode.py' -v && python3 -m unittest discover -s tests -p 'test_gate09.py' -v && python3 -m unittest discover -s tests -p 'test_gate10.py' -v && python3 -m unittest discover -s tests -p 'test_gate11.py' -v
