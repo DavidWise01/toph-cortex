@@ -63,6 +63,8 @@ def prepare(rows:list[dict],corpus:list[dict],thread:str,witness:str,as_of:str)-
         "source_thread_head_hash":head["hash"],
         "expected_thread_head_sha":head["hash"],
         "expected_witness_head_sha":latest["hash"] if latest else "GENESIS",
+        "refs":str(head["seq"]),
+        "handoff_rule":"Existing loom workflow requires latest thread head event seq in refs for every non-OPEN",
         "source_lane_head_seq":latest["seq"] if latest else None,
         "source_lane_head_hash":latest["hash"] if latest else None,
         "corpus_tip":corpus[-1]["hash"],
