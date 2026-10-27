@@ -254,8 +254,8 @@ def cli(argv=None)->int:
     a.add_argument("--source-blob")
     a.add_argument("--expect-tip",required=True)
     a.add_argument("--expect-corpus-tip",required=True)
-    a.add_argument("--expect-thread-head",required=True,help="Observed exact thread SHA, or GENESIS for OPEN")
-    a.add_argument("--expect-witness-head",required=True,help="Observed exact lane SHA, or GENESIS if no prior lane event")
+    a.add_argument("--expect-thread-head",help="Optional explicit SHA lock; absent requires refs to include thread head seq")
+    a.add_argument("--expect-witness-head",help="Optional explicit SHA lock; must be supplied together with thread SHA")
     args=p.parse_args(argv)
     try:
         corpus=corpus_spine.read_rows()
@@ -268,14 +268,28 @@ def cli(argv=None)->int:
                     os.environ.get("GITHUB_ACTOR_ID",""),"loom-append.yml")
             if args.expect_tip!=tip or args.expect_corpus_tip!=corpus[-1]["hash"]:
                 raise ValueError("Loom or corpus compare-and-swap tip mismatch")
-            lock=require_heads(rows,args.thread,actor["witness"],
-                  expect_thread_head=args.expect_thread_head,
-                  expect_witness_head=args.expect_witness_head)
-            print("CAUSAL HEAD LOCK / "+json.dumps(lock,sort_keys=True),flush=True)
             pieces=[x for x in args.refs.split(",") if x]
             if any(not re.fullmatch(r"[1-9][0-9]*",x) for x in pieces):
                 raise ValueError("Loom refs must be positive integer IDs")
             refs=[int(x) for x in pieces]
+            if (args.expect_thread_head is None)!=(args.expect_witness_head is None):
+                raise ValueError("Provide both expected SHA heads together, not one")
+            if args.expect_thread_head is not None:
+                lock=require_heads(rows,args.thread,actor["witness"],
+                    expect_thread_head=args.expect_thread_head,
+                    expect_witness_head=args.expect_witness_head)
+                print("CAUSAL SHA HEAD LOCK / "+json.dumps(lock,sort_keys=True),flush=True)
+            elif args.kind!="OPEN":
+                # The existing Actions workflow accepts user-supplied refs.
+                # Require explicit inclusion of the exact current head seq.
+                head=next((e for e in reversed(rows) if e["thread"]==args.thread),None)
+                if head is None or head["seq"] not in refs:
+                    raise ValueError("CAUSAL REF LOCK: non-OPEN must include current thread head seq "
+                        +str(head["seq"] if head else "MISSING")+" in --refs; refresh and retry")
+                print("CAUSAL REF LOCK / thread="+args.thread+
+                      " / expected head seq="+str(head["seq"])+
+                      " / SHA="+head["hash"],flush=True)
+
             source_parts=(args.source_repo,args.source_path,args.source_blob)
             if any(source_parts):
                 if not all(source_parts):raise ValueError("Source requires repo, path and blob SHA")
