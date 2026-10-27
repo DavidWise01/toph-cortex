@@ -9,6 +9,9 @@ on:
       - "bin/temporal_diode.py"
       - "tests/test_corpus_spine.py"
       - "tests/test_temporal_diode.py"
+      - "bin/witness_identity.py"
+      - "bin/delivery_receipt.py"
+      - "tests/test_gate09.py"
       - ".github/workflows/corpus-memory-audit.yml"
   workflow_dispatch:
 
@@ -25,5 +28,7 @@ jobs:
         run: python3 bin/corpus_spine.py verify
       - name: Verify temporal diode
         run: python3 bin/temporal_diode.py verify
+      - name: Verify delivery ledger (empty genesis is valid)
+        run: python3 bin/delivery_receipt.py verify
       - name: Run offline regression tests
-        run: python3 -m unittest discover -s tests -p 'test_corpus_spine.py' -v && python3 -m unittest discover -s tests -p 'test_temporal_diode.py' -v
+        run: python3 -m unittest discover -s tests -p 'test_corpus_spine.py' -v && python3 -m unittest discover -s tests -p 'test_temporal_diode.py' -v && python3 -m unittest discover -s tests -p 'test_gate09.py' -v
