@@ -198,6 +198,33 @@ def verify_remote_blob(source:dict)->None:
     # The blob SHA validates pointer identity at observation time only; subsequent
     # changes are new references, never rewritten source evidence.
 
+def require_heads(rows:list[dict],thread:str,witness:str,*,expect_thread_head:str,expect_witness_head:str)->dict:
+    """CAS: do not attach testimony to any head other than the witnessed one.
+
+    The global SHA CAS remains separate; another thread can progress
+    without silently moving this named thread or witness lane.
+    """
+    if witness not in ("A","B","C") or not THREAD.fullmatch(thread):
+        raise ValueError("Invalid causal thread or witness")
+    for name,submitted in (("thread",expect_thread_head),("witness",expect_witness_head)):
+        if submitted!="GENESIS" and (not isinstance(submitted,str) or not HEX.fullmatch(submitted)):
+            raise ValueError("Expected "+name+" head must be GENESIS or a 64-character SHA-256")
+    same=[e for e in rows if e["thread"]==thread]
+    own=[e for e in same if e["witness"]==witness]
+    actual_thread=same[-1]["hash"] if same else "GENESIS"
+    actual_witness=own[-1]["hash"] if own else "GENESIS"
+    if expect_thread_head!=actual_thread:
+        raise ValueError("STALE THREAD HEAD: "+thread+" expected="+str(expect_thread_head)+
+                         " actual="+actual_thread+"; refresh witnessed inputs")
+    if expect_witness_head!=actual_witness:
+        raise ValueError("STALE WITNESS HEAD: "+thread+"/"+witness+
+                         " expected="+str(expect_witness_head)+" actual="+actual_witness+
+                         "; refresh witnessed inputs")
+    return {"thread":thread,"witness":witness,
+            "thread_head":actual_thread,"witness_head":actual_witness,
+            "thread_seq":same[-1]["seq"] if same else None,
+            "witness_seq":own[-1]["seq"] if own else None}
+
 def status(rows:list[dict])->dict:
     by_thread={};lanes={}
     for e in rows:
@@ -227,6 +254,8 @@ def cli(argv=None)->int:
     a.add_argument("--source-blob")
     a.add_argument("--expect-tip",required=True)
     a.add_argument("--expect-corpus-tip",required=True)
+    a.add_argument("--expect-thread-head",required=True,help="Observed exact thread SHA, or GENESIS for OPEN")
+    a.add_argument("--expect-witness-head",required=True,help="Observed exact lane SHA, or GENESIS if no prior lane event")
     args=p.parse_args(argv)
     try:
         corpus=corpus_spine.read_rows()
@@ -239,6 +268,10 @@ def cli(argv=None)->int:
                     os.environ.get("GITHUB_ACTOR_ID",""),"loom-append.yml")
             if args.expect_tip!=tip or args.expect_corpus_tip!=corpus[-1]["hash"]:
                 raise ValueError("Loom or corpus compare-and-swap tip mismatch")
+            lock=require_heads(rows,args.thread,actor["witness"],
+                  expect_thread_head=args.expect_thread_head,
+                  expect_witness_head=args.expect_witness_head)
+            print("CAUSAL HEAD LOCK / "+json.dumps(lock,sort_keys=True),flush=True)
             pieces=[x for x in args.refs.split(",") if x]
             if any(not re.fullmatch(r"[1-9][0-9]*",x) for x in pieces):
                 raise ValueError("Loom refs must be positive integer IDs")
