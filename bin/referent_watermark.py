@@ -159,7 +159,11 @@ def probe(uri:str)->dict:
     status=0;server_date=None;transport="NETWORK_ERROR"
     try:
         request=urllib.request.Request(uri,method="HEAD",headers={"User-Agent":"ROOT0-referent-delay/1"})
-        with urllib.request.urlopen(request,timeout=15) as resp:
+        class NoCrossHostRedirect(urllib.request.HTTPRedirectHandler):
+            def redirect_request(self,req,fp,code,msg,headers,newurl):
+                return None
+        opener=urllib.request.build_opener(NoCrossHostRedirect())
+        with opener.open(request,timeout=15) as resp:
             status=resp.status;date_hdr=resp.headers.get("Date");transport="HTTP_RESPONSE"
     except urllib.error.HTTPError as exc:
         status=exc.code;date_hdr=exc.headers.get("Date");transport="HTTP_RESPONSE"
