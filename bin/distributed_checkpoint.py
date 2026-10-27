@@ -155,6 +155,10 @@ def main(argv=None)->int:
               "tip":tip,"current_state":snapshot(streams),
               "registered_keys":len(keys),"votes":False,"quorum":None},indent=2))
         else:
+            import key_lifecycle
+            lifecycle=key_lifecycle.replay(key_lifecycle.read_rows(key_lifecycle.LEDGER,keys),keys)
+            if lifecycle["active"].get(args.witness)!=args.key_id:
+                raise ValueError("Witness signing key inactive, rotated, or revoked")
             if args.key_id not in keys or keys[args.key_id]["witness"]!=args.witness:
                 raise ValueError("No independently registered witness signing key")
             day=dt.date.fromisoformat(args.recorded_at)
