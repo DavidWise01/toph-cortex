@@ -1,0 +1,36 @@
+{
+  "schema": "root0.witness-registry/1",
+  "owner": "DavidWise01",
+  "description": "Actor bindings, not votes. A single account may not occupy more than one lane. Unassigned lanes reject writes.",
+  "revision": 1,
+  "lanes": {
+    "A": {
+      "github_login": "DavidWise01",
+      "github_actor_id": "148925959",
+      "state": "BOUND",
+      "provenance": "GitHub account ID verified via owner metadata; binds lane A only"
+    },
+    "B": {
+      "github_login": null,
+      "github_actor_id": null,
+      "state": "UNASSIGNED",
+      "provenance": "No authenticated independent actor enrolled"
+    },
+    "C": {
+      "github_login": null,
+      "github_actor_id": null,
+      "state": "UNASSIGNED",
+      "provenance": "No authenticated independent actor enrolled"
+    }
+  },
+  "policy": {
+    "no_quorum": true,
+    "no_votes": true,
+    "forward_only": true,
+    "public_metadata_only": true,
+    "require_actions_actor_binding": true,
+    "require_unique_actor_ids": true,
+    "registration_changes": "separate reviewed git change to this registry",
+    "witness_authentication": "GitHub workflow OIDC session actor identity, asserted by GitHub runner env; not cryptographic end-user signature"
+  }
+}
