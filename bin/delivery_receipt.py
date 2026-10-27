@@ -92,8 +92,8 @@ def read_rows(path:Path,temporal:list[dict])->list[dict]:
     validate_rows(rows,temporal)
     return rows
 
-def build_event(rows:list[dict],temporal:list[dict],identity:dict,kind:str,*
-                ,temporal_seq:int|None=None,destination_repo:str|None=None,
+def build_event(rows:list[dict],temporal:list[dict],identity:dict,kind:str, *,
+                temporal_seq:int|None=None,destination_repo:str|None=None,
                 offer_seq:int|None=None,proof:dict|None=None,
                 date:str|None=None)->dict:
     validate_rows(rows,temporal)
