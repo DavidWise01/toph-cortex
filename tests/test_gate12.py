@@ -33,7 +33,7 @@ class LifecycleTests(unittest.TestCase):
 
     def test_activate_requires_ownership(self):
         sk,k=key();keys={k["key_id"]:k}
-        with self.assertRaisesRegex(ValueError,"signature"):
+        with self.assertRaisesRegex(ValueError,"Expected 64 bytes"):
             add([],keys,"ACTIVATE",k["key_id"],new_sig="AA==")
         sig=signed(sk,kind="ACTIVATE",kid=k["key_id"],reason="rotation")
         e=add([],keys,"ACTIVATE",k["key_id"],new_sig=sig)
