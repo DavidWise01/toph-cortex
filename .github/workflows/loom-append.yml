@@ -1,0 +1,124 @@
+name: ROOT0 Threaded Persistent Loom — authenticated append
+on:
+  workflow_dispatch:
+    inputs:
+      operation:
+        description: "Forward-only threaded memory operation"
+        required: true
+        type: choice
+        options: [OPEN, WEAVE, LINK, COPY, DISTILL, CHECKPOINT, CLOSE]
+      thread:
+        description: "Stable lowercase thread ID, e.g. tessy-brain-globule"
+        required: true
+        type: string
+      witness:
+        description: "Registered independent witness lane"
+        required: true
+        type: choice
+        options: [A, B, C]
+      phase:
+        description: "Past observes / present deserves / future reserves"
+        required: true
+        type: choice
+        options: [PAST_OBSERVES, PRESENT_DESERVES, FUTURE_RESERVES]
+      event_on:
+        description: "Subject event date YYYY-MM-DD in UTC calendar terms"
+        required: true
+        type: string
+      what:
+        description: "WHAT the witness reports"
+        required: true
+        type: string
+      how:
+        description: "HOW the observation or transform was made"
+        required: true
+        type: string
+      why:
+        description: "WHY the witness reported this, not a vote"
+        required: true
+        type: string
+      content:
+        description: "Public text; cubit is immutable when copied/distilled"
+        required: false
+        type: string
+      refs:
+        description: "Earlier loom event seq IDs, sorted and comma-separated"
+        required: false
+        type: string
+      source_repo:
+        description: "Optional exact public DavidWise01/repo"
+        required: false
+        type: string
+      source_path:
+        description: "Optional exact public repo file path"
+        required: false
+        type: string
+      source_blob_sha:
+        description: "Optional expected public Git file blob SHA-1 (40 lowercase hex)"
+        required: false
+        type: string
+permissions:
+  contents: write
+concurrency:
+  group: root0-memory-spine-main-writes
+  cancel-in-progress: false
+jobs:
+  append:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Verify entire immutable loom and upstream corpus
+        env:
+          LANE: ${{ inputs.witness }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 bin/corpus_spine.py verify
+          python3 bin/threaded_loom.py verify
+          python3 -m unittest discover -s tests -p 'test_cubit_constant.py' -v
+          python3 -m unittest discover -s tests -p 'test_gate14.py' -v
+          python3 bin/witness_identity.py --witness "$LANE" --workflow loom-append.yml
+      - name: Append exactly one causal witness event
+        env:
+          KIND: ${{ inputs.operation }}
+          THREAD: ${{ inputs.thread }}
+          WITNESS: ${{ inputs.witness }}
+          PHASE: ${{ inputs.phase }}
+          EVENT_ON: ${{ inputs.event_on }}
+          WHAT: ${{ inputs.what }}
+          HOW: ${{ inputs.how }}
+          WHY: ${{ inputs.why }}
+          CONTENT: ${{ inputs.content }}
+          REFS: ${{ inputs.refs }}
+          SOURCE_REPO: ${{ inputs.source_repo }}
+          SOURCE_PATH: ${{ inputs.source_path }}
+          SOURCE_BLOB: ${{ inputs.source_blob_sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          TIP="$(python3 bin/threaded_loom.py tip)"
+          CORPUS_TIP="$(python3 bin/corpus_spine.py tip)"
+          args=(append --kind "$KIND" --thread "$THREAD" --witness "$WITNESS"
+            --phase "$PHASE" --event-on "$EVENT_ON" --what "$WHAT"
+            --how "$HOW" --why "$WHY" --text "$CONTENT" --refs "$REFS"
+            --expect-tip "$TIP" --expect-corpus-tip "$CORPUS_TIP")
+          if [[ -n "$SOURCE_REPO" || -n "$SOURCE_PATH" || -n "$SOURCE_BLOB" ]]; then
+            [[ -n "$SOURCE_REPO" && -n "$SOURCE_PATH" && -n "$SOURCE_BLOB" ]] ||
+              { echo "Source pointer requires repo, path and blob"; exit 1; }
+            args+=(--source-repo "$SOURCE_REPO" --source-path "$SOURCE_PATH" --source-blob "$SOURCE_BLOB")
+          fi
+          python3 bin/threaded_loom.py "${args[@]}"
+          python3 bin/threaded_loom.py verify
+      - name: Commit append-only thread evidence without force
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "root0-threaded-loom[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- memory/corpus-spine/loom-events.jsonl
+          git diff --cached --quiet && { echo "No new loom event"; exit 1; }
+          git commit -m "memory(loom): append independently witnessed causal thread event"
+          git push origin HEAD:main
