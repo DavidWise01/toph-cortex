@@ -1,0 +1,106 @@
+name: ROOT0 Referent Watermark — append observed source/time witness
+on:
+  workflow_dispatch:
+    inputs:
+      kind:
+        description: "REGISTER the source; SAMPLE observed HTTP delay; CORRECT by append"
+        required: true
+        type: choice
+        options: [REGISTER, SAMPLE, CORRECT]
+      witness:
+        description: "Independent registered witness lane"
+        required: true
+        type: choice
+        options: [A, B, C]
+      uri:
+        description: "Exact allowlisted public HTTPS referent"
+        required: true
+        type: string
+      basis:
+        description: "OBSERVED, REPORTED, INFERRED, DISPUTED or UNKNOWN"
+        required: true
+        type: choice
+        options: [OBSERVED, REPORTED, INFERRED, DISPUTED, UNKNOWN]
+      source_seq:
+        description: "SAMPLE/CORRECT: existing REGISTER event number"
+        required: false
+        type: string
+      what:
+        description: "WHAT was seen or reported"
+        required: true
+        type: string
+      how:
+        description: "HOW it was measured or obtained"
+        required: true
+        type: string
+      why:
+        description: "WHY it was recorded; not a consensus judgement"
+        required: true
+        type: string
+      claimed_author:
+        description: "Attributed author/publisher, as a claim"
+        required: false
+        type: string
+      content_sha256:
+        description: "Optional source SHA-256 only when actual bytes were independently inspected"
+        required: false
+        type: string
+permissions:
+  contents: write
+concurrency:
+  group: root0-memory-spine-main-writes
+  cancel-in-progress: false
+jobs:
+  append:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Audit and authenticate source witness
+        env:
+          LANE: ${{ inputs.witness }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 bin/corpus_spine.py verify
+          python3 bin/referent_watermark.py verify
+          python3 -m unittest discover -s tests -p 'test_gate13.py' -v
+          python3 bin/witness_identity.py --witness "$LANE" --workflow referent-append.yml
+      - name: Record exact source referent / monotonic network probe
+        env:
+          KIND: ${{ inputs.kind }}
+          LANE: ${{ inputs.witness }}
+          URI: ${{ inputs.uri }}
+          BASIS: ${{ inputs.basis }}
+          SEQ: ${{ inputs.source_seq }}
+          WHAT: ${{ inputs.what }}
+          HOW: ${{ inputs.how }}
+          WHY: ${{ inputs.why }}
+          AUTHOR: ${{ inputs.claimed_author }}
+          SOURCE_SHA: ${{ inputs.content_sha256 }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          TIP="$(python3 bin/referent_watermark.py tip)"
+          args=(append --expect-tip "$TIP" --kind "$KIND" --witness "$LANE"
+            --uri "$URI" --basis "$BASIS" --what "$WHAT" --how "$HOW" --why "$WHY")
+          if [[ -n "$SEQ" ]]; then
+            [[ "$SEQ" =~ ^[1-9][0-9]*$ ]] || { echo "Invalid referent source sequence"; exit 1; }
+            args+=(--source-seq "$SEQ")
+          fi
+          if [[ -n "$AUTHOR" ]]; then args+=(--claimed-author "$AUTHOR"); fi
+          if [[ -n "$SOURCE_SHA" ]]; then args+=(--content-sha256 "$SOURCE_SHA"); fi
+          python3 bin/referent_watermark.py "${args[@]}"
+          python3 bin/referent_watermark.py verify
+      - name: Persist one new append-only provenance event
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "root0-referent-witness[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- memory/corpus-spine/referent-events.jsonl
+          git diff --cached --quiet && { echo "No new referent event"; exit 1; }
+          git commit -m "memory(referent): append watermarked public witness and Internet timing"
+          git push origin HEAD:main
