@@ -1,0 +1,96 @@
+name: ROOT0 Key Lifecycle — append individual activation rotation revocation
+on:
+  workflow_dispatch:
+    inputs:
+      witness:
+        description: "Registered independent witness lane"
+        required: true
+        type: choice
+        options: [A, B, C]
+      kind:
+        description: "ACTIVATE requires NEW signature; ROTATE requires OLD and NEW; REVOKE is explicit account recovery"
+        required: true
+        type: choice
+        options: [ACTIVATE, ROTATE, REVOKE]
+      key_id:
+        description: "Current target key SHA-256 (new key for ACTIVATE/ROTATE; active for REVOKE)"
+        required: true
+        type: string
+      previous_key_id:
+        description: "ROTATE only — prior active Ed25519 key ID"
+        required: false
+        type: string
+      reason:
+        description: "Why; for REVOKE prefix ACCOUNT_RECOVERY_NOT_KEY_SIGNED: "
+        required: true
+        type: string
+      recorded_at:
+        description: "YYYY-MM-DD UTC, must match PREPARE"
+        required: true
+        type: string
+      expect_tip:
+        description: "Exact lifecycle tip from PREPARE"
+        required: true
+        type: string
+      new_signature_b64:
+        description: "ACTIVATE/ROTATE, Ed25519 NEW role signature created offline"
+        required: false
+        type: string
+      old_signature_b64:
+        description: "ROTATE only, Ed25519 OLD role signature created offline"
+        required: false
+        type: string
+permissions:
+  contents: write
+concurrency:
+  group: root0-memory-spine-main-writes
+  cancel-in-progress: false
+jobs:
+  append:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Install Ed25519 verifier
+        run: python3 -m pip install 'cryptography==46.0.4'
+      - name: Verify existing trust and independent author
+        env:
+          LANE: ${{ inputs.witness }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 bin/witness_identity.py --witness "$LANE" --workflow key-lifecycle-append.yml
+          python3 bin/key_lifecycle.py verify
+          python3 -m unittest discover -s tests -p 'test_gate12.py' -v
+      - name: Append one explicitly authorized key change
+        env:
+          LANE: ${{ inputs.witness }}
+          KIND: ${{ inputs.kind }}
+          KEY_ID: ${{ inputs.key_id }}
+          PREVIOUS: ${{ inputs.previous_key_id }}
+          REASON: ${{ inputs.reason }}
+          DATE: ${{ inputs.recorded_at }}
+          TIP: ${{ inputs.expect_tip }}
+          NEW_SIGN: ${{ inputs.new_signature_b64 }}
+          OLD_SIGN: ${{ inputs.old_signature_b64 }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          args=(append --witness "$LANE" --kind "$KIND" --key-id "$KEY_ID"
+            --reason "$REASON" --recorded-at "$DATE" --expect-tip "$TIP")
+          if [[ -n "$PREVIOUS" ]]; then args+=(--previous-key-id "$PREVIOUS"); fi
+          if [[ -n "$NEW_SIGN" ]]; then args+=(--new-signature-b64 "$NEW_SIGN"); fi
+          if [[ -n "$OLD_SIGN" ]]; then args+=(--old-signature-b64 "$OLD_SIGN"); fi
+          python3 bin/key_lifecycle.py "${args[@]}"
+          python3 bin/key_lifecycle.py verify
+      - name: Commit one immutable Git lifecycle event
+        run: |
+          set -euo pipefail
+          git config user.name "root0-key-lifecycle[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- memory/corpus-spine/key-lifecycle.jsonl
+          git diff --cached --quiet && { echo "No new key event"; exit 1; }
+          git commit -m "memory(key): append verified key lifecycle event"
+          git push origin HEAD:main
