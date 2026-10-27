@@ -70,6 +70,43 @@ class ThreadedLoomTests(unittest.TestCase):
             with self.subTest(output=bad),self.assertRaisesRegex(ValueError,"cubit"):
                 e(rows,"DISTILL",refs=[1,2],text=bad,corpus=self.corpus)
 
+    def test_failed_first_open_from_future_dated_past_report(self):
+        # Reproduction of LOOM HALTED: Loom #1 temporal date boundary violated.
+        # A PAST OPEN with a future subject date must not be silently backdated.
+        when="2026-10-27T20:00:00.000Z"
+        with self.assertRaisesRegex(ValueError,"phase=PAST_OBSERVES, event_on=2026-10-28, recorded_utc_date=2026-10-27"):
+            loom.make([],self.corpus,kind="OPEN",thread="tessy-i",witness="A",
+                phase="PAST_OBSERVES",event_on="2026-10-28",
+                what="Observed",how="Recorded",why="Trace",text="cubit",recorded_at=when)
+
+    def test_auto_first_open_is_bound_to_runner_utc_instant(self):
+        clock="2026-10-27T23:59:59.998Z"
+        day=loom.resolve_event_on("PAST_OBSERVES","auto",clock)
+        self.assertEqual(day,"2026-10-27")
+        start=loom.make([],self.corpus,kind="OPEN",thread="tessy-i",witness="A",
+            phase="PAST_OBSERVES",event_on=day,
+            what="Observed",how="Recorded",why="Trace",text="cubit",recorded_at=clock)
+        self.assertEqual(start["event_on"],"2026-10-27")
+        self.assertEqual(start["recorded_at"],clock)
+        self.assertEqual(loom.verify([start],self.corpus),start["hash"])
+
+    def test_explicit_dates_remain_strict_not_silently_rewritten(self):
+        time="2026-10-27T00:00:00.000Z"
+        self.assertEqual(loom.resolve_event_on("PAST_OBSERVES","2026-10-26",time),"2026-10-26")
+        self.assertEqual(loom.resolve_event_on("PRESENT_DESERVES","AUTO",time),"2026-10-27")
+        with self.assertRaisesRegex(ValueError,"recorded_utc_date=2026-10-27"):
+            loom.resolve_event_on("PAST_OBSERVES","2026-10-28",time)
+        with self.assertRaisesRegex(ValueError,"recorded_utc_date=2026-10-27"):
+            loom.resolve_event_on("PRESENT_DESERVES","2026-10-26",time)
+
+    def test_future_auto_is_refused_and_explicit_future_validated(self):
+        time="2026-10-27T12:00:00.000Z"
+        with self.assertRaisesRegex(ValueError,"requires an explicit future date"):
+            loom.resolve_event_on("FUTURE_RESERVES","auto",time)
+        self.assertEqual(loom.resolve_event_on("FUTURE_RESERVES","2026-10-28",time),"2026-10-28")
+        with self.assertRaisesRegex(ValueError,"event_on > recorded_utc_date"):
+            loom.resolve_event_on("FUTURE_RESERVES","2026-10-27",time)
+
     def test_temporal_diode_does_not_skip_reverse_or_invent_future(self):
         rows=[self.open]
         with self.assertRaisesRegex(ValueError,"reverses or skips"):
