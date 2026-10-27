@@ -1,0 +1,78 @@
+name: ROOT0 Corpus Checkpoint — append independently signed snapshot
+on:
+  workflow_dispatch:
+    inputs:
+      witness:
+        description: "Independently enrolled witness A/B/C"
+        required: true
+        type: choice
+        options: [A, B, C]
+      key_id:
+        description: "Public Ed25519 key fingerprint from enrolled registry"
+        required: true
+        type: string
+      recorded_at:
+        description: "PREPARE UTC date (YYYY-MM-DD), must match signed bytes"
+        required: true
+        type: string
+      signature_b64:
+        description: "Detached Ed25519 signature from witness-controlled offline key"
+        required: true
+        type: string
+      expected_tip:
+        description: "Checkpoint chain tip from PREPARE"
+        required: true
+        type: string
+      expected_state_sha256:
+        description: "Exact source-state SHA-256 from PREPARE"
+        required: true
+        type: string
+permissions:
+  contents: write
+concurrency:
+  group: root0-memory-spine-main-writes
+  cancel-in-progress: false
+jobs:
+  append:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Install Ed25519 verifier
+        run: python3 -m pip install 'cryptography==50.0.2'
+      - name: Verify all four existing memory streams
+        run: |
+          set -euo pipefail
+          python3 bin/corpus_spine.py verify
+          python3 bin/temporal_diode.py verify
+          python3 bin/delivery_receipt.py verify
+          python3 bin/witness_attestation.py verify
+          python3 bin/distributed_checkpoint.py verify
+          python3 -m unittest discover -s tests -p 'test_gate11.py' -v
+      - name: Append one independently signed checkpoint
+        env:
+          WITNESS: ${{ inputs.witness }}
+          KEY_ID: ${{ inputs.key_id }}
+          UTC_DATE: ${{ inputs.recorded_at }}
+          SIGNATURE: ${{ inputs.signature_b64 }}
+          EXPECTED: ${{ inputs.expected_tip }}
+          STATE_SHA: ${{ inputs.expected_state_sha256 }}
+        run: |
+          set -euo pipefail
+          python3 bin/witness_identity.py --witness "$WITNESS" --workflow checkpoint-append.yml
+          python3 bin/distributed_checkpoint.py append \
+            --witness "$WITNESS" --key-id "$KEY_ID" \
+            --recorded-at "$UTC_DATE" --signature-b64 "$SIGNATURE" \
+            --expect-tip "$EXPECTED" --expect-state-sha256 "$STATE_SHA"
+          python3 bin/distributed_checkpoint.py verify
+      - name: Commit append-only checkpoint
+        run: |
+          set -euo pipefail
+          git config user.name "root0-checkpoint[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- memory/corpus-spine/checkpoints.jsonl
+          git diff --cached --quiet && { echo "No signed checkpoint"; exit 1; }
+          git commit -m "memory(checkpoint): append Ed25519 signed four-stream snapshot"
+          git push origin HEAD:main
