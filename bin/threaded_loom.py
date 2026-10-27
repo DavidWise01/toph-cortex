@@ -52,6 +52,38 @@ def recorded(value:str)->dt.datetime:
 def stamp()->str:
     return dt.datetime.now(dt.timezone.utc).isoformat(timespec="milliseconds").replace("+00:00","Z")
 
+def temporal_boundary(phase:str,event_on:str,recorded_at:str)->dt.date:
+    """Validate a meaningful subject date against the single recorded UTC instant.
+
+    PAST allows the current UTC calendar date (as well as earlier dates);
+    FUTURE cannot be inferred or silently scheduled.
+    """
+    if phase not in PHASES:raise ValueError(f"Unknown temporal phase: {phase}")
+    now=recorded(recorded_at).date()
+    when=day(event_on)
+    allowed=(when<=now if phase=="PAST_OBSERVES" else
+             when==now if phase=="PRESENT_DESERVES" else when>now)
+    if not allowed:
+        relation=("<=" if phase=="PAST_OBSERVES" else "==" if phase=="PRESENT_DESERVES" else ">")
+        raise ValueError(
+            f"Temporal boundary violated: phase={phase}, event_on={when.isoformat()}, "
+            f"recorded_utc_date={now.isoformat()}; expected event_on {relation} "
+            f"recorded_utc_date. For a new OPEN use --event-on auto, or supply a "
+            f"historically valid explicit date. Explicit dates are never rewritten."
+        )
+    return when
+
+def resolve_event_on(phase:str,requested:str,recorded_at:str)->str:
+    """Resolve AUTO once; bind it and recorded_at to the same UTC clock instant."""
+    if requested is None or not isinstance(requested,str):
+        raise ValueError("event_on must be an ISO date or auto")
+    supplied=requested.strip()
+    if supplied.lower()=="auto":
+        if phase=="FUTURE_RESERVES":
+            raise ValueError("FUTURE_RESERVES requires an explicit future date; auto cannot reserve it")
+        supplied=recorded(recorded_at).date().isoformat()
+    return temporal_boundary(phase,supplied,recorded_at).isoformat()
+
 def mark(body:dict)->str:
     return ".dlw:"+hashlib.sha256(DOMAIN.encode("ascii")+corpus_spine.canonical(body)).hexdigest()
 
@@ -68,11 +100,11 @@ def verify(rows:list[dict],corpus:list[dict])->str:
             raise ValueError(f"Loom #{idx}: unknown operation, witness or phase")
         if not isinstance(e["thread"],str) or not THREAD.fullmatch(e["thread"]):
             raise ValueError(f"Loom #{idx}: invalid thread ID")
-        t=recorded(e["recorded_at"]).date()
-        event_on=day(e["event_on"])
+        try:
+            temporal_boundary(e["phase"],e["event_on"],e["recorded_at"])
+        except ValueError as exc:
+            raise ValueError(f"Loom #{idx}: {exc}") from exc
         position=PHASES.index(e["phase"])
-        if (position==0 and event_on>t) or (position==1 and event_on!=t) or (position==2 and event_on<=t):
-            raise ValueError(f"Loom #{idx}: temporal date boundary violated")
         if e["corpus_tip"] not in heads:raise ValueError(f"Loom #{idx}: unverified corpus anchor")
         if e["source"] is not None:corpus_spine.validate_source(e["source"])
         for field in ("what","how","why"):
@@ -186,7 +218,7 @@ def cli(argv=None)->int:
     a.add_argument("--thread",required=True)
     a.add_argument("--witness",choices=("A","B","C"),required=True)
     a.add_argument("--phase",choices=PHASES,required=True)
-    a.add_argument("--event-on",required=True)
+    a.add_argument("--event-on",default="auto",help="ISO date, or auto for PAST/PRESENT bound once to the runner UTC clock")
     for field in ("what","how","why"):a.add_argument("--"+field,required=True)
     a.add_argument("--text",default="")
     a.add_argument("--refs",default="",help="Comma-separated earlier event numbers")
@@ -218,9 +250,13 @@ def cli(argv=None)->int:
                         "blob_sha":args.source_blob,"visibility":"public"}
                 verify_remote_blob(source)
             else:source=None
+            observed_at=stamp()
+            bound_date=resolve_event_on(args.phase,args.event_on,observed_at)
+            print(f"TEMPORAL INPUT / phase={args.phase} / requested={args.event_on} "
+                  f"/ resolved={bound_date} / recorded_at={observed_at}",flush=True)
             event=make(rows,corpus,kind=args.kind,thread=args.thread,witness=actor["witness"],
-                       phase=args.phase,event_on=args.event_on,what=args.what,how=args.how,
-                       why=args.why,text=args.text,refs=refs,source=source)
+                       phase=args.phase,event_on=bound_date,what=args.what,how=args.how,
+                       why=args.why,text=args.text,refs=refs,source=source,recorded_at=observed_at)
             if read(LEDGER,corpus)!=rows:raise ValueError("Loom changed before appending")
             temporal_diode.write(LEDGER,event)
             verify(read(LEDGER,corpus),corpus)
