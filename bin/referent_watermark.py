@@ -26,7 +26,11 @@ import witness_identity
 
 ROOT=Path(__file__).resolve().parents[1]
 LEDGER=ROOT/"memory"/"corpus-spine"/"referent-events.jsonl"
-DOMAIN="ROOT0-WATERMARK-v1"
+DOMAIN="ROOT0-WATERMARK-v1"  # legacy read-only event format
+DLW_DOMAIN="ROOT0-DLW-ATTRIBUTION-v2"
+ATTRIBUTION_MARK=".dlw"
+ATTRIBUTION={"mark":".dlw","claimant":"David Lee Wise","scope":"PROVENANCE_CONTAINER_ONLY","third_party_ownership_claim":False}
+DLW_FIELDS={"attribution"}
 FIELDS={"version","seq","kind","recorded_at","witness","github_actor_id","referent_id",
         "referent_uri","basis","what","how","why","claimed_author","content_sha256",
         "source_seq","sample","prev","watermark","hash"}
@@ -66,7 +70,15 @@ def rid(uri:str)->str:
     return hashlib.sha256(uri_ok(uri).encode("utf-8")).hexdigest()
 
 def mark(body:dict)->str:
-    return hashlib.sha256((DOMAIN+"\n").encode("ascii")+corpus_spine.canonical(body)).hexdigest()
+    """v1 digest remains readable; v2 is the explicit .dlw attribution watermark."""
+    if body.get("version")==2:
+        if body.get("attribution")!=ATTRIBUTION:
+            raise ValueError("Invalid .dlw provenance attribution")
+        digest=hashlib.sha256((DLW_DOMAIN+"\n").encode("ascii")+corpus_spine.canonical(body)).hexdigest()
+        return ATTRIBUTION_MARK+":"+digest
+    if body.get("version")==1:
+        return hashlib.sha256((DOMAIN+"\n").encode("ascii")+corpus_spine.canonical(body)).hexdigest()
+    raise ValueError("Unsupported watermark version")
 
 def validate_sample(sample:dict)->None:
     if not isinstance(sample,dict) or set(sample)!=SAMPLE_FIELDS:
@@ -91,7 +103,7 @@ def verify(rows:list[dict])->str:
     prev="GENESIS";registered={}
     if not isinstance(rows,list):raise ValueError("Expected JSONL event list")
     for i,e in enumerate(rows,1):
-        if not isinstance(e,dict) or set(e)!=FIELDS or e["version"]!=1 or type(e["seq"]) is not int or e["seq"]!=i or e["prev"]!=prev or e["kind"] not in KINDS:
+        if not isinstance(e,dict) or e.get("version") not in (1,2) or set(e)!=(FIELDS if e["version"]==1 else FIELDS|DLW_FIELDS) or type(e["seq"]) is not int or e["seq"]!=i or e["prev"]!=prev or e["kind"] not in KINDS:
             raise ValueError(f"Event {i}: broken chain or schema")
         utc(e["recorded_at"])
         if e["witness"] not in ("A","B","C") or not isinstance(e["github_actor_id"],str) or not e["github_actor_id"].isdigit():
@@ -142,13 +154,14 @@ def write(rows:list[dict],*,kind:str,witness:str,actor_id:str,uri:str,basis:str,
           what:str,how:str,why:str,author:str|None,content_sha:str|None,
           source_seq:int|None,sample:dict|None,observed_at:str|None=None)->dict:
     verify(rows)
-    body={"version":1,"seq":len(rows)+1,"kind":kind,
+    body={"version":2,"seq":len(rows)+1,"kind":kind,
           "recorded_at":observed_at or fmt_utc(dt.datetime.now(dt.timezone.utc)),
           "witness":witness,"github_actor_id":actor_id,
           "referent_id":rid(uri),"referent_uri":uri,"basis":basis,"what":what,
           "how":how,"why":why,"claimed_author":author,
           "content_sha256":content_sha,"source_seq":source_seq,"sample":sample,
-          "prev":rows[-1]["hash"] if rows else "GENESIS"}
+          "prev":rows[-1]["hash"] if rows else "GENESIS",
+          "attribution":dict(ATTRIBUTION)}
     m=mark(body);e={**body,"watermark":m,"hash":corpus_spine.digest({**body,"watermark":m})}
     verify([*rows,e]);return e
 
@@ -201,6 +214,7 @@ def main(argv=None)->int:
         elif args.cmd=="status":print(json.dumps({"schema":"root0.referent-watermark/1",
             "events":len(rows),"tip":tip,"referents":len({x["referent_id"] for x in rows}),
             "time_samples":sum(x["kind"]=="SAMPLE" for x in rows),
+            "watermark_attribution":ATTRIBUTION_MARK,
             "no_quorum":True,"physical_time_dilation_measured":False},indent=2))
         else:
             actor=witness_identity.authorize(args.witness,os.environ.get("GITHUB_ACTOR",""),
