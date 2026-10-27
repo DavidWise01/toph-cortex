@@ -12,6 +12,11 @@ on:
       - "bin/witness_identity.py"
       - "bin/delivery_receipt.py"
       - "tests/test_gate09.py"
+      - "bin/witness_attestation.py"
+      - "bin/witness_keytool.py"
+      - "tests/test_gate10.py"
+      - "memory/corpus-spine/witness-public-keys.json"
+      - "memory/corpus-spine/witness-attestations.jsonl"
       - ".github/workflows/corpus-memory-audit.yml"
   workflow_dispatch:
 
@@ -30,5 +35,9 @@ jobs:
         run: python3 bin/temporal_diode.py verify
       - name: Verify delivery ledger (empty genesis is valid)
         run: python3 bin/delivery_receipt.py verify
+      - name: Install pinned Ed25519 verifier
+        run: python3 -m pip install "cryptography==50.0.2"
+      - name: Verify signed witness history
+        run: python3 bin/witness_attestation.py verify
       - name: Run offline regression tests
-        run: python3 -m unittest discover -s tests -p 'test_corpus_spine.py' -v && python3 -m unittest discover -s tests -p 'test_temporal_diode.py' -v && python3 -m unittest discover -s tests -p 'test_gate09.py' -v
+        run: python3 -m unittest discover -s tests -p 'test_corpus_spine.py' -v && python3 -m unittest discover -s tests -p 'test_temporal_diode.py' -v && python3 -m unittest discover -s tests -p 'test_gate09.py' -v && python3 -m unittest discover -s tests -p 'test_gate10.py' -v
