@@ -164,7 +164,11 @@ def main(argv=None)->int:
                 "registered_signing_keys":{x:sum(e["witness"]==x for e in keys.values()) for x in ("A","B","C")},
                 "quorum":None,"voting":False},indent=2))
         elif args.cmd in ("prepare","append"):
+            import key_lifecycle
+            lifecycle=key_lifecycle.replay(key_lifecycle.read_rows(key_lifecycle.LEDGER,keys),keys)
             stream=args.source_stream;seq=args.source_seq;lane=args.witness
+            if lifecycle["active"].get(lane)!=args.key_id:
+                raise ValueError("Signing key inactive, rotated, or revoked under Gate 12")
             if args.key_id not in keys or keys[args.key_id]["witness"]!=lane:
                 raise ValueError("No enrolled matching public key for witness")
             if not 1<=seq<=len(sources[stream]):raise ValueError("Referenced event not found")
