@@ -13,9 +13,11 @@ This is a source-provenance tool for scientific/technical work; not a claim that
 ## Formal definitions
 
 ```text
-WATERMARK   = SHA256("ROOT0-WATERMARK-v1\n" || canonical(raw event fields))
-CHAIN HASH  = SHA256(canonical(raw event fields + watermark))
-REFERENT ID = SHA256(exact UTF-8 HTTPS URI)
+NEW WATERMARK = ".dlw:" + SHA256("ROOT0-DLW-ATTRIBUTION-v2\n"
+                            || canonical(v2 event incl. attribution, excl. watermark/hash))
+LEGACY V1     = SHA256("ROOT0-WATERMARK-v1\n" || canonical(v1 raw event))
+CHAIN HASH    = SHA256(canonical(event fields + watermark))
+REFERENT ID   = SHA256(exact UTF-8 HTTPS URI)
 
 PAST       → OBSERVES an attributed prior publication or event
 PRESENT    → DESERVES independent scrutiny, including a measured network sample
@@ -25,6 +27,8 @@ A ↘
 B  → witnesses report independently → immutable evidence chain
 C ↗                   no quorum / no voting
 ```
+
+The canonical [`.dlw` attribution manifest](attribution.dlw) names **David Lee Wise** as the attribution claimant for this provenance schema and record container. It does **not** claim authorship of third-party source documents, other witnesses' testimony, or linked Scientific American material. New entries use version 2 and bind the exact attribution object `{"mark":".dlw","claimant":"David Lee Wise","scope":"PROVENANCE_CONTAINER_ONLY","third_party_ownership_claim":false}`. The watermark format is `.dlw:<64 lowercase SHA-256 hex>`; historical v1 bare-hex records remain valid and unchanged.
 
 Watermarks are deterministic digests anchored to the earlier event SHA. They are **not secret, copyright registration, a digital signature, proof of originality, or evidence that an article's content was downloaded**. A `content_sha256` field remains null unless a witness supplies a digest derived from actual source bytes and explains that measurement in HOW. Even then, the byte digest alone does not establish authorship.
 
