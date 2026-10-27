@@ -61,6 +61,8 @@ def prepare(rows:list[dict],corpus:list[dict],thread:str,witness:str,as_of:str)-
         "source_global_tip":rows[-1]["hash"] if rows else "GENESIS",
         "source_thread_head_seq":head["seq"],
         "source_thread_head_hash":head["hash"],
+        "expected_thread_head_sha":head["hash"],
+        "expected_witness_head_sha":latest["hash"] if latest else "GENESIS",
         "source_lane_head_seq":latest["seq"] if latest else None,
         "source_lane_head_hash":latest["hash"] if latest else None,
         "corpus_tip":corpus[-1]["hash"],
