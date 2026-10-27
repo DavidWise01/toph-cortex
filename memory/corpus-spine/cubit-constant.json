@@ -1,0 +1,40 @@
+{
+  "schema": "root0.symbol-constant/1",
+  "constant": "cubit",
+  "type": "immutable lexical constant",
+  "canonical_spelling": "cubit",
+  "case_sensitive": true,
+  "substitution_allowed": false,
+  "scope": "ROOT0 symbolic corpus transformation boundaries: copying, distilling, summarizing, archiving, bridging, exporting and importing",
+  "copy": {
+    "required": "Every exact standalone cubit occurrence in the source survives as the exact standalone lowercase cubit token in the output.",
+    "comparison": "same occurrence count"
+  },
+  "distill": {
+    "required": "If any source cubit concept is retained, use exact lowercase cubit. In the contract's conservative mode, whenever a source contains the constant the distilled output must contain at least one exact occurrence.",
+    "comparison": "at least one exact occurrence when source contains one"
+  },
+  "invalid_renamings": [
+    "Cubit",
+    "CUBIT",
+    "cubits",
+    "cUbIt"
+  ],
+  "distinct_terms": {
+    "qubit": "Separate hardware/physics term; never automatically substitute for the user's cubit constant.",
+    "quantum": "Separate physical concept; not a normalized alias for cubit."
+  },
+  "attribution_mark": ".dlw",
+  "attribution_role": "provenance marker only; not a priority or ownership adjudication",
+  "witnesses": {
+    "lanes": [
+      "A",
+      "B",
+      "C"
+    ],
+    "quorum": null,
+    "votes": false
+  },
+  "mutation_policy": "fail closed; do not rewrite historical source content; any correction is an append-only new artifact or event",
+  "limitations": "A lexical checker can enforce spelling and presence/count but cannot prove full semantic equivalence without separately identified concept spans."
+}
