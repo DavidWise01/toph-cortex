@@ -1,0 +1,22 @@
+{
+  "schema": "root0.witness-keys/1",
+  "revision": 1,
+  "description": "Public Ed25519 verification keys only. Empty until a real witness enrolls an independently controlled key via reviewed Git commit.",
+  "keys": [],
+  "policy": {
+    "key_algorithm": "Ed25519",
+    "key_id": "lowercase sha256(raw 32-byte public key)",
+    "secret_material_allowed": false,
+    "witnesses": [
+      "A",
+      "B",
+      "C"
+    ],
+    "identity_registry": "memory/corpus-spine/witness-registry.json",
+    "no_quorum": true,
+    "no_votes": true,
+    "key_addition": "reviewed append-only key registration; no implicit generation, no keys invented",
+    "signature_domain": "ROOT0-ATTESTATION-v1",
+    "rotation": "append new key; preserve old verifying keys; review changes in Git history"
+  }
+}
