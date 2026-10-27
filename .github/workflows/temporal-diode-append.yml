@@ -66,6 +66,12 @@ jobs:
           python3 bin/corpus_spine.py verify
           python3 bin/temporal_diode.py verify
           python3 -m unittest discover -s tests -p 'test_temporal_diode.py' -v
+      - name: Authenticate this witness against GitHub actor registry
+        env:
+          WITNESS: ${{ inputs.witness }}
+        run: |
+          set -euo pipefail
+          python3 bin/witness_identity.py --witness "$WITNESS" --workflow temporal-diode-append.yml
       - name: Append one individually witnessed phase
         env:
           THREAD: ${{ inputs.thread }}
