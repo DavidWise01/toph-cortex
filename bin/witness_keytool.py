@@ -43,7 +43,7 @@ def sign(path:Path,payload_b64:str):
     key=load_pem_private_key(pem,password=None)
     if not isinstance(key,Ed25519PrivateKey):raise ValueError("Expected Ed25519 private key")
     payload=base64.b64decode(payload_b64,validate=True)
-    if not payload.startswith(b'{"domain":"ROOT0-ATTESTATION-v1",'):
+    if not (payload.startswith(b'{"domain":"ROOT0-ATTESTATION-v1",') or payload.startswith(b'{"domain":"ROOT0-CHECKPOINT-v1",')):
         raise ValueError("Unexpected signing domain; refuse")
     print(base64.b64encode(key.sign(payload)).decode())
 
