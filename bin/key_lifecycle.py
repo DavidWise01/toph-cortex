@@ -36,10 +36,10 @@ ACTIONS=("ACTIVATE","ROTATE","REVOKE")
 RECOVERY="ACCOUNT_RECOVERY_NOT_KEY_SIGNED"
 
 def payload(*,kind:str,witness:str,key_id:str,previous_key_id:str|None,
-            actor_id:str,reason:str,seq:int,prev:str,role:str)->bytes:
+            actor_id:str,reason:str,recorded_at:str,seq:int,prev:str,role:str)->bytes:
     msg={"domain":DOMAIN,"kind":kind,"witness":witness,"key_id":key_id,
          "previous_key_id":previous_key_id,"github_actor_id":actor_id,
-         "reason":reason,"seq":seq,"prev":prev,"role":role}
+         "reason":reason,"recorded_at":recorded_at,"seq":seq,"prev":prev,"role":role}
     return corpus_spine.canonical(msg)
 
 def signature(key:dict, sig:str, data:bytes)->None:
@@ -70,7 +70,7 @@ def replay(rows:list[dict],keys:dict)->dict:
                 raise ValueError(f"Lifecycle event {i}: invalid activation")
             signature(key,e["new_signature_b64"],payload(kind=e["kind"],witness=lane,
                 key_id=e["key_id"],previous_key_id=None,actor_id=e["github_actor_id"],
-                reason=e["reason"],seq=i,prev=prev,role="NEW"))
+                reason=e["reason"],recorded_at=e["recorded_at"],seq=i,prev=prev,role="NEW"))
             active[lane]=e["key_id"];history[e["key_id"]]="ACTIVE"
         elif e["kind"]=="ROTATE":
             old=keys.get(e["previous_key_id"])
@@ -81,7 +81,7 @@ def replay(rows:list[dict],keys:dict)->dict:
             for role,pub,sig in (("OLD",old,e["old_signature_b64"]),("NEW",key,e["new_signature_b64"])):
                 signature(pub,sig,payload(kind=e["kind"],witness=lane,
                     key_id=e["key_id"],previous_key_id=former,actor_id=e["github_actor_id"],
-                    reason=e["reason"],seq=i,prev=prev,role=role))
+                    reason=e["reason"],recorded_at=e["recorded_at"],seq=i,prev=prev,role=role))
             disabled.add(former);history[former]="ROTATED";active[lane]=e["key_id"];history[e["key_id"]]="ACTIVE"
         else:
             if former!=e["key_id"] or e["previous_key_id"] is not None or e["new_signature_b64"] is not None or e["old_signature_b64"] is not None:
@@ -160,7 +160,7 @@ def main(argv=None)->int:
                     for role in (("OLD","NEW") if kind=="ROTATE" else ("NEW",)):
                         proofs[role]=base64.b64encode(payload(kind=kind,witness=lane,key_id=kid,
                             previous_key_id=old,actor_id=public["github_actor_id"],
-                            reason=args.reason,seq=len(rows)+1,prev=s["tip"],role=role)).decode()
+                            reason=args.reason,recorded_at=day,seq=len(rows)+1,prev=s["tip"],role=role)).decode()
                     print(json.dumps({"kind":kind,"tip":s["tip"],"payloads_b64":proofs},indent=2))
             else:
                 actor=witness_identity.authorize(lane,os.environ.get("GITHUB_ACTOR",""),
