@@ -1,0 +1,86 @@
+name: ROOT0 Witness — append Ed25519 attestation (no quorum)
+on:
+  workflow_dispatch:
+    inputs:
+      witness:
+        description: "Bound witness lane A/B/C"
+        required: true
+        type: choice
+        options: [A, B, C]
+      source_stream:
+        description: "Which already-recorded event is being signed"
+        required: true
+        type: choice
+        options: [TEMPORAL, DELIVERY]
+      source_seq:
+        description: "Existing temporal or delivery event sequence"
+        required: true
+        type: string
+      key_id:
+        description: "Registered lowercase SHA-256 of Ed25519 public key"
+        required: true
+        type: string
+      signature_b64:
+        description: "Detached Ed25519 signature over PREPARE payload, generated offline"
+        required: true
+        type: string
+      expected_source_tip:
+        description: "Source tip shown by offline PREPARE; protects against changed source"
+        required: true
+        type: string
+      expected_attestation_tip:
+        description: "Attestation tip shown by offline PREPARE"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: root0-memory-spine-main-writes
+  cancel-in-progress: false
+
+jobs:
+  append:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Install pinned Ed25519 verification library
+        run: python3 -m pip install 'cryptography==50.0.2'
+      - name: Validate source, registry and signed attestation
+        env:
+          WITNESS: ${{ inputs.witness }}
+          STREAM: ${{ inputs.source_stream }}
+          SEQ: ${{ inputs.source_seq }}
+          KEY_ID: ${{ inputs.key_id }}
+          SIG_B64: ${{ inputs.signature_b64 }}
+          SOURCE_TIP: ${{ inputs.expected_source_tip }}
+          ATTEST_TIP: ${{ inputs.expected_attestation_tip }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 bin/corpus_spine.py verify
+          python3 bin/temporal_diode.py verify
+          python3 bin/delivery_receipt.py verify
+          python3 -m unittest discover -s tests -p 'test_gate10.py' -v
+          python3 bin/witness_identity.py --witness "$WITNESS" --workflow witness-attestation-append.yml
+          [[ "$SEQ" =~ ^[1-9][0-9]*$ ]] || { echo "Invalid source sequence"; exit 1; }
+          python3 bin/witness_attestation.py append \
+            --witness "$WITNESS" --source-stream "$STREAM" \
+            --source-seq "$SEQ" --key-id "$KEY_ID" \
+            --signature-b64 "$SIG_B64" --expect-tip "$ATTEST_TIP" \
+            --expect-source-tip "$SOURCE_TIP"
+          python3 bin/witness_attestation.py verify
+      - name: Append commit without rewriting existing records
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "root0-witness-attestation[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- memory/corpus-spine/witness-attestations.jsonl
+          git diff --cached --quiet && { echo "No signed witness event"; exit 1; }
+          git commit -m "memory(witness): append independently signed event attestation"
+          git push origin HEAD:main
