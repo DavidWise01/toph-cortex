@@ -22,7 +22,7 @@ on:
         type: choice
         options: [PAST_OBSERVES, PRESENT_DESERVES, FUTURE_RESERVES]
       event_on:
-        description: "AUTO uses the runner UTC date for PAST/PRESENT; or supply YYYY-MM-DD. FUTURE requires explicit later date."
+        description: "Use auto for PAST OPEN. NEVER enter a future date for PAST; FUTURE requires an explicit later YYYY-MM-DD."
         required: false
         default: auto
         type: string
@@ -65,10 +65,10 @@ concurrency:
   cancel-in-progress: false
 jobs:
   append:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 8
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: main
       - name: Verify entire immutable loom and upstream corpus
