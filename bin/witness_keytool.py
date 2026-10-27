@@ -48,7 +48,8 @@ def sign(path:Path,payload_b64:str):
     except (ValueError,UnicodeDecodeError) as exc:raise ValueError("Not a UTF-8 JSON signing envelope") from exc
     domains={
       "ROOT0-ATTESTATION-v1":{"domain","witness","source_stream","source_seq","source_hash","key_id"},
-      "ROOT0-CHECKPOINT-v1":{"domain","witness","key_id","recorded_at","checkpoint_seq","previous_checkpoint","state"}
+      "ROOT0-CHECKPOINT-v1":{"domain","witness","key_id","recorded_at","checkpoint_seq","previous_checkpoint","state"},
+      "ROOT0-KEY-LIFECYCLE-v1":{"domain","kind","witness","key_id","previous_key_id","github_actor_id","reason","seq","prev","role"}
     }
     if not isinstance(envelope,dict) or envelope.get("domain") not in domains or set(envelope)!=domains[envelope["domain"]]:
         raise ValueError("Unexpected signing domain or fields; refuse")
