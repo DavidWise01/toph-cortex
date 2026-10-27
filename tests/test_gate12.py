@@ -18,7 +18,7 @@ def key():
 
 def signed(sk,*,kind,kid,old=None,seq=1,prev="GENESIS",role="NEW",reason="rotation"):
     message=lc.payload(kind=kind,witness="A",key_id=kid,previous_key_id=old,
-        actor_id="148925959",reason=reason,seq=seq,prev=prev,role=role)
+        actor_id="148925959",reason=reason,recorded_at="2026-10-27",seq=seq,prev=prev,role=role)
     return base64.b64encode(sk.sign(message)).decode()
 
 def add(rows,keys,kind,kid,old=None,new_sig=None,old_sig=None,reason="rotation"):
