@@ -26,8 +26,31 @@ class ReferentDiodeTests(unittest.TestCase):
         reg=event()
         self.assertEqual(r.verify([reg]),reg["hash"])
         self.assertEqual(reg["referent_id"],r.rid(URL))
-        self.assertEqual(len(reg["watermark"]),64)
+        self.assertTrue(reg["watermark"].startswith(".dlw:"))
+        self.assertEqual(len(reg["watermark"]),69)
+        self.assertEqual(reg["attribution"]["mark"],".dlw")
+        self.assertEqual(reg["attribution"]["claimant"],"David Lee Wise")
+        self.assertFalse(reg["attribution"]["third_party_ownership_claim"])
         self.assertIsNone(reg["content_sha256"])
+
+    def test_dlw_watermark_rejects_relabel_or_scope_tampering(self):
+        reg=event()
+        modified={**reg,"attribution":{**reg["attribution"],"scope":"CLAIM_EXTERNAL_ARTICLE"}}
+        with self.assertRaisesRegex(ValueError,"attribution"):
+            r.verify([modified])
+        modified={**reg,"watermark":".dlw:"+"0"*64}
+        with self.assertRaisesRegex(ValueError,"watermark mismatch"):
+            r.verify([modified])
+
+    def test_legacy_v1_remains_readable_without_rewriting(self):
+        reg=event()
+        legacy={k:v for k,v in reg.items() if k not in ("attribution","hash","watermark")}
+        legacy["version"]=1
+        old_mark=r.mark(legacy)
+        record={**legacy,"watermark":old_mark,"hash":r.corpus_spine.digest({**legacy,"watermark":old_mark})}
+        self.assertEqual(r.verify([record]),record["hash"])
+        self.assertNotIn("attribution",record)
+        self.assertFalse(record["watermark"].startswith(".dlw:"))
 
     def test_actual_http_failure_is_observed_not_success(self):
         first=event()
