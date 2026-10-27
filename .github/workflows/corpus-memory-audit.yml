@@ -30,6 +30,7 @@ on:
       - "tests/test_gate14.py"
       - "bin/loom_next.py"
       - "tests/test_loom_next.py"
+      - "tests/test_gate15.py"
       - "memory/corpus-spine/loom-events.jsonl"
       - ".github/workflows/loom-append.yml"
       - ".github/workflows/cubit-constant-check.yml"
@@ -77,4 +78,4 @@ jobs:
       - name: Verify signed checkpoint state
         run: python3 bin/distributed_checkpoint.py verify
       - name: Run offline regression tests
-        run: python3 -m unittest discover -s tests -p 'test_corpus_spine.py' -v && python3 -m unittest discover -s tests -p 'test_temporal_diode.py' -v && python3 -m unittest discover -s tests -p 'test_gate09.py' -v && python3 -m unittest discover -s tests -p 'test_gate10.py' -v && python3 -m unittest discover -s tests -p 'test_gate11.py' -v && python3 -m unittest discover -s tests -p 'test_gate12.py' -v && python3 -m unittest discover -s tests -p 'test_gate13.py' -v && python3 -m unittest discover -s tests -p 'test_cubit_constant.py' -v && python3 -m unittest discover -s tests -p 'test_gate14.py' -v && python3 -m unittest discover -s tests -p 'test_loom_next.py' -v
+        run: python3 -m unittest discover -s tests -p 'test_corpus_spine.py' -v && python3 -m unittest discover -s tests -p 'test_temporal_diode.py' -v && python3 -m unittest discover -s tests -p 'test_gate09.py' -v && python3 -m unittest discover -s tests -p 'test_gate10.py' -v && python3 -m unittest discover -s tests -p 'test_gate11.py' -v && python3 -m unittest discover -s tests -p 'test_gate12.py' -v && python3 -m unittest discover -s tests -p 'test_gate13.py' -v && python3 -m unittest discover -s tests -p 'test_cubit_constant.py' -v && python3 -m unittest discover -s tests -p 'test_gate14.py' -v && python3 -m unittest discover -s tests -p 'test_loom_next.py' -v && python3 -m unittest discover -s tests -p 'test_gate15.py' -v
