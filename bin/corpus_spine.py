@@ -17,7 +17,7 @@ import urllib.parse
 import urllib.request
 
 ROOT = Path(__file__).resolve().parent.parent
-LEDGER = ROOT / "memory" / "corpus-spine" / "events.jsonl"
+LEDGER = ROOT / "memory" / "corpus-spine" / "events-v2.jsonl"
 FIELDS = {"version","seq","recorded_at","actor","kind","source","what","how","why","supersedes","prev","hash"}
 SRC_FIELDS = {"repo","path","blob_sha","visibility"}
 HEX64 = re.compile(r"^[0-9a-f]{64}$")
