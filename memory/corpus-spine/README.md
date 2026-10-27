@@ -1,10 +1,10 @@
 # ROOT0 Corpus Spine — persistent, reference-only memory
 
 **Canonical write repository:** [DavidWise01/toph-cortex](https://github.com/DavidWise01/toph-cortex)  
-**Ledger:** [memory/corpus-spine/events.jsonl](events.jsonl)  
+**Ledger:** [memory/corpus-spine/events-v2.jsonl](events.jsonl)  
 **Read-only UI:** [Gate 07 / Corpus Spine](https://davidwise01.github.io/persist-cortex/spine/)  
 **Hallway:** https://0root.ai/  
-**Status:** first five public anchors committed on 2026-10-27.
+**Status:** v2 genesis committed on 2026-10-27; original five-entry v1 retained but INVALID due to incorrect record hashes.
 
 ## What this does
 
@@ -40,7 +40,7 @@ python3 bin/corpus_spine.py append \
   --what "Observed X" --how "Observed using Y" --why "Relevant because Z" \
   --verify-public-source
 python3 bin/corpus_spine.py verify
-git add memory/corpus-spine/events.jsonl
+git add memory/corpus-spine/events-v2.jsonl
 git commit -m "memory(corpus): append witnessed reference"
 git push origin main
 ```
@@ -56,3 +56,7 @@ Do not force push. If the branch head advances, fetch and reconcile before exten
 - We do not touch any sealed / frozen corpora to add a pointer.
 - This supplements, but does not replace, existing TOPH CORTEX memory and `memory/ledger.jsonl`.
 - Future secure, private memory requires a dedicated private store or authenticated service, not a public JSONL file.
+
+## Legacy chain warning
+
+The initial `events.jsonl` contains five SHA mismatches. It is preserved solely as historical evidence. **Use `events-v2.jsonl` for verified persistence.** The v2 genesis references the former Git blob and does not silently recertify the original five entries.
