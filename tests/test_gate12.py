@@ -73,7 +73,7 @@ class LifecycleTests(unittest.TestCase):
         sk,a=key();keys={a["key_id"]:a}
         one=add([],keys,"ACTIVATE",a["key_id"],new_sig=signed(sk,kind="ACTIVATE",kid=a["key_id"]))
         altered=dict(one,reason="changed")
-        with self.assertRaisesRegex(ValueError,"SHA mismatch"):
+        with self.assertRaisesRegex(ValueError,"signature"):
             lc.replay([altered],keys)
 
 if __name__=="__main__":unittest.main()
