@@ -4,7 +4,7 @@
   "attribution_claim": "David Lee Wise",
   "attribution_namespace": "ROOT0 / Persist Cortex",
   "canonical_repo": "DavidWise01/toph-cortex",
-  "manifest_scope": "AUTHORSHIP_CLAIM_FOR_PROVENANCE_SCHEMA_AND_RECORD_CONTAINER",
+  "manifest_scope": "PROVENANCE_CONTAINER_ONLY",
   "third_party_material_excluded": true,
   "independent_witness_claims_preserved": true,
   "algorithm": "SHA-256",
@@ -30,7 +30,22 @@
     "no_votes": true,
     "no_quorum": true,
     "no_unearned_ownership_claim": true,
-    "cryptographic_watermark_not_signature": true
+    "cryptographic_watermark_not_signature": true,
+    "attribution_not_legal_adjudication": true
   },
-  "external_referents": "Scientific American and other linked media retain their own authorship; .dlw is attribution to this provenance record/framework, not the linked material"
+  "external_referents": "The .dlw marker identifies the provenance record. Referenced sources and witnesses retain their own identities.",
+  "constant_contract": {
+    "token": "cubit",
+    "case_sensitive": true,
+    "immutable": true,
+    "preserve_on": [
+      "copy",
+      "distill",
+      "summarize",
+      "export",
+      "import"
+    ],
+    "source": "memory/corpus-spine/cubit-constant.json",
+    "transform_validator": "bin/cubit_constant.py"
+  }
 }
