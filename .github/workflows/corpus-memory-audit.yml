@@ -1,0 +1,25 @@
+name: ROOT0 Corpus Memory — verify chain
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "memory/corpus-spine/**"
+      - "bin/corpus_spine.py"
+      - "tests/test_corpus_spine.py"
+      - ".github/workflows/corpus-memory-audit.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify append-only corpus chain
+        run: python3 bin/corpus_spine.py verify
+      - name: Run offline regression tests
+        run: python3 -m unittest discover -s tests -p 'test_corpus_spine.py' -v
