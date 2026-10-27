@@ -101,7 +101,7 @@ jobs:
           set -euo pipefail
           git config user.name "root0-corpus-spine[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- memory/corpus-spine/events.jsonl
+          git add -- memory/corpus-spine/events-v2.jsonl
           git diff --cached --quiet && { echo "No new event"; exit 1; }
           git commit -m "memory(corpus): append verified public witness"
           git push origin HEAD:main
