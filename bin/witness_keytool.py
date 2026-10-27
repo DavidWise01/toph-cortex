@@ -43,8 +43,17 @@ def sign(path:Path,payload_b64:str):
     key=load_pem_private_key(pem,password=None)
     if not isinstance(key,Ed25519PrivateKey):raise ValueError("Expected Ed25519 private key")
     payload=base64.b64decode(payload_b64,validate=True)
-    if not (payload.startswith(b'{"domain":"ROOT0-ATTESTATION-v1",') or payload.startswith(b'{"domain":"ROOT0-CHECKPOINT-v1",')):
-        raise ValueError("Unexpected signing domain; refuse")
+    if len(payload)>4096:raise ValueError("Unexpectedly long signing payload")
+    try:envelope=json.loads(payload.decode("utf-8"))
+    except (ValueError,UnicodeDecodeError) as exc:raise ValueError("Not a UTF-8 JSON signing envelope") from exc
+    domains={
+      "ROOT0-ATTESTATION-v1":{"domain","witness","source_stream","source_seq","source_hash","key_id"},
+      "ROOT0-CHECKPOINT-v1":{"domain","witness","key_id","recorded_at","checkpoint_seq","previous_checkpoint","state"}
+    }
+    if not isinstance(envelope,dict) or envelope.get("domain") not in domains or set(envelope)!=domains[envelope["domain"]]:
+        raise ValueError("Unexpected signing domain or fields; refuse")
+    canonical=json.dumps(envelope,sort_keys=True,separators=(",",":"),ensure_ascii=False).encode("utf-8")
+    if payload!=canonical:raise ValueError("Signing envelope is not canonical; refuse")
     print(base64.b64encode(key.sign(payload)).decode())
 
 def main():
