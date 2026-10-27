@@ -1,0 +1,64 @@
+{
+  "schema": "root0.referent-source-note/1",
+  "captured_utc_date": "2026-10-27",
+  "status": "EXTERNAL_REPORTED_NOT_INDEPENDENTLY_CONTENT_HASHED",
+  "source": {
+    "uri": "https://www.scientificamerican.com/article/openai-just-scooped-human-researchers-on-a-million-dollar-quantum-math-problem/",
+    "supplied_by": "user",
+    "url_access": "primary URL unavailable for direct verification in this session",
+    "canonical_publication": "Scientific American",
+    "subject": "Navier-Stokes Millennium Prize mathematical proof and disputed research priority"
+  },
+  "corroborating_referents": [
+    {
+      "uri": "https://tech.yahoo.com/ai/chatgpt/articles/inside-story-behind-openai-million-161200492.html",
+      "publication": "Scientific American syndicated",
+      "published_utc_date": "2026-10-22",
+      "attribution": "Joseph Howlett",
+      "classification": "REPORTED"
+    },
+    {
+      "uri": "https://openai.com/index/navier-stokes-solution/",
+      "publication": "OpenAI",
+      "published_utc_date": "2026-09-08",
+      "classification": "PARTY_STATEMENT"
+    },
+    {
+      "uri": "https://www.scientificamerican.com/article/ai-may-have-just-solved-a-million-dollar-math-problem-the-field-will-never-be-the-same/",
+      "published_utc_date": "2026-09-08",
+      "classification": "REPORTED"
+    }
+  ],
+  "separate_claims": [
+    {
+      "claim": "OpenAI reported a formally checked Navier-Stokes result",
+      "basis": "PUBLIC_REPORT"
+    },
+    {
+      "claim": "Competing researchers alleged questionable priority or information transfer",
+      "basis": "ATTRIBUTED_ALLEGATION"
+    },
+    {
+      "claim": "OpenAI disputed improper use of private research inputs",
+      "basis": "ATTRIBUTED_DENIAL"
+    },
+    {
+      "claim": "A content hash, network timestamp, or public Git commit proves priority or ownership",
+      "basis": "NOT_ESTABLISHED"
+    }
+  ],
+  "protocol": {
+    "watermark_is": "cryptographic provenance tag, not proof of ownership",
+    "referent_is": "exact source locator, not attestation of article contents",
+    "internet_time_is": "network latency and clock uncertainty, not physical relativistic time dilation",
+    "witnesses": [
+      "A",
+      "B",
+      "C"
+    ],
+    "quorum": null,
+    "append_only": true
+  },
+  "content_sha256": null,
+  "measured_latency_ms": null
+}
