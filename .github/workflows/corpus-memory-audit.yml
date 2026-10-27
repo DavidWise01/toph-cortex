@@ -22,6 +22,11 @@ on:
       - "tests/test_gate12.py"
       - "bin/referent_watermark.py"
       - "tests/test_gate13.py"
+      - "memory/corpus-spine/cubit-constant.json"
+      - "memory/corpus-spine/attribution.dlw"
+      - "bin/cubit_constant.py"
+      - "tests/test_cubit_constant.py"
+      - ".github/workflows/cubit-constant-check.yml"
       - "memory/corpus-spine/referent-events.jsonl"
       - "memory/corpus-spine/research/**"
       - ".github/workflows/referent-append.yml"
@@ -64,4 +69,4 @@ jobs:
       - name: Verify signed checkpoint state
         run: python3 bin/distributed_checkpoint.py verify
       - name: Run offline regression tests
-        run: python3 -m unittest discover -s tests -p 'test_corpus_spine.py' -v && python3 -m unittest discover -s tests -p 'test_temporal_diode.py' -v && python3 -m unittest discover -s tests -p 'test_gate09.py' -v && python3 -m unittest discover -s tests -p 'test_gate10.py' -v && python3 -m unittest discover -s tests -p 'test_gate11.py' -v && python3 -m unittest discover -s tests -p 'test_gate12.py' -v && python3 -m unittest discover -s tests -p 'test_gate13.py' -v
+        run: python3 -m unittest discover -s tests -p 'test_corpus_spine.py' -v && python3 -m unittest discover -s tests -p 'test_temporal_diode.py' -v && python3 -m unittest discover -s tests -p 'test_gate09.py' -v && python3 -m unittest discover -s tests -p 'test_gate10.py' -v && python3 -m unittest discover -s tests -p 'test_gate11.py' -v && python3 -m unittest discover -s tests -p 'test_gate12.py' -v && python3 -m unittest discover -s tests -p 'test_gate13.py' -v && python3 -m unittest discover -s tests -p 'test_cubit_constant.py' -v
