@@ -1,0 +1,95 @@
+name: ROOT0 Delivery Diode — witnessed cross-repo receipt
+on:
+  workflow_dispatch:
+    inputs:
+      kind:
+        description: "OFFER a pointer or verify an existing remote RECEIPT"
+        required: true
+        type: choice
+        options: [OFFER, RECEIPT]
+      witness:
+        description: "Registered independent witness lane"
+        required: true
+        type: choice
+        options: [A, B, C]
+      temporal_seq:
+        description: "OFFER only — temporal event sequence"
+        required: false
+        type: string
+      destination_repo:
+        description: "OFFER only — public DavidWise01/recipient repo"
+        required: false
+        type: string
+      offer_seq:
+        description: "RECEIPT only — pending offer sequence"
+        required: false
+        type: string
+      ack_path:
+        description: "RECEIPT only — existing public acknowledgment JSON path"
+        required: false
+        type: string
+      ack_sha:
+        description: "RECEIPT only — exact Git blob SHA of remote acknowledgment"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: root0-memory-spine-main-writes
+  cancel-in-progress: false
+
+jobs:
+  append:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Verify source, actor and one-way ledger
+        env:
+          WITNESS: ${{ inputs.witness }}
+        run: |
+          set -euo pipefail
+          python3 bin/corpus_spine.py verify
+          python3 bin/temporal_diode.py verify
+          python3 bin/delivery_receipt.py verify
+          python3 -m unittest discover -s tests -p 'test_gate09.py' -v
+          python3 bin/witness_identity.py --witness "$WITNESS" --workflow delivery-receipt-append.yml
+      - name: Offer reference or verify recipient proof
+        env:
+          KIND: ${{ inputs.kind }}
+          WITNESS: ${{ inputs.witness }}
+          TEMPORAL_SEQ: ${{ inputs.temporal_seq }}
+          DEST: ${{ inputs.destination_repo }}
+          OFFER_SEQ: ${{ inputs.offer_seq }}
+          ACK_PATH: ${{ inputs.ack_path }}
+          ACK_SHA: ${{ inputs.ack_sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          TIP="$(python3 bin/delivery_receipt.py tip)"
+          TEMPORAL_TIP="$(python3 bin/temporal_diode.py tip)"
+          args=(append --kind "$KIND" --witness "$WITNESS"
+                --expect-tip "$TIP" --expect-temporal-tip "$TEMPORAL_TIP")
+          if [[ "$KIND" == OFFER ]]; then
+            [[ "$TEMPORAL_SEQ" =~ ^[1-9][0-9]*$ ]] || { echo "Invalid temporal seq"; exit 1; }
+            args+=(--temporal-seq "$TEMPORAL_SEQ" --destination-repo "$DEST")
+          else
+            [[ "$OFFER_SEQ" =~ ^[1-9][0-9]*$ ]] || { echo "Invalid offer seq"; exit 1; }
+            args+=(--offer-seq "$OFFER_SEQ" --ack-path "$ACK_PATH" --ack-sha "$ACK_SHA")
+          fi
+          python3 bin/delivery_receipt.py "${args[@]}"
+          python3 bin/delivery_receipt.py verify
+      - name: Append Git commit without force
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "root0-delivery-diode[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- memory/corpus-spine/delivery-events.jsonl
+          git diff --cached --quiet && { echo "No new event"; exit 1; }
+          git commit -m "memory(delivery): append authenticated offer or verified receipt"
+          git push origin HEAD:main
