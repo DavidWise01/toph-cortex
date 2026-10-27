@@ -56,6 +56,16 @@ Additionally, `refs` stores sorted, unique **earlier** event numbers. `LINK` req
 | CHECKPOINT | Append a textual witness snapshot; **not** an Ed25519 signed external checkpoint | Individual witness |
 | CLOSE | Terminate only the issuing witness's lane | Individual witness |
 
+### Gate 14 temporal OPEN fix (2026-10-27)
+
+The original manual workflow required an explicit `event_on` date, which could be ahead of the GitHub runner's UTC day and fail with `LOOM HALTED: Loom #1: temporal date boundary violated` even before the first persistent thread was created.
+
+The updated workflow uses **`event_on = auto` by default**. For `OPEN` at `PAST_OBSERVES`, AUTO resolves to the current runner **UTC calendar date**. For `PRESENT_DESERVES`, AUTO also uses that UTC calendar date. The resolved `event_on` and `recorded_at` are frozen from a **single UTC timestamp**, avoiding two independent clock reads around midnight. The event is then strictly replayed and SHA-chained with its actual stored date.
+
+Explicit `YYYY-MM-DD` values are still honored as written. PAST must be on/before the runner UTC day, PRESENT must equal it, and FUTURE must be after it. **FUTURE requires an explicit future date**; it will never use AUTO to create an unsolicited future reservation.
+
+For the first `tessy-i` thread, use `OPEN / A / PAST_OBSERVES / event_on=auto` (or omit the optional date) and supply WHAT, HOW, WHY. A rejected explicit date now reports the received date, observed UTC date and expected relationship. Re-running a failed old GitHub Actions attempt may reuse its previous code; start a fresh workflow dispatch using the updated source.
+
 Each witness starts in `PAST_OBSERVES`, advances to `PRESENT_DESERVES`, then `FUTURE_RESERVES` without skipping or reversing. Dates must correspond to phase: past event date is not later than record date; present is the same date; future is later. These are *witness record semantics*, not clocks or automation instructions.
 
 `cubit` is an exact lowercase immutable constant. COPY preserves every occurrence, DISTILL retains at least one when original referenced text contains the term. `qubit` is not substituted for `cubit`. The [canonical lexical validator](../../bin/cubit_constant.py) is invoked by the loom writer and replay verifier.
