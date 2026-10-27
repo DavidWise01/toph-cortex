@@ -1,0 +1,45 @@
+name: ROOT0 Cubit Constant — copy/distill preservation
+on:
+  workflow_dispatch:
+    inputs:
+      source_path:
+        description: "UTF-8 source path relative to this repository"
+        required: true
+        type: string
+      output_path:
+        description: "UTF-8 copied or distilled file path relative to this repository"
+        required: true
+        type: string
+      mode:
+        description: "Copy preserves every cubit occurrence; distill preserves exact constant"
+        required: true
+        type: choice
+        options: [copy, distill]
+permissions:
+  contents: read
+jobs:
+  verify-cubit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate symbol contract and regression tests
+        run: python3 -m unittest discover -s tests -p 'test_cubit_constant.py' -v
+      - name: Verify the requested corpus transformation
+        env:
+          SOURCE_PATH: ${{ inputs.source_path }}
+          OUTPUT_PATH: ${{ inputs.output_path }}
+          MODE: ${{ inputs.mode }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          root=Path.cwd().resolve()
+          for field in ("SOURCE_PATH","OUTPUT_PATH"):
+              target=(root/os.environ[field]).resolve()
+              if not target.is_relative_to(root) or not target.is_file():
+                  raise SystemExit(field+" must resolve to an existing file within the checked-out repository")
+          PY
+          python3 bin/cubit_constant.py --source "$SOURCE_PATH" --output "$OUTPUT_PATH" --mode "$MODE"
