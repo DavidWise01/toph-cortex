@@ -41,7 +41,7 @@ jobs:
         with:
           ref: main
       - name: Install Ed25519 verifier
-        run: python3 -m pip install 'cryptography==50.0.2'
+        run: python3 -m pip install 'cryptography==46.0.4'
       - name: Verify all four existing memory streams
         run: |
           set -euo pipefail
