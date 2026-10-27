@@ -11,7 +11,7 @@ import sys
 ROOT=Path(__file__).resolve().parents[1]
 BASE="memory/corpus-spine/"
 JOURNALS=("events-v2.jsonl","temporal-events.jsonl","delivery-events.jsonl",
-          "witness-attestations.jsonl","checkpoints.jsonl","key-lifecycle.jsonl")
+          "witness-attestations.jsonl","checkpoints.jsonl","key-lifecycle.jsonl","referent-events.jsonl")
 REGISTRY="witness-public-keys.json"
 
 def previous(path:str)->bytes|None:
