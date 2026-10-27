@@ -45,7 +45,7 @@ jobs:
       - name: Verify delivery ledger (empty genesis is valid)
         run: python3 bin/delivery_receipt.py verify
       - name: Install pinned Ed25519 verifier
-        run: python3 -m pip install "cryptography==50.0.2"
+        run: python3 -m pip install "cryptography==46.0.4"
       - name: Verify signed witness history
         run: python3 bin/witness_attestation.py verify
       - name: Verify signed checkpoint state
