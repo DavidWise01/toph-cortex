@@ -1,0 +1,106 @@
+name: ROOT0 Corpus Memory — append witnessed public reference
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_repo:
+        description: "Public owner/repository (DavidWise01/...)"
+        required: true
+        type: string
+      source_path:
+        description: "Public path on default branch"
+        required: true
+        type: string
+      source_sha:
+        description: "Exact Git blob SHA (40 lowercase hex)"
+        required: true
+        type: string
+      what:
+        description: "WHAT was witnessed (public metadata only)"
+        required: true
+        type: string
+      how:
+        description: "HOW the observation was made"
+        required: true
+        type: string
+      why:
+        description: "WHY it matters / interpretation"
+        required: true
+        type: string
+      actor:
+        description: "Witness label (not authentication identity)"
+        required: false
+        default: "root0"
+        type: string
+      kind:
+        description: "ANCHOR, OBSERVATION, CORRECTION"
+        required: false
+        default: "OBSERVATION"
+        type: choice
+        options:
+          - OBSERVATION
+          - ANCHOR
+          - CORRECTION
+      supersedes:
+        description: "For CORRECTION only: previous event number; else leave empty"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: root0-corpus-spine-append-main
+  cancel-in-progress: false
+
+jobs:
+  append:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout canonical TOPH CORTEX writer
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - name: Verify existing history and append one referenced witness
+        env:
+          SRC_REPO: ${{ inputs.source_repo }}
+          SRC_PATH: ${{ inputs.source_path }}
+          SRC_SHA: ${{ inputs.source_sha }}
+          WHAT: ${{ inputs.what }}
+          HOW: ${{ inputs.how }}
+          WHY: ${{ inputs.why }}
+          ACTOR: ${{ inputs.actor }}
+          KIND: ${{ inputs.kind }}
+          SUPERSEDES: ${{ inputs.supersedes }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 bin/corpus_spine.py verify
+          EXPECTED="$(python3 bin/corpus_spine.py tip)"
+          args=(
+            --expect-tip "$EXPECTED"
+            --actor "$ACTOR"
+            --kind "$KIND"
+            --source-repo "$SRC_REPO"
+            --source-path "$SRC_PATH"
+            --source-sha "$SRC_SHA"
+            --what "$WHAT"
+            --how "$HOW"
+            --why "$WHY"
+            --verify-public-source
+          )
+          if [[ -n "$SUPERSEDES" ]]; then args+=(--supersedes "$SUPERSEDES"); fi
+          python3 bin/corpus_spine.py append "${args[@]}"
+          python3 bin/corpus_spine.py verify
+      - name: Commit and push canonical append only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "root0-corpus-spine[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- memory/corpus-spine/events.jsonl
+          git diff --cached --quiet && { echo "No new event"; exit 1; }
+          git commit -m "memory(corpus): append verified public witness"
+          git push origin HEAD:main
