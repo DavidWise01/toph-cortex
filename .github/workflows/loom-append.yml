@@ -22,8 +22,9 @@ on:
         type: choice
         options: [PAST_OBSERVES, PRESENT_DESERVES, FUTURE_RESERVES]
       event_on:
-        description: "Subject event date YYYY-MM-DD in UTC calendar terms"
-        required: true
+        description: "AUTO uses the runner UTC date for PAST/PRESENT; or supply YYYY-MM-DD. FUTURE requires explicit later date."
+        required: false
+        default: auto
         type: string
       what:
         description: "WHAT the witness reports"
@@ -101,6 +102,10 @@ jobs:
           set -euo pipefail
           TIP="$(python3 bin/threaded_loom.py tip)"
           CORPUS_TIP="$(python3 bin/corpus_spine.py tip)"
+          # Preserve explicit inputs; only absent date fields default to AUTO.
+          # Date resolution and event timestamp share one UTC instant in Python.
+          EVENT_ON="${EVENT_ON:-auto}"
+          printf 'LOOM INPUT / phase=%s / event_on=%s / utc_now=%s\\n' "$PHASE" "$EVENT_ON" "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
           args=(append --kind "$KIND" --thread "$THREAD" --witness "$WITNESS"
             --phase "$PHASE" --event-on "$EVENT_ON" --what "$WHAT"
             --how "$HOW" --why "$WHY" --text "$CONTENT" --refs "$REFS"
