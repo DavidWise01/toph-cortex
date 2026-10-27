@@ -13,6 +13,7 @@ on:
       - "bin/delivery_receipt.py"
       - "tests/test_gate09.py"
       - "bin/witness_attestation.py"
+      - "bin/append_only_diff.py"
       - "bin/witness_keytool.py"
       - "tests/test_gate10.py"
       - "memory/corpus-spine/witness-public-keys.json"
@@ -29,6 +30,10 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Reject prior Git memory rewrites and key-registry deletion
+        run: python3 bin/append_only_diff.py
       - name: Verify append-only corpus chain
         run: python3 bin/corpus_spine.py verify
       - name: Verify temporal diode
