@@ -1,15 +1,19 @@
 """Gate 11: independently signed four-stream checkpoints; test keys are ephemeral."""
 from pathlib import Path
 import base64
+import contextlib
+import io
+import tempfile
 import hashlib
 import sys
 import unittest
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"bin"))
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
-from cryptography.hazmat.primitives.serialization import Encoding,PublicFormat
+from cryptography.hazmat.primitives.serialization import Encoding,PublicFormat,PrivateFormat,NoEncryption
 import corpus_spine
 import distributed_checkpoint as ck
+import witness_keytool
 
 def make_signer():
     secret=Ed25519PrivateKey.generate()
@@ -77,5 +81,18 @@ class Gate11Checkpoint(unittest.TestCase):
         modified=dict(two,prev="GENESIS")
         with self.assertRaisesRegex(ValueError,"schema/chain invalid"):
             ck.verify_rows([one,modified],src,{kid:key})
+
+    def test_offline_keytool_signs_canonical_checkpoint(self):
+        secret,kid,key,actor=make_signer()
+        payload=ck.envelope(witness="A",key_id=kid,recorded_at="2026-10-27",
+                            seq=1,prev="GENESIS",state=ck.snapshot(source_data()))
+        with tempfile.TemporaryDirectory() as directory:
+            pem=Path(directory)/"test-only.pem"
+            pem.write_bytes(secret.private_bytes(Encoding.PEM,PrivateFormat.PKCS8,NoEncryption()))
+            stdout=io.StringIO()
+            with contextlib.redirect_stdout(stdout):
+                witness_keytool.sign(pem,base64.b64encode(payload).decode())
+            signature=base64.b64decode(stdout.getvalue().strip())
+            secret.public_key().verify(signature,payload)
 
 if __name__=="__main__":unittest.main()
