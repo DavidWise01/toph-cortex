@@ -49,7 +49,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: root0-temporal-diode-append-main
+  group: root0-memory-spine-main-writes
   cancel-in-progress: false
 
 jobs:
