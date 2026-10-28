@@ -15,6 +15,7 @@ JOURNALS=("events-v2.jsonl","temporal-events.jsonl","delivery-events.jsonl",
 REGISTRY="witness-public-keys.json"
 STOCHIEON_JOURNAL="memory/stochieon/events-v1.jsonl"
 STOCHIEON_MANIFEST="memory/stochieon/manifest-v1.json"
+CORTEX_PROMOTIONS="memory/stochieon/cortex-promotions-v1.json"
 
 def previous(path:str)->bytes|None:
     cmd=["git","show","HEAD^:"+BASE+path]
@@ -44,7 +45,7 @@ def previous_root(path:str)->bytes|None:
     return p.stdout if p.returncode==0 else None
 
 def audit_stochieon()->None:
-    for relative,immutable in ((STOCHIEON_JOURNAL,False),(STOCHIEON_MANIFEST,True)):
+    for relative,immutable in ((STOCHIEON_JOURNAL,False),(STOCHIEON_MANIFEST,True),(CORTEX_PROMOTIONS,True)):
         old=previous_root(relative)
         path=ROOT/relative
         if not path.is_file():
