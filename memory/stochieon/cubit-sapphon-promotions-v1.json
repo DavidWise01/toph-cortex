@@ -1,0 +1,394 @@
+{
+  "schema": "root0.stochieon.cubit-sapphon-promotions/1",
+  "name": "STOCHIEON/CORTEX/cubit/SAPPHON",
+  "version": 19,
+  "mark": ".dlw",
+  "constant": "cubit",
+  "containment": {
+    "order": [
+      "STOCHIEON",
+      "CORTEX",
+      "cubit",
+      "SAPPHON"
+    ],
+    "parent": "cubit",
+    "type": "LOGICAL_INSIDE",
+    "not_physical_qubit": true,
+    "not_autonomous_runtime": true,
+    "mutation": "APPEND_ONLY_SUCCESSOR_REGISTRY"
+  },
+  "parent_cubit": {
+    "id": "cubit",
+    "kind": "LOGICAL_ANALYTICAL_CUBIT",
+    "source": {
+      "repo": "DavidWise01/oasis",
+      "path": "n184/analytical-cubit-color-bands-v93/spec.json",
+      "blob_sha": "bd885523f405e70aa80c8692d0b0e8bc80d542bb",
+      "url": "https://github.com/DavidWise01/oasis/blob/HEAD/n184/analytical-cubit-color-bands-v93/spec.json"
+    },
+    "canonical": "{|12|}{|3456|}{|78|}{|910|}{|1112131415||}{|1617|}{|18|}",
+    "bands": 7,
+    "slots": 18,
+    "band_lengths": [
+      2,
+      4,
+      2,
+      2,
+      5,
+      2,
+      1
+    ],
+    "spectral_source_id": "sapphon-spectrum",
+    "slot_policy": "Only spectral source bindings consume these 18 numbered cubit slots; other Sapphons are unnumbered nested components",
+    "outer_symbolic_anchors": [
+      "--",
+      "++"
+    ],
+    "outer_anchors_consume_slots": false,
+    "broadband_white_consumes_slots": false
+  },
+  "prime_ordinal": {
+    "declared_total": 5,
+    "found_canonical": [
+      1,
+      2,
+      3
+    ],
+    "unassigned": [
+      4,
+      5
+    ],
+    "rule": "No fabricated Prime 04/05; a successor requires an authentic source"
+  },
+  "scope": {
+    "selected_public_git_default_branch_trees": true,
+    "complete_repository_inventory": false,
+    "sources_moved": false,
+    "files_copied": false,
+    "runtime_started": false,
+    "synthetic_witnesses_created": 0,
+    "independent_witness_quorum": null,
+    "records_are_references_not_attestations": true
+  },
+  "promotion_policy": "NONDESTRUCTIVE_SUBCUBIT_REFERENCE_PROMOTION",
+  "nodes": [
+    {
+      "id": "sapphon-foundation",
+      "name": "SAPPHON Foundation Canon",
+      "kind": "SAPPHON",
+      "parent": "cubit",
+      "containment": "INSIDE_CUBIT",
+      "category": "foundation",
+      "evidence": "canonical_symbolic",
+      "role": "Patricia −1, Icarium 0, Toph +1; 0root apex and return",
+      "source": {
+        "repo": "DavidWise01/oasis",
+        "path": "sapphon/CANON.md",
+        "blob_sha": "1087e1cc76c1ebf65077cb864fb03ff2bdde1909",
+        "url": "https://github.com/DavidWise01/oasis/blob/HEAD/sapphon/CANON.md"
+      },
+      "spectral_slot_binding": null,
+      "runtime_claim": "SOURCE_ONLY_NOT_ATTESTED"
+    },
+    {
+      "id": "sapphon-prime-01",
+      "name": "SAPPHON Prime 01 / Provenance Residual",
+      "kind": "SAPPHON",
+      "parent": "cubit",
+      "containment": "INSIDE_CUBIT",
+      "category": "prime",
+      "evidence": "semantic_source",
+      "role": "Anti-stropic sync, bounded branch rejection and provenance residual",
+      "source": {
+        "repo": "DavidWise01/toph-cortex",
+        "path": "memory/semantic/sapphon-prime-01.md",
+        "blob_sha": "45d3752bc945cff7e68ed3c5c612d38471e9d37b",
+        "url": "https://github.com/DavidWise01/toph-cortex/blob/HEAD/memory/semantic/sapphon-prime-01.md"
+      },
+      "spectral_slot_binding": null,
+      "runtime_claim": "SOURCE_ONLY_NOT_ATTESTED"
+    },
+    {
+      "id": "sapphon-prime-02",
+      "name": "SAPPHON Prime 02 / Referent Delta",
+      "kind": "SAPPHON",
+      "parent": "cubit",
+      "containment": "INSIDE_CUBIT",
+      "category": "prime",
+      "evidence": "semantic_source",
+      "role": "Shared-frame translation preserves relative delta",
+      "source": {
+        "repo": "DavidWise01/toph-cortex",
+        "path": "memory/semantic/sapphon-prime-02.md",
+        "blob_sha": "2676e7fd428e852c922afd31261e3f32cec5936c",
+        "url": "https://github.com/DavidWise01/toph-cortex/blob/HEAD/memory/semantic/sapphon-prime-02.md"
+      },
+      "spectral_slot_binding": null,
+      "runtime_claim": "SOURCE_ONLY_NOT_ATTESTED"
+    },
+    {
+      "id": "sapphon-prime-03",
+      "name": "SAPPHON Prime 03 / Witnessed Deliberation",
+      "kind": "SAPPHON",
+      "parent": "cubit",
+      "containment": "INSIDE_CUBIT",
+      "category": "prime",
+      "evidence": "semantic_source",
+      "role": "Historic local epistemic corroboration rule, not kernel governance quorum",
+      "source": {
+        "repo": "DavidWise01/toph-cortex",
+        "path": "memory/semantic/sapphon-prime-03.md",
+        "blob_sha": "49646920a77422cbdb553b47cf08949c41e58e85",
+        "url": "https://github.com/DavidWise01/toph-cortex/blob/HEAD/memory/semantic/sapphon-prime-03.md"
+      },
+      "spectral_slot_binding": null,
+      "runtime_claim": "SOURCE_ONLY_NOT_ATTESTED"
+    },
+    {
+      "id": "sapphon-prime-01-frozen",
+      "name": "Prime 01 Fold Conservation / Frozen v01",
+      "kind": "SAPPHON",
+      "parent": "cubit",
+      "containment": "INSIDE_CUBIT",
+      "category": "frozen",
+      "evidence": "frozen_software_evidence",
+      "role": "Versioned frozen benchmark manifest with source/result hashes",
+      "source": {
+        "repo": "DavidWise01/toph-cortex",
+        "path": "frozen/sapphon-prime-01-fold-conservation-v01/manifest.json",
+        "blob_sha": "a382b9e114868262253d0057eadd5605795ef15a",
+        "url": "https://github.com/DavidWise01/toph-cortex/blob/HEAD/frozen/sapphon-prime-01-fold-conservation-v01/manifest.json"
+      },
+      "spectral_slot_binding": null,
+      "runtime_claim": "SOURCE_ONLY_NOT_ATTESTED"
+    },
+    {
+      "id": "sapphon-referent-time-cell",
+      "name": "Isomorphic Referent Time Cell",
+      "kind": "SAPPHON",
+      "parent": "cubit",
+      "containment": "INSIDE_CUBIT",
+      "category": "frozen",
+      "evidence": "semantic_source",
+      "role": "Prime 01 descendant; distinct event and referent identity",
+      "source": {
+        "repo": "DavidWise01/toph-cortex",
+        "path": "memory/semantic/isomorphic-referent-time-cell.md",
+        "blob_sha": "efa739d698bd7f46159bc3497d8e707bd158f4b0",
+        "url": "https://github.com/DavidWise01/toph-cortex/blob/HEAD/memory/semantic/isomorphic-referent-time-cell.md"
+      },
+      "spectral_slot_binding": null,
+      "runtime_claim": "SOURCE_ONLY_NOT_ATTESTED"
+    },
+    {
+      "id": "sapphon-spectrum",
+      "name": "SAPPHON Seven-band Spectrum",
+      "kind": "SAPPHON",
+      "parent": "cubit",
+      "containment": "INSIDE_CUBIT",
+      "category": "spectral",
+      "evidence": "executable_source",
+      "role": "Seven symbolic spectral bands with 18 parent cubit slots",
+      "source": {
+        "repo": "DavidWise01/oasis",
+        "path": "apps/anny-neon/sapphon-spectrum.mjs",
+        "blob_sha": "f5d9ae0c39d8a1025831b53d0216794527d53350",
+        "url": "https://github.com/DavidWise01/oasis/blob/HEAD/apps/anny-neon/sapphon-spectrum.mjs"
+      },
+      "spectral_slot_binding": "EXACT_PARENT_18",
+      "runtime_claim": "SOURCE_ONLY_NOT_ATTESTED"
+    },
+    {
+      "id": "sapphon-geometry",
+      "name": "SAPPHON Geometry Overlay",
+      "kind": "SAPPHON",
+      "parent": "cubit",
+      "containment": "INSIDE_CUBIT",
+      "category": "spectral",
+      "evidence": "executable_source",
+      "role": "Read-only geometric projection bound to same 18 cubit slots",
+      "source": {
+        "repo": "DavidWise01/oasis",
+        "path": "apps/anny-neon/sapphon-geometry.mjs",
+        "blob_sha": "3969fa582967d9a0058b0c7c493354719560ffc9",
+        "url": "https://github.com/DavidWise01/oasis/blob/HEAD/apps/anny-neon/sapphon-geometry.mjs"
+      },
+      "spectral_slot_binding": "EXACT_PARENT_18",
+      "runtime_claim": "SOURCE_ONLY_NOT_ATTESTED"
+    },
+    {
+      "id": "sapphon-li",
+      "name": "Lillithium Ion / {{Li}}",
+      "kind": "SAPPHON",
+      "parent": "cubit",
+      "containment": "INSIDE_CUBIT",
+      "category": "rider",
+      "evidence": "symbolic_software_manifest",
+      "role": "Manual local observer, no autonomous agent spawning",
+      "source": {
+        "repo": "DavidWise01/oasis",
+        "path": "projects/sapphon-li/manifest.json",
+        "blob_sha": "c9137beb802b09252a582a4ccdc317f9a50f1255",
+        "url": "https://github.com/DavidWise01/oasis/blob/HEAD/projects/sapphon-li/manifest.json"
+      },
+      "spectral_slot_binding": null,
+      "runtime_claim": "SOURCE_ONLY_NOT_ATTESTED"
+    },
+    {
+      "id": "sapphon-kelvin",
+      "name": "KELVIN Signed Shell",
+      "kind": "SAPPHON",
+      "parent": "cubit",
+      "containment": "INSIDE_CUBIT",
+      "category": "rider",
+      "evidence": "symbolic_software_manifest",
+      "role": "Operator-controlled symbolic 720-degree shell return, not temperature physics",
+      "source": {
+        "repo": "DavidWise01/oasis",
+        "path": "projects/sapphon-li/kelvin-manifest.json",
+        "blob_sha": "83fcdbc1294405e66553624cafcc40fe783e0a4a",
+        "url": "https://github.com/DavidWise01/oasis/blob/HEAD/projects/sapphon-li/kelvin-manifest.json"
+      },
+      "spectral_slot_binding": null,
+      "runtime_claim": "SOURCE_ONLY_NOT_ATTESTED"
+    },
+    {
+      "id": "sapphon-madre",
+      "name": "Madre Sapphon / Aa.Nn.Nn",
+      "kind": "SAPPHON",
+      "parent": "cubit",
+      "containment": "INSIDE_CUBIT",
+      "category": "material",
+      "evidence": "symbolic_software_manifest",
+      "role": "Manual vessel and symbolic gold-core visualization",
+      "source": {
+        "repo": "DavidWise01/oasis",
+        "path": "projects/xenonite-x0/madre-sapphon/madre-manifest.json",
+        "blob_sha": "b9e59b39ab4bcc83685a15bcf6688a9c51bd026e",
+        "url": "https://github.com/DavidWise01/oasis/blob/HEAD/projects/xenonite-x0/madre-sapphon/madre-manifest.json"
+      },
+      "spectral_slot_binding": null,
+      "runtime_claim": "SOURCE_ONLY_NOT_ATTESTED"
+    },
+    {
+      "id": "sapphon-aion-v1",
+      "name": "A.I.O.N. / ALON SAPPHON v1",
+      "kind": "SAPPHON",
+      "parent": "cubit",
+      "containment": "INSIDE_CUBIT",
+      "category": "material",
+      "evidence": "versioned_visual_adapter",
+      "role": "Additive model visualization; synthetic pulse and unchanged frozen KET",
+      "source": {
+        "repo": "DavidWise01/oasis",
+        "path": "projects/xenonite-x0/alon-separate/ket-aion-runtime/sapphon/v1/README.md",
+        "blob_sha": "0c2aacbce851426c08adffdd1355ed4084bf4640",
+        "url": "https://github.com/DavidWise01/oasis/blob/HEAD/projects/xenonite-x0/alon-separate/ket-aion-runtime/sapphon/v1/README.md"
+      },
+      "spectral_slot_binding": null,
+      "runtime_claim": "SOURCE_ONLY_NOT_ATTESTED"
+    },
+    {
+      "id": "sapphon-aion-v2",
+      "name": "A.I.O.N. / ALON SAPPHON v2",
+      "kind": "SAPPHON",
+      "parent": "cubit",
+      "containment": "INSIDE_CUBIT",
+      "category": "material",
+      "evidence": "versioned_visual_adapter",
+      "role": "Local BFS route and synthetic observation receipt",
+      "source": {
+        "repo": "DavidWise01/oasis",
+        "path": "projects/xenonite-x0/alon-separate/ket-aion-runtime/sapphon/v2/README.md",
+        "blob_sha": "57051618cc124c0a4aa7305f96b012e2933d2411",
+        "url": "https://github.com/DavidWise01/oasis/blob/HEAD/projects/xenonite-x0/alon-separate/ket-aion-runtime/sapphon/v2/README.md"
+      },
+      "spectral_slot_binding": null,
+      "runtime_claim": "SOURCE_ONLY_NOT_ATTESTED"
+    },
+    {
+      "id": "sapphon-aion-v3",
+      "name": "A.I.O.N. / ALON SAPPHON v3",
+      "kind": "SAPPHON",
+      "parent": "cubit",
+      "containment": "INSIDE_CUBIT",
+      "category": "material",
+      "evidence": "versioned_visual_adapter",
+      "role": "Deterministic graph fault isolation and local receipts",
+      "source": {
+        "repo": "DavidWise01/oasis",
+        "path": "projects/xenonite-x0/alon-separate/ket-aion-runtime/sapphon/v3/README.md",
+        "blob_sha": "3e37d20ba39fcd903df33061abbb5f95a1190bf6",
+        "url": "https://github.com/DavidWise01/oasis/blob/HEAD/projects/xenonite-x0/alon-separate/ket-aion-runtime/sapphon/v3/README.md"
+      },
+      "spectral_slot_binding": null,
+      "runtime_claim": "SOURCE_ONLY_NOT_ATTESTED"
+    },
+    {
+      "id": "sapphon-harmonic",
+      "name": "SAPPHON Harmonic Lattice",
+      "kind": "SAPPHON",
+      "parent": "cubit",
+      "containment": "INSIDE_CUBIT",
+      "category": "visualization",
+      "evidence": "browser_visualization",
+      "role": "Seven-cubed symbolic lattice presentation",
+      "source": {
+        "repo": "DavidWise01/oasis",
+        "path": "pages/sapphon-harmonic-lattice/index.html",
+        "blob_sha": "d25fc47c39cea03cc44dea697c040f95377ace5b",
+        "url": "https://github.com/DavidWise01/oasis/blob/HEAD/pages/sapphon-harmonic-lattice/index.html"
+      },
+      "spectral_slot_binding": null,
+      "runtime_claim": "SOURCE_ONLY_NOT_ATTESTED"
+    },
+    {
+      "id": "sapphon-celestial",
+      "name": "SAPPHON Celestial 400 / 420 / 444 / 488",
+      "kind": "SAPPHON",
+      "parent": "cubit",
+      "containment": "INSIDE_CUBIT",
+      "category": "visualization",
+      "evidence": "browser_visualization",
+      "role": "Symbolic celestial canvas; not physical element predictions",
+      "source": {
+        "repo": "DavidWise01/oasis",
+        "path": "pages/sapphon-celestial-400-420-444-488/index.html",
+        "blob_sha": "9271d3c409a115ecf8e65fe6a13ff6acace6f0a5",
+        "url": "https://github.com/DavidWise01/oasis/blob/HEAD/pages/sapphon-celestial-400-420-444-488/index.html"
+      },
+      "spectral_slot_binding": null,
+      "runtime_claim": "SOURCE_ONLY_NOT_ATTESTED"
+    }
+  ],
+  "reference_hierarchy": {
+    "parent_context": "Cortexes promoted Gate18, separate immutable registry",
+    "source_registry": "https://github.com/DavidWise01/toph-cortex/blob/main/memory/stochieon/cortex-promotions-v1.json",
+    "no_flattening_to_cortex_siblings": true
+  },
+  "historic_distinction": "Prime 03 contains a historical local two-origin corroboration rule. The STOCHIEON promotion registry uses no votes, no collective witness agreement and no quorum; it does not edit the historical Prime 03 source.",
+  "observed_code_claim": "Source Git blob SHA-1s verified during scan; no tests or deployments claimed here",
+  "preservation": {
+    "constant": "cubit",
+    "watermark": ".dlw",
+    "source_history": "UNCHANGED",
+    "naming": "No substitution of qubit for cubit",
+    "provenance": "Existing source SHA preserved, no author/ownership transfer"
+  },
+  "summary": {
+    "nodes": 16,
+    "source_repos": 2,
+    "categories": {
+      "foundation": 1,
+      "prime": 3,
+      "frozen": 2,
+      "spectral": 2,
+      "rider": 2,
+      "material": 4,
+      "visualization": 2
+    },
+    "spectral_nodes": 2,
+    "prime_nodes": 3,
+    "unassigned_prime_ordinals": 2
+  }
+}
