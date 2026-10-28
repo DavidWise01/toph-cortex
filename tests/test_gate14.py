@@ -1,6 +1,7 @@
 """Gate 14 — deterministic causal loom replay. Offline; no GitHub write/network."""
 import sys
 from pathlib import Path
+import tempfile
 import unittest
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"bin"))
@@ -26,7 +27,10 @@ class ThreadedLoomTests(unittest.TestCase):
 
     def test_empty_genesis_is_valid_and_not_fake_activity(self):
         self.assertEqual(loom.verify([],self.corpus),"GENESIS")
-        self.assertEqual(loom.read(loom.LEDGER,self.corpus),[])
+        # Keep the zero-event fixture independent of the actual persistent
+        # ledger, which now legitimately contains tessy-1 event #1.
+        with tempfile.TemporaryDirectory() as d:
+            self.assertEqual(loom.read(Path(d)/"empty-loom.jsonl",self.corpus),[])
         self.assertEqual(loom.status([])["events"],0)
 
     def test_open_is_dlw_watermarked_and_corpus_bound(self):
