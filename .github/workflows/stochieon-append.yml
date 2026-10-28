@@ -1,0 +1,74 @@
+name: ROOT0 Gate17 — Stochieon Kernel Envelope
+on:
+  workflow_dispatch:
+    inputs:
+      kind:
+        description: "OBSERVE one public boundary; SEAL only after every required observation and Hallway receipt"
+        required: true
+        type: choice
+        options: [OBSERVE, SEAL]
+      witness:
+        description: "Registered independent evidence lane — no voting or quorum"
+        required: true
+        type: choice
+        options: [A, B, C]
+      node_id:
+        description: "OBSERVE endpoint from manifest-v1.json, e.g. toph-loom, 0root-ai or formic-diaspora. Leave empty for SEAL."
+        required: false
+        type: string
+permissions:
+  contents: write
+concurrency:
+  group: root0-memory-spine-main-writes
+  cancel-in-progress: false
+jobs:
+  observe-or-seal:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+      - name: Replay full canonical memory and kernel policy
+        env:
+          LANE: ${{ inputs.witness }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 bin/corpus_spine.py verify
+          python3 bin/threaded_loom.py verify
+          python3 bin/stochieon_kernel.py verify
+          python3 -m unittest discover -s tests -p 'test_gate17.py' -v
+          python3 bin/witness_identity.py --witness "$LANE" --workflow stochieon-append.yml
+      - name: Record one authenticated public observation or immutable kernel seal
+        env:
+          KIND: ${{ inputs.kind }}
+          LANE: ${{ inputs.witness }}
+          NODE: ${{ inputs.node_id }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          TIP="$(python3 bin/stochieon_kernel.py tip)"
+          LOOM_TIP="$(python3 bin/threaded_loom.py tip)"
+          CORPUS_TIP="$(python3 bin/corpus_spine.py tip)"
+          args=(append --kind "$KIND" --witness "$LANE"
+            --expect-tip "$TIP" --expect-loom-tip "$LOOM_TIP"
+            --expect-corpus-tip "$CORPUS_TIP")
+          if [[ "$KIND" == "OBSERVE" ]]; then
+            [[ -n "$NODE" ]] || { echo "OBSERVE requires exact declared endpoint ID"; exit 1; }
+            args+=(--node-id "$NODE")
+          else
+            [[ -z "$NODE" ]] || { echo "SEAL has no single node; leave node_id empty"; exit 1; }
+          fi
+          python3 bin/stochieon_kernel.py "${args[@]}"
+          python3 bin/stochieon_kernel.py verify
+      - name: Append observed evidence to source Git without force
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "root0-stochieon[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- memory/stochieon/events-v1.jsonl
+          git diff --cached --quiet && { echo "No new Stochieon event"; exit 1; }
+          git commit -m "memory(stochieon): append independently witnessed kernel observation or seal"
+          git push origin HEAD:main
