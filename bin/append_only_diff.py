@@ -13,6 +13,8 @@ BASE="memory/corpus-spine/"
 JOURNALS=("events-v2.jsonl","temporal-events.jsonl","delivery-events.jsonl",
           "witness-attestations.jsonl","checkpoints.jsonl","key-lifecycle.jsonl","referent-events.jsonl","loom-events.jsonl")
 REGISTRY="witness-public-keys.json"
+STOCHIEON_JOURNAL="memory/stochieon/events-v1.jsonl"
+STOCHIEON_MANIFEST="memory/stochieon/manifest-v1.json"
 
 def previous(path:str)->bytes|None:
     cmd=["git","show","HEAD^:"+BASE+path]
@@ -37,6 +39,27 @@ def validate(old:bytes|None,new:bytes,filename:str)->None:
         if curr.get("revision",0)<prior.get("revision",0):
             raise ValueError("Key-registry revision regressed")
 
+def previous_root(path:str)->bytes|None:
+    p=subprocess.run(["git","show","HEAD^:"+path],cwd=ROOT,capture_output=True)
+    return p.stdout if p.returncode==0 else None
+
+def audit_stochieon()->None:
+    for relative,immutable in ((STOCHIEON_JOURNAL,False),(STOCHIEON_MANIFEST,True)):
+        old=previous_root(relative)
+        path=ROOT/relative
+        if not path.is_file():
+            if old is not None:raise ValueError("Deleted established Stochieon file: "+relative)
+            continue
+        new=path.read_bytes()
+        if old is not None:
+            if immutable and new!=old:
+                raise ValueError("Stochieon manifest v1 rewritten; create a successor version instead")
+            if not immutable and not new.startswith(old):
+                raise ValueError("Stochieon journal history rewritten/truncated")
+            if not immutable and new and not new.endswith(b"\n"):
+                raise ValueError("Stochieon JSONL incomplete")
+        print("APPEND PASS:",relative)
+
 def main()->int:
     for name in (*JOURNALS,REGISTRY):
         path=ROOT/BASE/name
@@ -46,6 +69,7 @@ def main()->int:
             continue
         validate(old,path.read_bytes(),name)
         print("APPEND PASS:",name)
+    audit_stochieon()
     return 0
 
 if __name__=="__main__":
