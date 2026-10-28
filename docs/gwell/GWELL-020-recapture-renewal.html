@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GWELL 020 · Recapture and Renewal · Canonical</title>
+<style>:root{color-scheme:dark;font-family:ui-monospace,Consolas,monospace;background:#070b13;color:#e4f4f4}body{max-width:1100px;margin:auto;padding:28px}h1{color:#74e6da}h2{color:#d9b4ff}.tag{color:#83e2ba}pre{white-space:pre-wrap;border:1px solid #284653;padding:18px;border-radius:12px}canvas{width:100%;height:410px;background:#0a1222;border:1px solid #29465c;border-radius:12px}button{background:#193747;color:white;border:1px solid #6b99a9;border-radius:7px;padding:10px;cursor:pointer}button:focus{outline:2px solid #9bf}section{margin:24px 0}.small{color:#afc6d0}output{display:block;padding:10px}</style></head><body>
+<p class="tag">CANONICAL · GWELL SERIES · 2026-10-28 · APPEND-ONLY REVISION 1</p><h1>GWELL 020 — Recapture and Renewal</h1>
+<p>Carry forward: GWELL 019 first passage and probability conservation. Escaped trajectories can be captured, return, regenerate, or be absorbed. A return is not necessarily a renewal.</p>
+<pre>{{ OUTER / INNER \ OUTER }}
+        |
+      GWELL A
+        |
+    FIRST PASSAGE
+     /    |    \
+    B     C    EXIT
+    |     |
+  RETURN RENEWAL
+     \    /
+      NEXT CYCLE</pre>
+<h2>Mathematical boundary</h2><p>Q_ij(t) = probability that the next transition from state i enters j by time t. p_ij = Q_ij(∞). With absorbing exits, Σ_j p_ij + p_i,exit = 1. For transient transition matrix P, N = (I−P)⁻¹ exists when its spectral radius is less than one.</p>
+<p><strong>Invariant:</strong> surviving transient probability + cumulative absorbed probability = 1. A regeneration event requires a restart state that makes future dynamics independent of the prior path, conditioned on the reset state. Mere physical return does not imply renewal.</p>
+<h2>Deterministic demonstrator · three wells + absorption</h2>
+<p class="small">Discrete-time illustrative Markov routing. This is a mathematical demonstration, not a physical field simulation. Each tick moves probability using a fixed stochastic matrix. Absorption accumulates.</p>
+<canvas id="view" width="1000" height="410" aria-label="Probability distribution in three wells and absorption"></canvas>
+<p><button id="step">Step</button> <button id="run">Run 20 steps</button> <button id="reset">Reset</button></p><output id="status"></output>
+<h2>Canonical transition matrix</h2><pre>         A     B     C     EXIT
+A      0.20  0.50  0.20   0.10
+B      0.40  0.20  0.30   0.10
+C      0.20  0.30  0.20   0.30
+EXIT   0     0     0      1
+
+Row sums = 1, invariant preserved.
+A, B, C: transient wells.
+EXIT: absorbing state.</pre>
+<h2>Boundary and next natural well</h2><p>GWELL 020 CLOSED within a finite-state Markov / renewal framework. Next: GWELL 021 — memory-bearing recapture and semi-Markov dwell-time kernels. Identify conditions under which the prior trajectory influences the next exit and a renewal assumption fails.</p>
+<script>
+"use strict";
+const P=[[.2,.5,.2,.1],[.4,.2,.3,.1],[.2,.3,.2,.3],[0,0,0,1]];
+let state=[1,0,0,0],tick=0;
+const canvas=document.getElementById("view"),ctx=canvas.getContext("2d"),status=document.getElementById("status");
+function draw(){const names=["A","B","C","EXIT"],cols=["#4ed4bf","#9d9aff","#e4b563","#d8799c"];ctx.clearRect(0,0,1000,410);ctx.fillStyle="#d9e4ed";ctx.font="18px monospace";ctx.fillText("PROBABILITY DISTRIBUTION · tick "+tick,25,40);
+state.forEach((v,i)=>{const x=35+i*245,y=90,h=270*v;ctx.fillStyle="#14293c";ctx.fillRect(x,y,195,270);ctx.fillStyle=cols[i];ctx.fillRect(x,y+270-h,195,h);ctx.fillStyle="#f5f5f5";ctx.font="18px monospace";ctx.fillText(names[i]+" "+(100*v).toFixed(2)+"%",x,y+305)});
+const total=state.reduce((a,b)=>a+b,0);status.textContent="tick="+tick+" | transient="+(state[0]+state[1]+state[2]).toFixed(9)+" | absorbed="+state[3].toFixed(9)+" | total="+total.toFixed(12);}
+function step(){const next=[0,0,0,0];for(let i=0;i<4;i++)for(let j=0;j<4;j++)next[j]+=state[i]*P[i][j];state=next;tick++;draw();}
+document.getElementById("step").onclick=step;document.getElementById("run").onclick=()=>{for(let k=0;k<20;k++)step();};document.getElementById("reset").onclick=()=>{state=[1,0,0,0];tick=0;draw();};draw();
+</script></body></html>
