@@ -27,6 +27,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import referee  # deterministic metrics
 import toroid5  # exact five-transfer commit timing
 import clear_view  # canonical recursive biodome scoping rule
+import cortex_registry  # pinned non-destructive STOCHIEON cortex promotions
 
 STATE = os.path.join(MEM, "cortex_state.json")
 
@@ -56,6 +57,17 @@ def main():
         print("ROSTER     %d real git agents, linked to ud0 @ %s :" % (len(ros["agents"]), ros["ud0"]))
         for a in ros["agents"]:
             print("   ◆ %-13s %s" % (a["name"], a["role"][:56]))
+    try:
+        with open(cortex_registry.REGISTRY,encoding="utf-8") as pointer:
+            promoted=cortex_registry.verify(json.load(pointer))
+        print("PROMOTED   %d referenced cortexes · %d source families · %d executable source files · %d symbolic nodes · %d mirror dedup · %d Lean source files" %
+              (promoted["promoted"],len(promoted["families"]),
+               promoted["executable_sources"],promoted["symbolic_nodes"],
+               promoted["mirrors_deduplicated"],promoted["formal_source_files"]))
+        print("PROVENANCE %s · exact constant %s · no quorum · source-only / not live execution" %
+              (promoted["watermark"],promoted["constant"]))
+    except (OSError,ValueError,KeyError,TypeError) as exc:
+        print("PROMOTION  HALTED · registry integrity error: "+str(exc))
     print("SUBSTRATE  %d facts · %d episodic logs · %d skills · %d staged · %d ledger rows"
           % (n_fact, n_epi, n_skill, n_staged, r["ledger_rows"]))
     print("BATTERY    read path = 0 model calls (mechanical) · write path = gated · consolidation = 1 call/cluster")
