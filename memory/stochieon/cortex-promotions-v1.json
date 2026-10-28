@@ -1,0 +1,362 @@
+{
+  "schema": "root0.stochieon.cortex-promotions/1",
+  "mark": ".dlw",
+  "immutable_constant": "cubit",
+  "promotion_policy": {
+    "method": "NONDESTRUCTIVE_REFERENCE_PROMOTION",
+    "source_history": "UNCHANGED",
+    "no_quorum": true,
+    "witnesses": [
+      "A",
+      "B",
+      "C"
+    ],
+    "independent_witness_claims_created": 0,
+    "executable_redeployments": 0,
+    "claims_liveness": false,
+    "claims_formal_proof_compile": false,
+    "scope": "selected public repo HEAD trees; not exhaustive across all GitHub"
+  },
+  "families": [
+    "toph",
+    "oasis-four-cortex",
+    "ud0-i13",
+    "atlas-hyper-cortex"
+  ],
+  "summary": {
+    "promoted_cortex_nodes": 14,
+    "distinct_source_families": 4,
+    "distinct_executable_sources": 2,
+    "symbolic_nodes": 12,
+    "mirrored_duplicate_sources": 1,
+    "supporting_lean_source_files": 6
+  },
+  "preservation": {
+    "dlw": "exact .dlw provenance marker",
+    "cubit": "exact lowercase cubit; copying and distilling must not substitute or change case",
+    "identity": "{{i}} remains {{i}} at OaSIs symbolic VM boundaries",
+    "git_blobs": "pinned by observed source Git blob SHA-1; does not imply a running service"
+  },
+  "promoted": [
+    {
+      "id": "toph-cortex-overseer",
+      "name": "TOPH CORTEX / overseer",
+      "family": "toph",
+      "role": "deterministic Git-backed memory overseer and promotion gate",
+      "class": "executable_source",
+      "tier": "K",
+      "promotion": "PROMOTED_REFERENCE",
+      "source": {
+        "repo": "DavidWise01/toph-cortex",
+        "path": "bin/cortex.py",
+        "blob_sha": "47b335695e91b8a2e284ddb4683173bb822b0283",
+        "uri": "https://github.com/DavidWise01/toph-cortex/blob/HEAD/bin/cortex.py"
+      },
+      "promotion_gate": {
+        "repo": "DavidWise01/toph-cortex",
+        "path": "bin/promote.py",
+        "blob_sha": "fa1aa3c473c082783cf2a9add8268849bbeb1e5d",
+        "uri": "https://github.com/DavidWise01/toph-cortex/blob/HEAD/bin/promote.py"
+      },
+      "operational_status": "SOURCE_VERIFIED_NOT_EXECUTED_THIS_TURN"
+    },
+    {
+      "id": "oasis-vm-c1",
+      "name": "C1 / IPv4",
+      "family": "oasis-four-cortex",
+      "role": "classical bounded route state",
+      "class": "symbolic_model",
+      "tier": "E",
+      "promotion": "PROMOTED_SYMBOLIC",
+      "source": {
+        "repo": "DavidWise01/oasis",
+        "path": "kernel/canon/four-cortex-vm-ladder-v01/CANON.json",
+        "blob_sha": "de8ba407280d4f6cb39f4ff2b2fac2d8f324ff59",
+        "uri": "https://github.com/DavidWise01/oasis/blob/HEAD/kernel/canon/four-cortex-vm-ladder-v01/CANON.json"
+      },
+      "shared_source": true,
+      "carrier": "{{i}}",
+      "benchmark": "REPOSITORY_REPORTED_PASS_11_OF_11",
+      "operational_status": "SYMBOLIC_NOT_PHYSICAL_VM"
+    },
+    {
+      "id": "oasis-vm-c2",
+      "name": "C2 / IPv6",
+      "family": "oasis-four-cortex",
+      "role": "expanded classical route state",
+      "class": "symbolic_model",
+      "tier": "E",
+      "promotion": "PROMOTED_SYMBOLIC",
+      "source": {
+        "repo": "DavidWise01/oasis",
+        "path": "kernel/canon/four-cortex-vm-ladder-v01/CANON.json",
+        "blob_sha": "de8ba407280d4f6cb39f4ff2b2fac2d8f324ff59",
+        "uri": "https://github.com/DavidWise01/oasis/blob/HEAD/kernel/canon/four-cortex-vm-ladder-v01/CANON.json"
+      },
+      "shared_source": true,
+      "carrier": "{{i}}",
+      "benchmark": "REPOSITORY_REPORTED_PASS_11_OF_11",
+      "operational_status": "SYMBOLIC_NOT_PHYSICAL_VM"
+    },
+    {
+      "id": "oasis-vm-c3",
+      "name": "C3 / quasi-q",
+      "family": "oasis-four-cortex",
+      "role": "candidate/permutation state",
+      "class": "symbolic_model",
+      "tier": "E",
+      "promotion": "PROMOTED_SYMBOLIC",
+      "source": {
+        "repo": "DavidWise01/oasis",
+        "path": "kernel/canon/four-cortex-vm-ladder-v01/CANON.json",
+        "blob_sha": "de8ba407280d4f6cb39f4ff2b2fac2d8f324ff59",
+        "uri": "https://github.com/DavidWise01/oasis/blob/HEAD/kernel/canon/four-cortex-vm-ladder-v01/CANON.json"
+      },
+      "shared_source": true,
+      "carrier": "{{i}}",
+      "benchmark": "REPOSITORY_REPORTED_PASS_11_OF_11",
+      "operational_status": "SYMBOLIC_NOT_PHYSICAL_VM"
+    },
+    {
+      "id": "oasis-vm-c4",
+      "name": "C4 / quantum",
+      "family": "oasis-four-cortex",
+      "role": "coherent relational state",
+      "class": "symbolic_model",
+      "tier": "E",
+      "promotion": "PROMOTED_SYMBOLIC",
+      "source": {
+        "repo": "DavidWise01/oasis",
+        "path": "kernel/canon/four-cortex-vm-ladder-v01/CANON.json",
+        "blob_sha": "de8ba407280d4f6cb39f4ff2b2fac2d8f324ff59",
+        "uri": "https://github.com/DavidWise01/oasis/blob/HEAD/kernel/canon/four-cortex-vm-ladder-v01/CANON.json"
+      },
+      "shared_source": true,
+      "carrier": "{{i}}",
+      "benchmark": "REPOSITORY_REPORTED_PASS_11_OF_11",
+      "operational_status": "SYMBOLIC_NOT_PHYSICAL_VM"
+    },
+    {
+      "id": "ud0-i13-rust-cortex",
+      "name": "i13 Rust Cortex / five-rule sensor",
+      "family": "ud0-i13",
+      "role": "stack/veto/pressure/depth/idempotence/address sensor",
+      "class": "executable_source",
+      "tier": "K",
+      "promotion": "PROMOTED_REFERENCE",
+      "source": {
+        "repo": "DavidWise01/ud0",
+        "path": "world2/i13-v2/06-rust-source/src/cortex.rs",
+        "blob_sha": "629282e84e579f54a1fce936243f57c778cf9feb",
+        "uri": "https://github.com/DavidWise01/ud0/blob/HEAD/world2/i13-v2/06-rust-source/src/cortex.rs"
+      },
+      "mirrors": [
+        {
+          "repo": "DavidWise01/agent-0root",
+          "path": "static/world2/i13-v2/06-rust-source/src/cortex.rs",
+          "blob_sha": "629282e84e579f54a1fce936243f57c778cf9feb",
+          "uri": "https://github.com/DavidWise01/agent-0root/blob/HEAD/static/world2/i13-v2/06-rust-source/src/cortex.rs"
+        }
+      ],
+      "operational_status": "SOURCE_VERIFIED_NOT_EXECUTED_THIS_TURN"
+    },
+    {
+      "id": "atlas-hyper-cortex-level-1",
+      "name": "HYPER-CORTEX (Level 1)",
+      "family": "atlas-hyper-cortex",
+      "role": "declared recursive 5-body 16 × 64-bit VMs",
+      "class": "dlw_symbolic_manifest",
+      "tier": "E",
+      "promotion": "PROMOTED_SYMBOLIC",
+      "source": {
+        "repo": "DavidWise01/atlas",
+        "path": "dlw/packages/hyper-cortex-level-1.dlw/manifest.dlw.json",
+        "blob_sha": "534329b4f401809592994f87470486eb5b4007ab",
+        "uri": "https://github.com/DavidWise01/atlas/blob/HEAD/dlw/packages/hyper-cortex-level-1.dlw/manifest.dlw.json"
+      },
+      "declared_vm_count": 16,
+      "operational_status": "MANIFEST_VERIFIED_NO_LIVE_VM_ATTESTATION"
+    },
+    {
+      "id": "atlas-hyper-cortex-level-2",
+      "name": "HYPER-CORTEX (Level 2)",
+      "family": "atlas-hyper-cortex",
+      "role": "declared recursive 5-body 64 × 64-bit VMs",
+      "class": "dlw_symbolic_manifest",
+      "tier": "E",
+      "promotion": "PROMOTED_SYMBOLIC",
+      "source": {
+        "repo": "DavidWise01/atlas",
+        "path": "dlw/packages/hyper-cortex-level-2.dlw/manifest.dlw.json",
+        "blob_sha": "6a732ca2df3a233ced16f757650bafacb35ee839",
+        "uri": "https://github.com/DavidWise01/atlas/blob/HEAD/dlw/packages/hyper-cortex-level-2.dlw/manifest.dlw.json"
+      },
+      "declared_vm_count": 64,
+      "operational_status": "MANIFEST_VERIFIED_NO_LIVE_VM_ATTESTATION"
+    },
+    {
+      "id": "atlas-hyper-cortex-level-3",
+      "name": "HYPER-CORTEX (Level 3)",
+      "family": "atlas-hyper-cortex",
+      "role": "declared recursive 5-body 256 × 64-bit VMs",
+      "class": "dlw_symbolic_manifest",
+      "tier": "E",
+      "promotion": "PROMOTED_SYMBOLIC",
+      "source": {
+        "repo": "DavidWise01/atlas",
+        "path": "dlw/packages/hyper-cortex-level-3.dlw/manifest.dlw.json",
+        "blob_sha": "69c3d8062ddabbeee62d57c5f26fc180db188a27",
+        "uri": "https://github.com/DavidWise01/atlas/blob/HEAD/dlw/packages/hyper-cortex-level-3.dlw/manifest.dlw.json"
+      },
+      "declared_vm_count": 256,
+      "operational_status": "MANIFEST_VERIFIED_NO_LIVE_VM_ATTESTATION"
+    },
+    {
+      "id": "atlas-hyper-cortex-level-4",
+      "name": "HYPER-CORTEX (Level 4)",
+      "family": "atlas-hyper-cortex",
+      "role": "declared recursive 5-body 1024 × 64-bit VMs",
+      "class": "dlw_symbolic_manifest",
+      "tier": "E",
+      "promotion": "PROMOTED_SYMBOLIC",
+      "source": {
+        "repo": "DavidWise01/atlas",
+        "path": "dlw/packages/hyper-cortex-level-4.dlw/manifest.dlw.json",
+        "blob_sha": "543837314780dabcbb4f8732bbf15f8a05641132",
+        "uri": "https://github.com/DavidWise01/atlas/blob/HEAD/dlw/packages/hyper-cortex-level-4.dlw/manifest.dlw.json"
+      },
+      "declared_vm_count": 1024,
+      "operational_status": "MANIFEST_VERIFIED_NO_LIVE_VM_ATTESTATION"
+    },
+    {
+      "id": "atlas-hyper-cortex-level-5",
+      "name": "HYPER-CORTEX (Level 5)",
+      "family": "atlas-hyper-cortex",
+      "role": "declared recursive 5-body 4096 × 64-bit VMs",
+      "class": "dlw_symbolic_manifest",
+      "tier": "E",
+      "promotion": "PROMOTED_SYMBOLIC",
+      "source": {
+        "repo": "DavidWise01/atlas",
+        "path": "dlw/packages/hyper-cortex-level-5.dlw/manifest.dlw.json",
+        "blob_sha": "637feb9a4d920e0f103ca6fe2ae49336840688ae",
+        "uri": "https://github.com/DavidWise01/atlas/blob/HEAD/dlw/packages/hyper-cortex-level-5.dlw/manifest.dlw.json"
+      },
+      "declared_vm_count": 4096,
+      "operational_status": "MANIFEST_VERIFIED_NO_LIVE_VM_ATTESTATION"
+    },
+    {
+      "id": "atlas-the-cortex-s-14",
+      "name": "THE CORTEX (S+14)",
+      "family": "atlas-hyper-cortex",
+      "role": "declared cortex symbolic emergent / integration node",
+      "class": "dlw_symbolic_manifest",
+      "tier": "E",
+      "promotion": "PROMOTED_SYMBOLIC",
+      "source": {
+        "repo": "DavidWise01/atlas",
+        "path": "dlw/packages/the-cortex-s-14.dlw/manifest.dlw.json",
+        "blob_sha": "3cde399b9326f3903ecfb99eae692d28b8097273",
+        "uri": "https://github.com/DavidWise01/atlas/blob/HEAD/dlw/packages/the-cortex-s-14.dlw/manifest.dlw.json"
+      },
+      "declared_vm_count": null,
+      "operational_status": "MANIFEST_VERIFIED_NO_LIVE_VM_ATTESTATION"
+    },
+    {
+      "id": "atlas-the-cortex-core-node-15",
+      "name": "THE CORTEX CORE (NODE-15)",
+      "family": "atlas-hyper-cortex",
+      "role": "declared cortex symbolic emergent / integration node",
+      "class": "dlw_symbolic_manifest",
+      "tier": "E",
+      "promotion": "PROMOTED_SYMBOLIC",
+      "source": {
+        "repo": "DavidWise01/atlas",
+        "path": "dlw/packages/the-cortex-core-node-15.dlw/manifest.dlw.json",
+        "blob_sha": "c29f226d5ce0460bdde1bdbfaaf39d1c7fc67f11",
+        "uri": "https://github.com/DavidWise01/atlas/blob/HEAD/dlw/packages/the-cortex-core-node-15.dlw/manifest.dlw.json"
+      },
+      "declared_vm_count": null,
+      "operational_status": "MANIFEST_VERIFIED_NO_LIVE_VM_ATTESTATION"
+    },
+    {
+      "id": "atlas-the-cortex-core-65th-axiom",
+      "name": "THE CORTEX CORE (65TH AXIOM)",
+      "family": "atlas-hyper-cortex",
+      "role": "declared cortex symbolic emergent / integration node",
+      "class": "dlw_symbolic_manifest",
+      "tier": "E",
+      "promotion": "PROMOTED_SYMBOLIC",
+      "source": {
+        "repo": "DavidWise01/atlas",
+        "path": "dlw/packages/the-cortex-core-65th-axiom.dlw/manifest.dlw.json",
+        "blob_sha": "588c7fdd2db0c7858f090771d7a1d881012583dc",
+        "uri": "https://github.com/DavidWise01/atlas/blob/HEAD/dlw/packages/the-cortex-core-65th-axiom.dlw/manifest.dlw.json"
+      },
+      "declared_vm_count": null,
+      "operational_status": "MANIFEST_VERIFIED_NO_LIVE_VM_ATTESTATION"
+    }
+  ],
+  "supporting_formal_sources": [
+    {
+      "kind": "lean_source_unverified_compilation",
+      "source": {
+        "repo": "DavidWise01/toroid-kernel",
+        "path": "proof/chonk_17_cortex_identity.lean",
+        "blob_sha": "105110588bc483d6ef6fb4c08fe6cac410280f42",
+        "uri": "https://github.com/DavidWise01/toroid-kernel/blob/HEAD/proof/chonk_17_cortex_identity.lean"
+      }
+    },
+    {
+      "kind": "lean_source_unverified_compilation",
+      "source": {
+        "repo": "DavidWise01/toroid-kernel",
+        "path": "proof/chonk_18_cortex_memory.lean",
+        "blob_sha": "f25585105232183962a32e37ef007991faa76b5c",
+        "uri": "https://github.com/DavidWise01/toroid-kernel/blob/HEAD/proof/chonk_18_cortex_memory.lean"
+      }
+    },
+    {
+      "kind": "lean_source_unverified_compilation",
+      "source": {
+        "repo": "DavidWise01/toroid-kernel",
+        "path": "proof/chonk_29_cortex_checkpoint.lean",
+        "blob_sha": "08ba9d4d701a647ae363fb68a6340fa29afbf382",
+        "uri": "https://github.com/DavidWise01/toroid-kernel/blob/HEAD/proof/chonk_29_cortex_checkpoint.lean"
+      }
+    },
+    {
+      "kind": "lean_source_unverified_compilation",
+      "source": {
+        "repo": "DavidWise01/toroid-kernel",
+        "path": "proof/chonk_30_verified_cortex_commit.lean",
+        "blob_sha": "9b30ffdfd49e8414bcc706f043ab23302cad5c9a",
+        "uri": "https://github.com/DavidWise01/toroid-kernel/blob/HEAD/proof/chonk_30_verified_cortex_commit.lean"
+      }
+    },
+    {
+      "kind": "lean_source_unverified_compilation",
+      "source": {
+        "repo": "DavidWise01/toroid-kernel",
+        "path": "proof/chonk_31_committed_cortex_cycle.lean",
+        "blob_sha": "314315903974a06b2374d4f63dddd705aba5566d",
+        "uri": "https://github.com/DavidWise01/toroid-kernel/blob/HEAD/proof/chonk_31_committed_cortex_cycle.lean"
+      }
+    },
+    {
+      "kind": "lean_source_unverified_compilation",
+      "source": {
+        "repo": "DavidWise01/toroid-kernel",
+        "path": "proof/chonk_39_bilateral_cortex_bridge.lean",
+        "blob_sha": "6b42487140adaee11884c705dbdf189e37899147",
+        "uri": "https://github.com/DavidWise01/toroid-kernel/blob/HEAD/proof/chonk_39_bilateral_cortex_bridge.lean"
+      }
+    }
+  ],
+  "external_context": {
+    "pages": "https://davidwise01.github.io/persist-cortex/",
+    "hallway": "https://0root.ai/",
+    "stochieon": "https://github.com/DavidWise01/toph-cortex/blob/main/memory/stochieon/manifest-v1.json"
+  },
+  "next_bound": "Promoted references are indexed in a kernel registry; optional per-node attestation and CI verification are distinct future operations."
+}
