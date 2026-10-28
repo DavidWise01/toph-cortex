@@ -1,0 +1,31 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GWELL 028 — Wake Coherence</title><style>body{background:#060b15;color:#e8f3ff;font:14px ui-monospace,Consolas,monospace;max-width:1250px;margin:auto;padding:20px}h1{color:#c4e8ff}a{color:#8edcff}canvas{display:block;width:100%;height:auto;background:#07101e;border:1px solid #46607b;border-radius:12px}label{display:inline-flex;align-items:center;gap:8px;margin:10px}input{accent-color:#5aa8fa}button{background:#1b3a5b;border:1px solid #769ab4;color:white;padding:9px 14px;border-radius:8px}output{display:block;padding:12px}pre{white-space:pre-wrap;background:#112033;padding:16px}</style></head><body><small>CANONICAL · GWELL 028 · CANVAS2D · 2026-10-28</small><h1>Wake Coherence & Memory</h1><p><a href="./GWELL-027-spherical-wake-canvas.html">Parent GWELL 027</a> · 1×4×1×4×1 · 11 cobalt {{i}} cores · 16 reflective chrome links · spinning U shells · blocked upper − · inward-only lower C.</p><canvas id="c" width="1200" height="790"></canvas><p><label>Travel <input id="speed" type="range" min="0" max="100" value="65"><span id="speedV"></span></label><label>Lifetime <input id="lifetime" type="range" min="10" max="150" value="75"><span id="lifetimeV"></span></label><label>Dispersion <input id="dispersion" type="range" min="0" max="100" value="25"><span id="dispersionV"></span></label><button id="pause">Pause</button><button id="reset">Reset traces</button></p><output id="info"></output><pre>GWELL 028 — NATURAL BOUND
+A tracer deposited at time t0 has age a=t−t0.
+Signal amplitude A(a)=A0 exp(−a/τ).
+Transverse wake width σ²(a)=σ0²+2Da (diffusive illustrative model).
+A detection threshold A_min gives a memory horizon T=τ ln(A0/A_min).
+For fixed travel speed V, detectable wake length L≈V·T.
+The wake is external visual history, not outbound flux through C.
+Cobalt identity_i is invariant and does not decay with wake amplitude.
+This is a rendering / abstract advection-diffusion model, not evidence of a physical gravitational tail.</pre>
+<script>"use strict";(()=>{
+const c=document.getElementById("c"),g=c.getContext("2d"),P=[{x:600,y:85},...Array.from({length:4},(_,i)=>({x:246+i*236,y:226})),{x:600,y:388},...Array.from({length:4},(_,i)=>({x:246+i*236,y:545})),{x:600,y:700}];
+const E=[...Array.from({length:4},(_,i)=>[0,i+1]),...Array.from({length:4},(_,i)=>[i+1,5]),...Array.from({length:4},(_,i)=>[5,i+6]),...Array.from({length:4},(_,i)=>[i+6,10])];
+const traces=Array.from({length:11},()=>[]);let clock=0,last=0,angle=0,paused=false,emit=0;
+const S=document.getElementById("speed"),L=document.getElementById("lifetime"),D=document.getElementById("dispersion");
+function link(a,b){let p=P[a],q=P[b],gr=g.createLinearGradient(p.x,p.y,q.x,q.y);gr.addColorStop(0,"#455977");gr.addColorStop(.22,"#ffffff");gr.addColorStop(.5,"#6d85a1");gr.addColorStop(.8,"#ebffff");gr.addColorStop(1,"#3d5875");g.beginPath();g.moveTo(p.x,p.y);g.lineTo(q.x,q.y);g.lineWidth=12;g.strokeStyle="#1a293d";g.stroke();g.lineWidth=6;g.strokeStyle=gr;g.stroke();}
+function core(p,i){const grad=g.createRadialGradient(p.x-11,p.y-13,0,p.x,p.y,31);grad.addColorStop(0,"#f5fcff");grad.addColorStop(.18,"#9bd7ff");grad.addColorStop(.5,"#3676d7");grad.addColorStop(.88,"#0b2b6b");grad.addColorStop(1,"#06152d");g.fillStyle=grad;g.beginPath();g.arc(p.x,p.y,31,0,Math.PI*2);g.fill();g.strokeStyle="#d5edff";g.lineWidth=2;g.stroke();g.save();g.translate(p.x,p.y);g.rotate(angle+i*.25);for(let j=0;j<6;j++){g.beginPath();g.ellipse(0,0,43,14,j*Math.PI/6,0,Math.PI*2);g.strokeStyle="rgba(216,239,255,.22)";g.lineWidth=1.5;g.stroke();}g.restore();g.fillStyle="#eb788b";g.fillRect(p.x-22,p.y-52,44,3);g.fillStyle="#fff";g.textAlign="center";g.font="bold 13px monospace";g.fillText("{{i}}",p.x,p.y+5);g.fillStyle="#8edcf6";g.font="12px monospace";g.fillText("C ↑",p.x,p.y+56);g.fillStyle="#b9d1e8";g.fillText("WELL "+String(i).padStart(2,"0"),p.x,p.y+73);}
+function draw(now){const dt=last?Math.min(40,now-last):16;last=now;if(!paused){clock+=dt/1000;angle+=dt*.01;emit+=dt;while(emit>80){emit-=80;P.forEach((p,i)=>{traces[i].push({time:clock,x:p.x-32,y:p.y+(Math.sin(clock*5+i)*6),id:i});if(traces[i].length>240)traces[i].shift();});}}
+g.clearRect(0,0,1200,790);let bg=g.createLinearGradient(0,0,1200,790);bg.addColorStop(0,"#0b1d36");bg.addColorStop(1,"#050914");g.fillStyle=bg;g.fillRect(0,0,1200,790);g.fillStyle="#bedaf3";g.font="14px monospace";g.fillText("WAKE ←   |   TRAVEL →   |   COHERENCE = DETECTABLE HISTORY",24,27);
+E.forEach(([a,b])=>link(a,b));
+const tau=+L.value/15,diff=+D.value/30,v=+S.value*1.7;
+let visible=0;
+traces.forEach((arr,i)=>{for(let n=arr.length-1;n>=0;n--){const x=arr[n],age=clock-x.time;if(age>Math.max(12,tau*7)){arr.splice(n,1);continue;}const amp=Math.exp(-age/tau),width=Math.sqrt(9+2*diff*age),xx=x.x-v*age,yy=x.y+Math.sin(x.id*3.4+n*2.1)*width;if(xx<0||amp<.02)continue;visible++;g.fillStyle="rgba(102,194,255,"+(amp*.6).toFixed(3)+")";g.beginPath();g.arc(xx,yy,1.6+width*.1,0,Math.PI*2);g.fill();}});
+P.forEach((p,i)=>core(p,i));g.textAlign="left";
+for(const k of ["speed","lifetime","dispersion"])document.getElementById(k+"V").textContent=document.getElementById(k).value;
+const horizon=tau*Math.log(20),length=v*horizon;
+document.getElementById("info").textContent="11 immutable cores | 16 chrome links | visible wake tracers "+visible+" | detection threshold 5% | memory horizon "+horizon.toFixed(1)+" model seconds | predicted length "+length.toFixed(0)+" px";
+requestAnimationFrame(draw);}
+document.getElementById("pause").onclick=()=>{paused=!paused;document.getElementById("pause").textContent=paused?"Resume":"Pause";};
+document.getElementById("reset").onclick=()=>{traces.forEach(x=>x.splice(0));clock=0;emit=0;};
+requestAnimationFrame(draw);
+})();</script></body></html>
