@@ -1,0 +1,185 @@
+{
+  "schema": "root0.stochieon.kernel/17",
+  "name": "stochieon",
+  "display_name": "STOCHIEON / ROOT0 COMPLETE KERNEL ENVELOPE",
+  "version": 17,
+  "contract": {
+    "watermark": ".dlw",
+    "constant": "cubit",
+    "spelling_preservation": "exact lowercase",
+    "witness_lanes": [
+      "A",
+      "B",
+      "C"
+    ],
+    "voting": false,
+    "quorum": null,
+    "append_only": true,
+    "temporal": [
+      "PAST_OBSERVES",
+      "PRESENT_DESERVES",
+      "FUTURE_RESERVES"
+    ],
+    "authority": "independent observations without agreement",
+    "time_evidence": "unsigned HTTP Date and monotonic RTT unless a separate cryptographically verified TSA token exists"
+  },
+  "scope": {
+    "kind": "FULL_ARCHITECTURAL_ENVELOPE",
+    "inventory_exhaustive": false,
+    "all_public_repos_scanned": false,
+    "private_access": false,
+    "automatic_agents": false,
+    "source_observed_on_write_only": true,
+    "seal_requires_independent_hallway_anchor": true,
+    "seal_requires_required_endpoints_verified": true,
+    "external_timestamp_verified": false
+  },
+  "layers": [
+    {
+      "id": "K",
+      "role": "Kernel / provenance and policy",
+      "entry": "TOPH corpus, .dlw, cubit"
+    },
+    {
+      "id": "E",
+      "role": "Emergence / parallel thread relationships",
+      "entry": "Tessy, diaspora and FORMIC"
+    },
+    {
+      "id": "T",
+      "role": "Temporal / append-only history and source/receiver receipts",
+      "entry": "TOPH Loom → 0root Hallway"
+    },
+    {
+      "id": "X",
+      "role": "External references / independently observed public surfaces",
+      "entry": "0root.ai, GitHub Pages and linked domains"
+    }
+  ],
+  "endpoints": [
+    {
+      "id": "toph-loom",
+      "layer": "K",
+      "kind": "git_file",
+      "repo": "DavidWise01/toph-cortex",
+      "branch": "main",
+      "path": "memory/corpus-spine/loom-events.jsonl",
+      "expected_git_blob": "a7066f85264cc8be3b9bb7d2a6a60b5578ece91a",
+      "required": true
+    },
+    {
+      "id": "toph-corpus",
+      "layer": "K",
+      "kind": "git_file",
+      "repo": "DavidWise01/toph-cortex",
+      "branch": "main",
+      "path": "memory/corpus-spine/events-v2.jsonl",
+      "expected_git_blob": "2d2b5858897f362c12ec4a2823a2233bb320c3ef",
+      "required": true
+    },
+    {
+      "id": "toph-dlw",
+      "layer": "K",
+      "kind": "git_file",
+      "repo": "DavidWise01/toph-cortex",
+      "branch": "main",
+      "path": "memory/corpus-spine/attribution.dlw",
+      "expected_git_blob": "52d2416a36e4426c8e625abd962083b839bc2ea3",
+      "required": true
+    },
+    {
+      "id": "hallway-site",
+      "layer": "T",
+      "kind": "git_file",
+      "repo": "DavidWise01/0root",
+      "branch": "master",
+      "path": "index.html",
+      "expected_git_blob": "b0a7824ef1fb031a1014990e78ce4173f5e020ff",
+      "required": true
+    },
+    {
+      "id": "pages-loom",
+      "layer": "E",
+      "kind": "git_file",
+      "repo": "DavidWise01/DavidWise01.github.io",
+      "branch": "main",
+      "path": "persist-cortex/loom/index.html",
+      "expected_git_blob": "262e02206e30ed507e44e978a1b00e33d7f3be20",
+      "required": true
+    },
+    {
+      "id": "0root-ai",
+      "layer": "X",
+      "kind": "https",
+      "url": "https://0root.ai/",
+      "required": true
+    },
+    {
+      "id": "pages-root",
+      "layer": "X",
+      "kind": "https",
+      "url": "https://davidwise01.github.io/",
+      "required": true
+    },
+    {
+      "id": "pages-persist",
+      "layer": "X",
+      "kind": "https",
+      "url": "https://davidwise01.github.io/persist-cortex/loom/",
+      "required": true
+    },
+    {
+      "id": "formic-diaspora",
+      "layer": "E",
+      "kind": "https",
+      "url": "https://davidwise01.github.io/formic/",
+      "required": true
+    }
+  ],
+  "interfaces": [
+    {
+      "from": "toph-loom",
+      "to": "hallway-site",
+      "type": "MANUAL_RECEIVER_ONLY"
+    },
+    {
+      "from": "toph-corpus",
+      "to": "toph-loom",
+      "type": "PUBLIC_SHA_ANCHOR"
+    },
+    {
+      "from": "toph-dlw",
+      "to": "toph-loom",
+      "type": "ATTRIBUTION_MARK"
+    },
+    {
+      "from": "pages-loom",
+      "to": "toph-loom",
+      "type": "READ_ONLY_VISUALIZATION"
+    },
+    {
+      "from": "0root-ai",
+      "to": "hallway-site",
+      "type": "PUBLIC_DOMAIN_DOORWAY"
+    },
+    {
+      "from": "pages-root",
+      "to": "pages-persist",
+      "type": "PUBLIC_NAVIGATION"
+    },
+    {
+      "from": "formic-diaspora",
+      "to": "pages-root",
+      "type": "PUBLIC_DIASPORA_REFERENCE"
+    }
+  ],
+  "extension_rule": "Add further repositories, hardware substrates and site nodes by a new versioned manifest and separately verified witnesses; never claim an incomplete sampled graph is an exhaustive GitHub-wide inventory.",
+  "independent_anchor": {
+    "receiver_repository": "DavidWise01/0root",
+    "workflow": "https://github.com/DavidWise01/0root/actions/workflows/loom-anchor.yml",
+    "required_loom_seq": 1,
+    "required_loom_hash": "9368d3921ec95ad4c1ba02ce79f4bdde89516a1449d69a8f81dfbc1fa3e53780",
+    "state": "REQUIRE_LIVE_VERIFICATION"
+  },
+  "schema_notes": "Pinned Git SHA1 is Git file blob identity, SHA256 is observation hash; external HTTP is not a signature or a trusted clock."
+}
