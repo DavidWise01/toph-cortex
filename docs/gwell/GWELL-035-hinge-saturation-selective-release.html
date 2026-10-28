@@ -1,0 +1,33 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GWELL 035 — Hinge Saturation and Selective Release</title><style>body{background:#070c17;color:#e9f4ff;max-width:1160px;margin:auto;padding:24px;font:14px ui-monospace,Consolas,monospace}h1{color:#b9e4ff}a{color:#96dfff}canvas{width:100%;height:auto;border:1px solid #476582;border-radius:13px}button{background:#1c3b5a;color:white;border:1px solid #829eb8;border-radius:8px;padding:10px;margin:4px}input{accent-color:#5998ed}output,pre{white-space:pre-wrap;display:block;background:#102037;padding:14px;border-radius:9px}</style></head><body><small>CANONICAL · GWELL 035 · 2026-10-28 · CANVAS2D</small><h1>Hinge Saturation / Selective O Release</h1><p>Parent <a href="./GWELL-034-fold-conservation-canvas.html">GWELL 034</a>. Eleven emergent containers: {-(3+2)+[2+3]}. Five U convergent wells, one bounded cobalt {{i}} hinge, five boxed O outlets. Chrome pathways are directed; neither flux nor identity flows backwards through U.</p><canvas id="c" width="1100" height="660"></canvas><p>External U supply / channel <input id="supply" type="range" min="0" max="20" value="12"><b id="sv">12</b> · O drain / channel <input id="drain" type="range" min="0" max="20" value="5"><b id="dv">5</b> · <label><input id="selective" type="checkbox" checked> Selective release</label></p><p><button id="step">Step</button><button id="run">Run 20</button><button id="reset">Reset</button><button id="auto">Auto OFF</button></p><output id="status"></output><pre>HINGE BOUND:
+0 ≤ H ≤ H_max=60; all other wells max=100.
+O receivers drain externally first.
+H→O transfers prioritized round-robin when selective mode is enabled;
+otherwise five independent ordered outlets may accept.
+U→H transfers are individually bounded by H's remaining capacity.
+Unaccepted U→H content remains upstream. External input that cannot enter U is rejected outside.
+For each step: external admitted = Δstored + external emitted.
+Each core retains its own fixed {{i}} identity.
+No quorum, merger, or reversed collector flux.
+This is discrete abstract transport, not gravitational physics.</pre>
+<script>"use strict";(()=>{
+const g=document.getElementById("c").getContext("2d"),P=[...Array.from({length:5},(_,i)=>({x:225,y:108+107*i})),{x:550,y:325},...Array.from({length:5},(_,i)=>({x:875,y:108+107*i}))];
+const m=Array(11).fill(0),M=Array(11).fill(100);M[5]=60;let stepN=0,added=0,rejected=0,emitted=0,phase=0,auto=false,last=0,flash=Array(10).fill(0);
+const supply=document.getElementById("supply"),drain=document.getElementById("drain"),selective=document.getElementById("selective");
+function move(a,b,request){const n=Math.min(request,m[a],M[b]-m[b]);m[a]-=n;m[b]+=n;return n;}
+function advance(){flash.fill(0);
+// Drain outputs so free space is available downstream.
+for(let i=6;i<=10;i++){const n=Math.min(m[i],Number(drain.value));m[i]-=n;emitted+=n;}
+// Release from hinge into five outlets, using a rotating selection order.
+const first=selective.checked?stepN%5:0;
+for(let j=0;j<5;j++){const k=selective.checked?(first+j)%5:j;flash[5+k]=move(5,6+k,8);}
+// Transfer convergent U wells into hinge.
+for(let i=0;i<5;i++)flash[i]=move(i,5,8);
+// Admit external supply after internal transfers.
+for(let i=0;i<5;i++){const req=Number(supply.value),n=Math.min(req,M[i]-m[i]);m[i]+=n;added+=n;rejected+=req-n;}
+stepN++;report();}
+function report(){let stored=m.reduce((a,b)=>a+b,0);document.getElementById("status").textContent="tick "+stepN+" | hinge "+m[5]+"/60 | upstream "+m.slice(0,5).reduce((a,b)=>a+b,0)+" | downstream "+m.slice(6).reduce((a,b)=>a+b,0)+" | admitted "+added+" | output "+emitted+" | rejected "+rejected+" | mass "+(added===stored+emitted?"PASS":"FAIL")+" | identities=11";document.getElementById("sv").textContent=supply.value;document.getElementById("dv").textContent=drain.value;document.getElementById("auto").textContent=auto?"Auto ON":"Auto OFF";}
+function chrome(a,b,lit){let p=P[a],q=P[b],z=g.createLinearGradient(p.x,p.y,q.x,q.y);z.addColorStop(0,"#415a77");z.addColorStop(.22,"#fff");z.addColorStop(.5,"#65829e");z.addColorStop(.8,"#fff");z.addColorStop(1,"#375273");g.beginPath();g.moveTo(p.x,p.y);g.lineTo(q.x,q.y);g.strokeStyle="#15263a";g.lineWidth=12;g.stroke();g.strokeStyle=z;g.lineWidth=6;g.stroke();if(lit>0){g.strokeStyle="#5cebd2";g.lineWidth=2;g.stroke();}}
+function node(p,i){let z=g.createRadialGradient(p.x-12,p.y-14,0,p.x,p.y,32);z.addColorStop(0,"#f9ffff");z.addColorStop(.23,"#9ed2ff");z.addColorStop(.59,"#3671d0");z.addColorStop(1,"#081937");g.beginPath();g.arc(p.x,p.y,31,0,Math.PI*2);g.fillStyle=z;g.fill();g.strokeStyle=i===5&&m[i]>=60?"#f1b16e":"#d4eaff";g.lineWidth=i===5?3:1.5;g.stroke();g.save();g.translate(p.x,p.y);g.rotate(phase+i*.4);g.beginPath();g.ellipse(0,0,43,16,0,0,Math.PI*2);g.strokeStyle="#b7e6fb88";g.lineWidth=2;g.stroke();g.restore();g.textAlign="center";g.fillStyle="#fff";g.font="bold 13px monospace";g.fillText("{{i}}",p.x,p.y+5);g.font="12px monospace";g.fillText("#"+i+" / "+m[i],p.x,p.y+55);g.fillStyle=i<5?"#7ee5f6":i===5?"#f6c780":"#d0b2ff";g.fillText(i<5?"U converge":i===5?"HINGE":"O diverge",p.x,p.y+71);}
+function frame(t){const dt=last?Math.min(50,t-last):16;if(!auto)last=t;else if(t-last>=260){advance();last=t;}phase+=dt*.006;g.clearRect(0,0,1100,660);const bg=g.createLinearGradient(0,0,1100,660);bg.addColorStop(0,"#10243e");bg.addColorStop(1,"#050914");g.fillStyle=bg;g.fillRect(0,0,1100,660);g.textAlign="center";g.fillStyle="#c5e0f1";g.font="19px monospace";g.fillText("−(3+2)",225,40);g.fillText("{{i}} HINGE",550,40);g.fillText("+[2+3]",875,40);for(let i=0;i<5;i++)chrome(i,5,flash[i]);for(let i=0;i<5;i++)chrome(5,6+i,flash[5+i]);P.forEach(node);requestAnimationFrame(frame);}
+document.getElementById("step").onclick=advance;document.getElementById("run").onclick=()=>{for(let j=0;j<20;j++)advance()};document.getElementById("reset").onclick=()=>{m.fill(0);stepN=added=rejected=emitted=0;flash.fill(0);report()};document.getElementById("auto").onclick=()=>{auto=!auto;last=0;report()};[supply,drain,selective].forEach(x=>x.oninput=report);report();requestAnimationFrame(frame);
+})();</script></body></html>
