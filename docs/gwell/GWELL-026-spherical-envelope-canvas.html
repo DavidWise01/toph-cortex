@@ -36,7 +36,7 @@ points.forEach((p,i)=>{orbitHalf(p,i,false,n);sphere(p,29);orbitHalf(p,i,true,n)
 ctx.strokeStyle="#d97988";ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(p.x-23,p.y-54);ctx.lineTo(p.x+23,p.y-54);ctx.stroke();
 ctx.fillStyle="#70e5fc";ctx.font="bold 14px ui-monospace,monospace";ctx.textAlign="center";ctx.fillText("C ↑",p.x,p.y+56);
 ctx.fillStyle="#f7fbff";ctx.font="bold 14px ui-monospace,monospace";ctx.fillText("{{i}}",p.x,p.y+5);ctx.font="12px ui-monospace,monospace";ctx.fillText("WELL "+String(i).padStart(2,"0"),p.x,p.y+72);});
-ctx.textAlign="left";speedValue.textContent=speed.value+"%";coverageValue.textContent=coverage.value;metrics.textContent="11 cobalt identities | 16 chrome links | 5 layers | visual angle "+angle.toFixed(2)+" rad | "+(paused?"paused":"running");
+ctx.textAlign="left";document.getElementById("speedValue").textContent=speed.value+"%";document.getElementById("coverageValue").textContent=coverage.value;metrics.textContent="11 cobalt identities | 16 chrome links | 5 layers | visual angle "+angle.toFixed(2)+" rad | "+(paused?"paused":"running");
 requestAnimationFrame(frame);}
 document.getElementById("pause").onclick=()=>{paused=!paused;document.getElementById("pause").textContent=paused?"Resume":"Pause";};
 document.getElementById("step").onclick=()=>{paused=true;document.getElementById("pause").textContent="Resume";angle+=.2;};
