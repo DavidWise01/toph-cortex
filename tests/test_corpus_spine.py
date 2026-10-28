@@ -21,7 +21,13 @@ class CorpusSpineTest(unittest.TestCase):
 
     def test_reject_truncation_with_bad_link(self):
         rows=spine.read_rows()
-        changed=[dict(x) for x in rows]
+        # Use a second synthetic row; the canonical chain may contain
+        # only its authentic genesis, and must never be padded for tests.
+        extra=spine.append_row(rows,actor="root0",kind="CORRECTION",
+            source=dict(rows[0]["source"]),what="fixture-only second event",
+            how="synthetic offline test",why="test bad predecessor",
+            supersedes=1,date="2026-10-27")
+        changed=[dict(x) for x in [*rows,extra]]
         changed[1]["prev"]="GENESIS"
         with self.assertRaises(ValueError):
             spine.verify_rows(changed)
