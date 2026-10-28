@@ -26,8 +26,8 @@ def source_check(x:dict)->None:
                     "DavidWise01/agent-0root","DavidWise01/atlas","DavidWise01/toroid-kernel"}:
         raise ValueError("Unverified source repository")
     path=x["path"]
-    if not isinstance(path,str) or not path or path.startswith("/") or "\\" in path or
-        any(piece in ("",".","..") for piece in path.split("/")):
+    if (not isinstance(path,str) or not path or path.startswith("/") or "\\" in path or
+            any(piece in ("",".","..") for piece in path.split("/"))):
         raise ValueError("Unsafe source path")
     if not SHA1.fullmatch(x["blob_sha"]):
         raise ValueError("Git blob SHA-1 missing")
