@@ -28,6 +28,7 @@ import referee  # deterministic metrics
 import toroid5  # exact five-transfer commit timing
 import clear_view  # canonical recursive biodome scoping rule
 import cortex_registry  # pinned non-destructive STOCHIEON cortex promotions
+import sapphon_registry  # Gate19: source-pinned Sapphons INSIDE cubit
 
 STATE = os.path.join(MEM, "cortex_state.json")
 
@@ -68,6 +69,15 @@ def main():
               (promoted["watermark"],promoted["constant"]))
     except (OSError,ValueError,KeyError,TypeError) as exc:
         print("PROMOTION  HALTED · registry integrity error: "+str(exc))
+    try:
+        with open(sapphon_registry.REGISTRY,encoding="utf-8") as pointer:
+            children=sapphon_registry.verify(json.load(pointer))
+        print("CONTAIN    %d Sapphon sources INSIDE %s · %d interior spectral positions · %d bands · Prime 01/02/03; 04/05 unassigned" %
+              (children["child_sapphons"],children["inside"],
+               children["spectral_positions"],children["band_count"]))
+        print("NESTING    STOCHIEON > CORTEX > cubit > SAPPHON · no quorums · no invented running agents")
+    except (OSError,ValueError,KeyError,TypeError) as exc:
+        print("SUBCUBIT   HALTED · Sapphon containment error: "+str(exc))
     print("SUBSTRATE  %d facts · %d episodic logs · %d skills · %d staged · %d ledger rows"
           % (n_fact, n_epi, n_skill, n_staged, r["ledger_rows"]))
     print("BATTERY    read path = 0 model calls (mechanical) · write path = gated · consolidation = 1 call/cluster")
