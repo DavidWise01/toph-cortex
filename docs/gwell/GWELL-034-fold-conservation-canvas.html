@@ -1,0 +1,28 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GWELL 034 — Fold Conservation</title><style>body{margin:auto;max-width:1150px;padding:20px;background:#060b16;color:#e8f4ff;font:14px ui-monospace,monospace}h1{color:#c6e7ff}a{color:#8cdef8}canvas{width:100%;height:auto;background:#091529;border:1px solid #4c6885;border-radius:12px}button{background:#193b59;color:white;border:1px solid #7899b8;border-radius:7px;padding:10px;margin:5px}input{accent-color:#569ce8}output,pre{display:block;white-space:pre-wrap;background:#102037;padding:14px;border-radius:8px}</style></head><body><small>CANONICAL · GWELL 034 · 2026-10-28 · Canvas2D</small><h1>Fold Conservation — (−5) / {{i}} / (+5)</h1><p>Parent <a href="./GWELL-033-fold-minus5-identity-plus5.html">GWELL 033</a>. Canonical grammar {-(3+2)+[2+3]}. Five convergent toroidal wells, one identity hinge, five divergent boxed wells. Eleven distinct cobalt identities.</p><canvas id="scene" width="1100" height="650" aria-label="Eleven cobalt wells and chrome links displaying conserved inward and outward transport"></canvas><p>Incoming per path <input id="in" type="range" min="0" max="12" value="5"><span id="iv">5</span> · Divergence per path <input id="out" type="range" min="0" max="12" value="5"><span id="ov">5</span> <button id="step">Step</button><button id="run">Run 20</button><button id="reset">Reset</button><button id="pause">Pause visuals</button></p><output id="status"></output><pre>BOUNDARY:
+Five U channels: external admission → convergent reservoirs → hinge.
+Five O channels: hinge → divergent reservoirs → external output.
+All transfers bounded by available content and free capacity.
+Requested but unadmitted incoming flux is rejected externally.
+Total accepted input + initial inventory = stored inventory + external output.
+Core identity remains immutable; no voting, identity fusion or reversal through U.
+Abstract deterministic container-flow model; not a gravity solver.</pre>
+<script>"use strict";(()=>{
+const cv=document.getElementById("scene"),g=cv.getContext("2d"),inp=document.getElementById("in"),out=document.getElementById("out");
+const pts=[...Array.from({length:5},(_,i)=>({x:230,y:110+i*104})),{x:550,y:318},...Array.from({length:5},(_,i)=>({x:870,y:110+i*104}))];
+let stock=Array(11).fill(0),accepted=0,rejected=0,emitted=0,ticks=0,phase=0,paused=false,last=0,flux=Array(10).fill(0);const cap=100;
+function transfer(a,b,req){let n=Math.min(req,stock[a],cap-stock[b]);stock[a]-=n;stock[b]+=n;return n;}
+function step(){flux.fill(0);
+// outputs leave divergent receivers before routing new material
+for(let j=6;j<11;j++){let n=Math.min(+out.value,stock[j]);stock[j]-=n;emitted+=n;}
+// hinge to boxes, then convergence to hinge, then external admission
+for(let j=6;j<11;j++)flux[j-1]=transfer(5,j,+out.value);
+for(let i=0;i<5;i++)flux[i]=transfer(i,5,8);
+for(let i=0;i<5;i++){let request=+inp.value,n=Math.min(request,cap-stock[i]);stock[i]+=n;accepted+=n;rejected+=request-n;}
+ticks++;report();}
+function report(){let total=stock.reduce((a,b)=>a+b,0);document.getElementById("status").textContent="tick "+ticks+" | admitted "+accepted+" | stored "+total+" | emitted "+emitted+" | rejected external "+rejected+" | balance "+(accepted===total+emitted?"PASS":"FAIL")+" | identity cores 11 fixed";document.getElementById("iv").textContent=inp.value;document.getElementById("ov").textContent=out.value;}
+function line(a,b,active){let p=pts[a],q=pts[b],z=g.createLinearGradient(p.x,p.y,q.x,q.y);z.addColorStop(0,"#48627d");z.addColorStop(.21,"#fff");z.addColorStop(.55,"#567590");z.addColorStop(.82,"#e9ffff");z.addColorStop(1,"#344d68");g.beginPath();g.moveTo(p.x,p.y);g.lineTo(q.x,q.y);g.lineWidth=12;g.strokeStyle="#19263b";g.stroke();g.lineWidth=6;g.strokeStyle=z;g.stroke();if(active){g.strokeStyle="#6be5d7";g.lineWidth=2;g.stroke();}}
+function node(p,i){let b=g.createRadialGradient(p.x-12,p.y-13,1,p.x,p.y,32);b.addColorStop(0,"#f8ffff");b.addColorStop(.19,"#a1d7ff");b.addColorStop(.54,"#3475d8");b.addColorStop(1,"#081837");g.beginPath();g.arc(p.x,p.y,31,0,2*Math.PI);g.fillStyle=b;g.fill();g.strokeStyle="#c9ebff";g.lineWidth=2;g.stroke();g.save();g.translate(p.x,p.y);g.rotate(phase*(i%2?1:-1));g.beginPath();g.ellipse(0,0,43,14,0,0,Math.PI*2);g.strokeStyle="#b5e5fa88";g.lineWidth=2;g.stroke();g.restore();g.fillStyle="#fff";g.textAlign="center";g.font="bold 13px monospace";g.fillText("{{i}}",p.x,p.y+4);g.font="12px monospace";g.fillText("#"+i+" · "+stock[i],p.x,p.y+55);}
+function frame(now){const dt=last?Math.min(50,now-last):16;last=now;if(!paused)phase+=dt*.004;g.clearRect(0,0,1100,650);const bg=g.createLinearGradient(0,0,1100,650);bg.addColorStop(0,"#0e1e37");bg.addColorStop(1,"#050914");g.fillStyle=bg;g.fillRect(0,0,1100,650);g.textAlign="center";g.fillStyle="#beddf4";g.font="19px monospace";g.fillText("−(3+2) / U",230,40);g.fillText("{{i}} / HINGE",550,40);g.fillText("+[2+3] / O",870,40);
+for(let i=0;i<5;i++)line(i,5,flux[i]>0);for(let j=6;j<11;j++)line(5,j,flux[j-1]>0);pts.forEach(node);g.textAlign="left";requestAnimationFrame(frame);}
+document.getElementById("step").onclick=step;document.getElementById("run").onclick=()=>{for(let i=0;i<20;i++)step()};document.getElementById("reset").onclick=()=>{stock.fill(0);accepted=rejected=emitted=ticks=0;flux.fill(0);report()};document.getElementById("pause").onclick=()=>{paused=!paused;document.getElementById("pause").textContent=paused?"Resume visuals":"Pause visuals"};inp.oninput=report;out.oninput=report;report();requestAnimationFrame(frame);
+})();</script></body></html>
