@@ -1,0 +1,49 @@
+{
+  "schema": "root0.time-dilation-evidence-referent/1",
+  "captured_utc_date": "2026-11-05",
+  "record_type": "AI_CAPABILITY_TIME_COMPRESSION_REPORTED",
+  "status": "SOURCE_POST_VERIFIED_CLAIMS_UNREPLICATED",
+  "source": {
+    "uri": "https://www.reddit.com/r/singularity/comments/1xnplmi/claude_writes_a_neural_networks_weights_by_hand/",
+    "platform": "Reddit",
+    "community": "r/singularity",
+    "post_id": "1xnplmi",
+    "provided_by": "user",
+    "observed_headline": "Claude writes a neural network's weights by hand, without training, to detect fake legal citations—achieving 97.8% test accuracy and outperforming a conventionally trained model that scored 94.6%."
+  },
+  "claims": [
+    {
+      "statement": "A Claude-assisted hand-specified neural-network weight construction reportedly reached 97.8% test accuracy for detecting fake legal citations.",
+      "status": "REDDIT_POST_CLAIM_NOT_INDEPENDENTLY_VALIDATED"
+    },
+    {
+      "statement": "The comparison conventionally trained model reportedly reached 94.6% test accuracy.",
+      "status": "REDDIT_POST_CLAIM_NOT_INDEPENDENTLY_VALIDATED"
+    },
+    {
+      "statement": "This constitutes evidence of physical relativistic time dilation.",
+      "status": "NOT_ESTABLISHED"
+    }
+  ],
+  "interpretation": "Catalog as a potential example of AI-assisted development-time compression / direct parameter synthesis, not literal gravitational or relativistic time dilation. No architecture, data split, baseline equivalence, independent replication, or measured time savings verified here.",
+  "verification_needed": [
+    "Locate original researcher post, code and dataset",
+    "Check held-out split, distribution, sample size and metric",
+    "Check leakage and whether model actually had no training",
+    "Reproduce both models under matching conditions",
+    "Measure elapsed development time before asserting time compression"
+  ],
+  "protocol": {
+    "append_only": true,
+    "no_quorum": true,
+    "three_independent_observers": [
+      "A",
+      "B",
+      "C"
+    ],
+    "source_url_is_not_content_hash": true,
+    "physical_time_dilation_claim": false
+  },
+  "source_content_sha256": null,
+  "independent_replication": null
+}
