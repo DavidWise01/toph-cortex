@@ -21,7 +21,7 @@ def make(path='stoicheion_49152.csv'):
     assert len(NAMES)==128
     counts={'HOME':0,'CROSS_REFERENCE':0}
     with open(path,'w',newline='',encoding='utf8') as f:
-        w=csv.DictWriter(f,fieldnames=FIELDS,lineterminator='\\n');w.writeheader()
+        w=csv.DictWriter(f,fieldnames=FIELDS,lineterminator='\n');w.writeheader()
         for i in range(49152):
             slot,d,a,wi,e=coords(i); assert address(slot,d,a,wi,e)==i
             n=slot%128+1; hd=(n-1)//16
@@ -36,6 +36,6 @@ def make(path='stoicheion_49152.csv'):
               'placement':place,'observation':'UNKNOWN'})
     sha=hashlib.sha256(Path(path).read_bytes()).hexdigest()
     result={'dimension':[256,8,4,3,2,1,1],'rows':49152,'counts':counts,'sha256':sha,'observations_verified':0}
-    Path(path+'.manifest.json').write_text(json.dumps(result,indent=2)+'\\n')
+    Path(path+'.manifest.json').write_text(json.dumps(result,indent=2)+'\n')
     return result
 if __name__=='__main__': print(json.dumps(make(),indent=2))
