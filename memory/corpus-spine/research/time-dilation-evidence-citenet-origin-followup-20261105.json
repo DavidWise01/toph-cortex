@@ -1,0 +1,48 @@
+{
+  "schema": "root0.time-dilation-evidence-followup/1",
+  "recorded_utc_date": "2026-11-05",
+  "supersedes": null,
+  "follows": "memory/corpus-spine/research/time-dilation-evidence-reddit-claude-handwritten-weights-20261105.json",
+  "follows_blob_sha": "a156f6251fd183055854f277ce12046818a81981",
+  "title": "CiteNet origin and comparison-baseline qualification",
+  "source_chain": [
+    {
+      "role": "reported_origin",
+      "url": "https://www.advanceintelligence.ai/2026-11-03",
+      "note": "Attributes original 2026-11-03 claim to Jacob Lauritzen of Legora; figures 97.8% handwritten versus 94.6% trained are from social-media comparison."
+    },
+    {
+      "role": "public_artifact",
+      "url": "https://huggingface.co/FluidInference/citenet-coreml",
+      "note": "Public CiteNet Core ML model listing found; direct model card and code inspection was unavailable in this session."
+    },
+    {
+      "role": "technical_secondary_review",
+      "url": "https://traictory.com/news/2026-11-06-claude-handwritten-weights-citenet",
+      "note": "Secondary audit reports released v1.5 has 397,250 parameters, compiled from explicit citation rules; original 97.8% comparison not reproduced from released logs. Note: review page bears 2026-11-06 publication date, later than this record date, and must not be treated as contemporaneous 2026-11-05 verification."
+    }
+  ],
+  "official_anthropic_ownership": "NOT_IDENTIFIED",
+  "evaluation": {
+    "social_claim_accuracy_handwritten_pct": 97.8,
+    "social_claim_accuracy_trained_pct": 94.6,
+    "social_claim_status": "UNREPLICATED",
+    "reported_released_evaluation": "secondary review describes trained same-architecture baseline tying on phantom recall and fewer false positives",
+    "reported_released_evaluation_status": "SECONDARY_ACCOUNT_NOT_REPRODUCED",
+    "matched_comparison_confirmed": false
+  },
+  "mechanism": "Symbolic rulebook compiled into NN weight tensors; not established as independent learned weights or general autonomous neural model invention.",
+  "time_dilation_relation": "Potential analogy to compressed development workflows. No measured development-time speedup and no physical time dilation evidence.",
+  "verification_limitations": [
+    "No identified official anthropics repository containing this specific experiment",
+    "Public Hugging Face model card unavailable for direct inspection in this session",
+    "No local replication or independent benchmark executed",
+    "Future-dated secondary review retained as a research lead, not contemporaneous evidence"
+  ],
+  "protocol": {
+    "append_only": true,
+    "original_entry_unchanged": true,
+    "quorum": null,
+    "independent_reproduction": false
+  }
+}
