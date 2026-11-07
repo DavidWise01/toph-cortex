@@ -29,3 +29,17 @@ The user identifies the apparent two-waldo midpoint crossing as **tunneling**, n
 Preserve the trailing `x` and the adjacency `[0]1` verbatim until their operators are specified. One *possible* parsing is nine nonzero terms around a central `[0]` seam, with 4-wide branches and 1-wide necks; the textual sequence alone does not establish a 27-site Hamiltonian graph, a routing rule for each waldo, or a physical tunneling amplitude. The `[0]` should be treated as a **symbolic unoccupied transition/gap**, not an extra vertex; multiplying all terms as ordinary integers would make the entire product zero and is therefore not a useful interpretation of scale or site count. The previous edge-crossing result remains valid for the earlier single-lane counterrotating-ring assumption, which this proposed tunneling topology may replace.
 
 **Next test:** formalize the zero-gap transition `[0]` as an operation with explicit entry/exit states, occupancy and conservation. Check that both waldos can cross the transition without sharing an occupied vertex or losing path identity. This is an abstract discrete computational tunneling rule, not evidence of quantum tunneling.
+
+## Wave-exchange correction: exact symmetric symbolic waveform
+
+The user clarifies that the two waldos **exchange waves** at the gap, not solid objects passing through the same occupied edge. The exact user-provided form is:
+
+```text
+{([111222333444555555444333222111])}
+```
+
+Verified combinatorial facts: the inner string is a palindrome of **30 wave samples**, organized as run-lengths **3,3,3,3,6,3,3,3,3**; amplitudes 1,2,3,4,5 each occur six times. Its reflection is `W(k)=W(31-k)` for 1-indexed k=1..30. The middle six samples, indices 13–18, are all level 5. These statements verify the **written symbolic pattern**, not physical wave-energy conservation or transmission.
+
+This new interpretation supersedes the earlier collision/interlock *implementation proposal* while preserving the former result as conditional on hard-bodied counterrotation. **30 wave samples are not asserted to be 30 spatial vertices:** the primitive still has 27 positions, with proposed closure `27 → 27.5 → 1`; no sample-to-vertex/time correspondence has yet been selected.
+
+Next boundary: define signed waldo input/output waves `W_-,W_+`, a deterministic exchange operator at the zero gap, and separately test palindrome, continuity, round-trip invertibility and amplitude/energy accounting. In particular, perfect symmetry alone does not prove wave energy is conserved.
