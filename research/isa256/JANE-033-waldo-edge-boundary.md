@@ -17,3 +17,15 @@ Both waldos occupy the same vertex at t=0 modulo 27. In particular, there are no
 This is a mathematically correct property of the **abstract 27-cycle under the stated counterrotation assumption**. It does not establish that the user's seven spatial groups form a 27-vertex Hamiltonian adjacency graph; that topology and the operators' intended motions require further definition. No quantum physics, organism, or spontaneous homeostasis has been demonstrated.
 
 Next invariant: **Waldo interlock / mutual exclusion**. Add only local observation to the two waldos; compare edge reservation, alternating priority and dual-lane flow, measuring continuity and fairness without inventing extra occupied vertices.
+
+## User correction: tunneling / zero-gap prim topology
+
+The user identifies the apparent two-waldo midpoint crossing as **tunneling**, not a request for a conventional collision interlock, and supplies this exact symbolic sequence:
+
+```text
+1x4x1x4x[0]1x4x1x4x1x
+```
+
+Preserve the trailing `x` and the adjacency `[0]1` verbatim until their operators are specified. One *possible* parsing is nine nonzero terms around a central `[0]` seam, with 4-wide branches and 1-wide necks; the textual sequence alone does not establish a 27-site Hamiltonian graph, a routing rule for each waldo, or a physical tunneling amplitude. The `[0]` should be treated as a **symbolic unoccupied transition/gap**, not an extra vertex; multiplying all terms as ordinary integers would make the entire product zero and is therefore not a useful interpretation of scale or site count. The previous edge-crossing result remains valid for the earlier single-lane counterrotating-ring assumption, which this proposed tunneling topology may replace.
+
+**Next test:** formalize the zero-gap transition `[0]` as an operation with explicit entry/exit states, occupancy and conservation. Check that both waldos can cross the transition without sharing an occupied vertex or losing path identity. This is an abstract discrete computational tunneling rule, not evidence of quantum tunneling.
