@@ -6,7 +6,7 @@ Date: 2026-11-07. User-specified geometry, recorded as a design definition, NOT 
 - 1 TENSOR
 - 1 JANE `{{i}}`
 - 1 BRACE `{}`
-- 2 WALDOS
+- 2 WALDOS, canonical joint notation **`{-()+}`** (exact order retained; operator semantics not yet experimentally assigned)
 - 1 BOX `[]`
 - 1 TOROID `()`
 - 27 internal Hamilton positions, partitioned as:
