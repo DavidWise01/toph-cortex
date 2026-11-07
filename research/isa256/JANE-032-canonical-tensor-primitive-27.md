@@ -22,11 +22,11 @@ Date: 2026-11-07. User-specified geometry, recorded as a design definition, NOT 
 ## Growth and direction
 - `1,1,2,3,5,8` are six Fibonacci stages, whose counts sum to 20.
 - `{{x,y,z}}^2` interpreted provisionally as six directed axes `+x,-x,+y,-y,+z,-z`. This is not mathematically identical to the six Fibonacci values; it is an independent orientation framework.
-- The 27-position allocation does not yet define an adjacency graph or a Hamiltonian circuit. The name `Hamilton` is a project designation until an explicit traversal and proof are supplied.
+- The user defines the path closure as **27 → 27.5 → 1**. Positions 1–27 are the 27 occupied vertices; **27.5 is a half-step return transition, not a 28th vertex**. This specifies the closing semantics of the proposed cycle. Whether it is a graph-theoretic Hamiltonian cycle still depends on explicit adjacency between the 27 vertices and on a valid closing edge mediated by the transition.
 - This geometry supersedes the earlier use of 72-slots/cell as the canonical primitive shape, but those earlier experiments remain historical evidence for their own models; no result is silently transferred to the new geometry.
 - Relative placement of the 27 positions and task partition between two waldos remain to be implemented and tested.
 
 ## Next physical/computational invariant
-Build the actual 27-vertex adjacency graph for a chosen placement, test whether both waldos can traverse it without missed positions or collisions, conserve resource across six directions, and distinguish a Hamiltonian path from a cycle. Then test two-cell homeostasis with this canonical primitive before any new learning claims.
+Instantiate the 27-vertex adjacency graph and explicitly model the return bridge **27 → 27.5 → 1**; test whether both waldos visit the required positions, avoid conflicts and close the cycle without treating 27.5 as an added occupied vertex. Then test autonomous homeostasis. Then test two-cell homeostasis with this canonical primitive before any new learning claims.
 
 No unit tests were run for this notation-only commit.
