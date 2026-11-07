@@ -43,3 +43,9 @@ Verified combinatorial facts: the inner string is a palindrome of **30 wave samp
 This new interpretation supersedes the earlier collision/interlock *implementation proposal* while preserving the former result as conditional on hard-bodied counterrotation. **30 wave samples are not asserted to be 30 spatial vertices:** the primitive still has 27 positions, with proposed closure `27 → 27.5 → 1`; no sample-to-vertex/time correspondence has yet been selected.
 
 Next boundary: define signed waldo input/output waves `W_-,W_+`, a deterministic exchange operator at the zero gap, and separately test palindrome, continuity, round-trip invertibility and amplitude/energy accounting. In particular, perfect symmetry alone does not prove wave energy is conserved.
+
+## Canonical user correction — ternary 27 + 3 = 30
+
+The user identifies the apparent **30** in the symmetrical wave with the **27**-position cycle plus the **ternary state triple `(-1, 0, +1)`**. Preserve this exactly as **`27 + (-1,0,+1) = 27 positions + 3 ternary states = 30 counted components`** (not numerical addition of -1+0+1, which equals zero). The outer primitive still has 27 occupied path positions. The three ternary states label waldo wave exchange across negative, neutral and positive modes, not three extra path vertices.
+
+The string `111222333444555555444333222111` indeed has 30 written symbols. Its exact distribution (six of each digit 1 through 5) and palindrome are independent facts. A sample-by-sample bijection from 27 positional values plus 3 ternary channels to the 30-character waveform has **not** yet been defined; do not claim the identity alone establishes that mapping. Formal next test: specify a representation `(p, s)`, with `p∈{1,...,27}`, `s∈{-1,0,+1}`, and a reversible exchange/closure operation preserving each waldo's identity, then test state versus vertex counts.
