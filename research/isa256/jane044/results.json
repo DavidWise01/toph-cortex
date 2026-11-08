@@ -1,0 +1,40 @@
+{
+  "baseline": 741.3125,
+  "trials": [
+    {
+      "loss": 0,
+      "trials": 100,
+      "closed": 100,
+      "valid": 100,
+      "mass_ok": 100
+    },
+    {
+      "loss": 0.1,
+      "trials": 100,
+      "closed": 100,
+      "valid": 100,
+      "mass_ok": 100
+    },
+    {
+      "loss": 0.2,
+      "trials": 100,
+      "closed": 100,
+      "valid": 100,
+      "mass_ok": 100
+    },
+    {
+      "loss": 0.4,
+      "trials": 100,
+      "closed": 100,
+      "valid": 100,
+      "mass_ok": 100
+    },
+    {
+      "loss": 1,
+      "trials": 100,
+      "closed": 0,
+      "valid": 100,
+      "mass_ok": 100
+    }
+  ]
+}
