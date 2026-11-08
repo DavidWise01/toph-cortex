@@ -1,0 +1,82 @@
+[
+  {
+    "config": "independent",
+    "verifier": "naive",
+    "trials": 1000,
+    "TRUE_ACCEPT": 944,
+    "FALSE_ACCEPT": 56,
+    "ABSTAIN": 0
+  },
+  {
+    "config": "independent",
+    "verifier": "source-aware",
+    "trials": 1000,
+    "TRUE_ACCEPT": 944,
+    "FALSE_ACCEPT": 56,
+    "ABSTAIN": 0
+  },
+  {
+    "config": "paired",
+    "verifier": "naive",
+    "trials": 1000,
+    "TRUE_ACCEPT": 891,
+    "FALSE_ACCEPT": 109,
+    "ABSTAIN": 0
+  },
+  {
+    "config": "paired",
+    "verifier": "source-aware",
+    "trials": 1000,
+    "TRUE_ACCEPT": 764,
+    "FALSE_ACCEPT": 27,
+    "ABSTAIN": 209
+  },
+  {
+    "config": "cloned",
+    "verifier": "naive",
+    "trials": 1000,
+    "TRUE_ACCEPT": 914,
+    "FALSE_ACCEPT": 86,
+    "ABSTAIN": 0
+  },
+  {
+    "config": "cloned",
+    "verifier": "source-aware",
+    "trials": 1000,
+    "TRUE_ACCEPT": 0,
+    "FALSE_ACCEPT": 0,
+    "ABSTAIN": 1000
+  },
+  {
+    "config": "shared-key",
+    "verifier": "naive",
+    "trials": 1000,
+    "TRUE_ACCEPT": 914,
+    "FALSE_ACCEPT": 86,
+    "ABSTAIN": 0
+  },
+  {
+    "config": "shared-key",
+    "verifier": "source-aware",
+    "trials": 1000,
+    "TRUE_ACCEPT": 0,
+    "FALSE_ACCEPT": 0,
+    "ABSTAIN": 1000
+  },
+  {
+    "config": "overlap",
+    "verifier": "naive",
+    "trials": 1000,
+    "TRUE_ACCEPT": 835,
+    "FALSE_ACCEPT": 165,
+    "ABSTAIN": 0
+  },
+  {
+    "config": "overlap",
+    "verifier": "source-aware",
+    "trials": 1000,
+    "TRUE_ACCEPT": 724,
+    "FALSE_ACCEPT": 19,
+    "ABSTAIN": 257
+  }
+]
