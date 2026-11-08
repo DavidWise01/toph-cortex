@@ -1,0 +1,66 @@
+{
+  "scenarios": {
+    "independent_valid": {
+      "status": "ANCHORED",
+      "quorum": 3
+    },
+    "one_missing": {
+      "status": "ANCHORED",
+      "quorum": 2
+    },
+    "single_anchor": {
+      "status": "INSUFFICIENT",
+      "quorum": 1
+    },
+    "rollback_pinned": {
+      "status": "ROLLBACK",
+      "quorum": 0
+    },
+    "rollback_unpinned": {
+      "status": "ANCHORED",
+      "quorum": 3
+    },
+    "rewritten_old_anchors": {
+      "status": "INSUFFICIENT",
+      "quorum": 0
+    },
+    "forged_anchor": {
+      "status": "INSUFFICIENT",
+      "quorum": 1
+    },
+    "shared_domain_claim": {
+      "status": "INSUFFICIENT",
+      "quorum": 1
+    },
+    "two_keys_lying": {
+      "status": "ANCHORED",
+      "quorum": 2
+    },
+    "two_keys_contradicted": {
+      "status": "CONTRADICTED",
+      "quorum": 2
+    }
+  },
+  "trials": [
+    {
+      "case": "clean",
+      "ANCHORED": 1000
+    },
+    {
+      "case": "edit",
+      "TAMPERED": 1000
+    },
+    {
+      "case": "rollback",
+      "ROLLBACK": 1000
+    },
+    {
+      "case": "one_anchor",
+      "INSUFFICIENT": 1000
+    },
+    {
+      "case": "two_colluding_signers",
+      "ANCHORED": 1000
+    }
+  ]
+}
