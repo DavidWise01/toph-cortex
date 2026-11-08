@@ -1,0 +1,82 @@
+{
+  "experiment": "JANE049 trust-root closure",
+  "date": "2026-11-08",
+  "local_tests": {
+    "passed": 40,
+    "total": 40
+  },
+  "geometry": {
+    "positions": 27,
+    "ternary": [
+      -1,
+      0,
+      1
+    ],
+    "counted_components": 30,
+    "seam": "27 -> 27.5 -> 1"
+  },
+  "scenarios": [
+    [
+      "clean",
+      "VERIFIED",
+      "wave=2"
+    ],
+    [
+      "tamper",
+      "INVALID_AUTHORITY",
+      "wave=999"
+    ],
+    [
+      "rollback_pinned",
+      "ROLLBACK",
+      "wave=1"
+    ],
+    [
+      "rollback_unpinned",
+      "VERIFIED",
+      "wave=1"
+    ],
+    [
+      "key_compromise_pinned",
+      "HISTORY_CONFLICT",
+      "wave=999"
+    ],
+    [
+      "key_compromise_unpinned",
+      "VERIFIED",
+      "wave=999"
+    ],
+    [
+      "shared_root",
+      "INSUFFICIENT",
+      "wave=999"
+    ],
+    [
+      "independent_roots",
+      "wave=2",
+      "wave=2"
+    ],
+    [
+      "colluding_roots",
+      "wave=999",
+      "wave=999"
+    ],
+    [
+      "pin_compromised",
+      "VERIFIED",
+      "wave=999"
+    ],
+    [
+      "absent_root",
+      "INSUFFICIENT",
+      "wave=2"
+    ],
+    [
+      "broken_link",
+      "BROKEN_CHAIN",
+      "wave=2"
+    ]
+  ],
+  "interpretation": "A compromised signing key can create a fully signed false history; a pinned independent checkpoint catches changes unless both key and pin are compromised. Independent signers may collude. No external source of truth is established.",
+  "limits": "Synthetic HMAC keys and asserted domains. No real-world independent physical observations, quantum tunneling, learned homeostasis, or actual hardware trust root."
+}
