@@ -1,0 +1,85 @@
+{
+  "title": "JANE053 — Dependency Change Detection",
+  "version": 53,
+  "events_per_seed": 630,
+  "seed_count": 100,
+  "post_trials_per_condition": 26000,
+  "parameters": {
+    "baseline_training_events": 180,
+    "true_switch_time": 280,
+    "rolling_window": 64,
+    "disagreement_threshold": 0.17,
+    "consecutive_flags": 12,
+    "relearn_events": 48,
+    "cluster_threshold": 0.09
+  },
+  "results": [
+    {
+      "scenario": "changed",
+      "method": "adaptive",
+      "post_samples": 26000,
+      "false_post": 2253,
+      "true_post": 23749,
+      "false_pre": 877,
+      "flags": 100,
+      "revisions": 100,
+      "mean_first_flag": 315.64
+    },
+    {
+      "scenario": "changed",
+      "method": "frozen",
+      "post_samples": 26000,
+      "false_post": 7298,
+      "true_post": 18638,
+      "false_pre": 877,
+      "flags": 0,
+      "revisions": 0,
+      "mean_first_flag": null
+    },
+    {
+      "scenario": "changed",
+      "method": "instant",
+      "post_samples": 26000,
+      "false_post": 2277,
+      "true_post": 23879,
+      "false_pre": 881,
+      "flags": 0,
+      "revisions": 0,
+      "mean_first_flag": null
+    },
+    {
+      "scenario": "unchanged",
+      "method": "adaptive",
+      "post_samples": 26000,
+      "false_post": 2327,
+      "true_post": 23836,
+      "false_pre": 877,
+      "flags": 1,
+      "revisions": 1,
+      "mean_first_flag": 229
+    },
+    {
+      "scenario": "unchanged",
+      "method": "frozen",
+      "post_samples": 26000,
+      "false_post": 2303,
+      "true_post": 23739,
+      "false_pre": 877,
+      "flags": 0,
+      "revisions": 0,
+      "mean_first_flag": null
+    },
+    {
+      "scenario": "unchanged",
+      "method": "instant",
+      "post_samples": 26000,
+      "false_post": 2299,
+      "true_post": 23803,
+      "false_pre": 881,
+      "flags": 0,
+      "revisions": 0,
+      "mean_first_flag": null
+    }
+  ],
+  "note": "This repository summary is a compact extract. Complete per-event local traces and the local executed suite are in jane_053.zip; truths are used only for scoring."
+}
