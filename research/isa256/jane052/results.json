@@ -1,0 +1,103 @@
+{
+  "shared_training_and_test": {
+    "samples": 5000,
+    "seeds": 20,
+    "groups_example": [
+      [
+        "A",
+        "B",
+        "C"
+      ],
+      [
+        "D"
+      ],
+      [
+        "E"
+      ]
+    ],
+    "naive_false": 1081,
+    "learned_false": 284,
+    "naive_true": 3919,
+    "learned_true": 4716,
+    "learned_hold_false": 0,
+    "learned_hold_true": 0
+  },
+  "near_clones_2pct_flip": {
+    "samples": 5000,
+    "seeds": 20,
+    "groups_example": [
+      [
+        "A",
+        "B"
+      ],
+      [
+        "C"
+      ],
+      [
+        "D"
+      ],
+      [
+        "E"
+      ]
+    ],
+    "naive_false": 1026,
+    "learned_false": 681,
+    "naive_true": 3974,
+    "learned_true": 4106,
+    "learned_hold_false": 213,
+    "learned_hold_true": 213
+  },
+  "dependency_drift": {
+    "samples": 5000,
+    "seeds": 20,
+    "groups_example": [
+      [
+        "A",
+        "B",
+        "C"
+      ],
+      [
+        "D"
+      ],
+      [
+        "E"
+      ]
+    ],
+    "naive_false": 206,
+    "learned_false": 212,
+    "naive_true": 4794,
+    "learned_true": 4788,
+    "learned_hold_false": 0,
+    "learned_hold_true": 0
+  },
+  "all_perfect_sensors": {
+    "groups": [
+      [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    ],
+    "pairs": {
+      "A-B": 1,
+      "A-C": 1,
+      "A-D": 1,
+      "A-E": 1,
+      "B-C": 1,
+      "B-D": 1,
+      "B-E": 1,
+      "C-D": 1,
+      "C-E": 1,
+      "D-E": 1
+    },
+    "trials": 100,
+    "naive_false": 0,
+    "learned_false": 0,
+    "naive_true": 100,
+    "learned_true": 0,
+    "learned_hold_false": 100,
+    "learned_hold_true": 100
+  }
+}
