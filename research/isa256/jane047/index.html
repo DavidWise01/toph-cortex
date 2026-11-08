@@ -1,0 +1,40 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JANE047 · Common-Cause Witness Lab</title><style>
+:root{color-scheme:dark;background:#0a1016;color:#edf5f1;font:14px ui-monospace,monospace}
+body{margin:0;background:radial-gradient(ellipse at top,#193744,transparent 60%)}
+main{max-width:920px;margin:auto;padding:24px}h1{letter-spacing:.08em}h1 b{color:#ff9775}
+p{color:#9caeb5;line-height:1.6}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{background:#121f28;border:1px solid #2e505c;border-radius:8px;padding:20px}
+select,button{background:#193642;color:#e1f6f1;border:1px solid #41717b;padding:11px;border-radius:6px;cursor:pointer}
+select{width:100%;margin:10px 0}button.on{background:#346b68}.row{display:flex;justify-content:space-between;margin:12px 0}
+.big{font-size:44px;font-weight:bold;color:#ffad85}.bar{display:flex;height:16px;background:#182f38;margin:18px 0 8px;border-radius:4px;overflow:hidden}
+.bar span{display:block;height:100%}.good{background:#6fdfc1}.bad{background:#ec8d7a}.idle{background:#8c91b2}
+svg{width:100%;max-height:280px}.muted{color:#9eb5b9;font-size:12px}@media(max-width:640px){.grid{grid-template-columns:1fr}}
+</style></head><body><main><h1>JANE <b>047</b> / WITNESS INDEPENDENCE</h1>
+<p>One tensor · Jane · {-()+} · 27 positions · three ternary labels. Witnesses are audit roles, not extra cells. An apparently unanimous checkpoint can still be copied from one damaged source.</p>
+<div class="grid"><section class="card"><h3>DEPENDENCY GRAPH</h3><select id="layout"><option value="independent">Independent</option><option value="paired">A + B share source</option><option value="cloned">Three clones</option><option value="shared-key">Shared key root</option><option value="overlap">Overlapping dependencies</option></select><svg id="diagram" viewBox="0 0 450 245"></svg>
+<button id="naive">Naïve majority</button><button id="aware" class="on">Source-aware</button>
+<p class="muted" id="rule"></p></section><section class="card"><h3>FALSE HISTORY ACCEPTED</h3><div class="big" id="false">0</div><p class="muted">per 1,000 seeded trials</p><div class="bar" id="bar"></div>
+<div class="row"><span>Correctly accepted</span><strong id="true">0</strong></div>
+<div class="row"><span>Wrongly accepted</span><strong id="wrong">0</strong></div>
+<div class="row"><span>Abstained / conflict</span><strong id="abstain">0</strong></div>
+<p class="muted">8% common-source and 8% per-witness failure probabilities. These are simulated values, not real-world rates.</p></section></div>
+<section class="card" style="margin-top:12px"><h3>INVARIANT</h3><p>Three signed records ≠ three independent observations. Authentication alone cannot establish the correctness of the reported history. An independently pinned checkpoint can detect a conflicting digest but not reconstruct erased data.</p></section></main>
+<script>
+const rows=[["independent",944,56,0,944,56,0],["paired",891,109,0,764,27,209],["cloned",914,86,0,0,0,1000],["shared-key",914,86,0,0,0,1000],["overlap",835,165,0,724,19,257]];
+const deps={independent:[['A'],['B'],['C']],paired:[['shared'],['shared'],['C']],cloned:[['shared'],['shared'],['shared']],'shared-key':[['same-key'],['same-key'],['same-key']],overlap:[['X','Y'],['X'],['Y']]};
+const $=id=>document.getElementById(id);let aware=true;
+$('layout').onchange=render;$('naive').onclick=()=>{aware=false;render()};$('aware').onclick=()=>{aware=true;render()};
+function render(){
+let id=$('layout').value,r=rows.find(x=>x[0]===id),i=aware?4:1;
+$('naive').classList.toggle('on',!aware);$('aware').classList.toggle('on',aware);
+$('true').textContent=r[i];$('false').textContent=r[i+1];$('wrong').textContent=r[i+1];$('abstain').textContent=r[i+2];
+$('bar').innerHTML='<span class="good" style="width:'+r[i]/10+'%"></span><span class="bad" style="width:'+r[i+1]/10+'%"></span><span class="idle" style="width:'+r[i+2]/10+'%"></span>';
+let groups=[...new Set(deps[id].flat())],xs={},svg='<rect width="450" height="245" rx="8" fill="#0d1b22"/>';
+groups.forEach((d,j)=>xs[d]=85+(j*280/Math.max(1,groups.length-1)));
+deps[id].forEach((list,j)=>list.forEach(d=>svg+='<path d="M '+(75+j*150)+' 50 L '+xs[d]+' 169" stroke="#69c8bd" stroke-width="2"/>'));
+'ABC'.split('').forEach((w,j)=>svg+='<circle cx="'+(75+j*150)+'" cy="47" r="22" fill="#234a53" stroke="#6bd4c7"/><text x="'+(75+j*150)+'" y="54" fill="white" font-size="20" text-anchor="middle">'+w+'</text>');
+groups.forEach(d=>svg+='<rect x="'+(xs[d]-49)+'" y="167" width="98" height="34" rx="6" fill="#493444"/><text x="'+xs[d]+'" y="187" text-anchor="middle" fill="white" font-size="12">'+d+'</text>');
+svg+='<text x="225" y="227" font-size="11" text-anchor="middle" fill="#a7c3c5">Trust depends on independent sources</text>';$('diagram').innerHTML=svg;
+$('rule').textContent=aware?'Accept only matching signed reports with disjoint independently registered dependencies.':'Accept any two signed reports with matching contents, regardless of source.';
+}render();
+</script></body></html>
