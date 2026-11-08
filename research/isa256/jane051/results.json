@@ -1,0 +1,44 @@
+{
+  "false_claim": [
+    {
+      "mode": "independent",
+      "trials": 1000,
+      "readings": 27,
+      "roots": 3,
+      "false_naive": 44,
+      "false_group": 2,
+      "group_abstained": 998,
+      "group_conflict": 998
+    },
+    {
+      "mode": "cloned",
+      "trials": 1000,
+      "readings": 9,
+      "roots": 1,
+      "false_naive": 108,
+      "false_group": 0,
+      "group_abstained": 1000,
+      "group_conflict": 0
+    },
+    {
+      "mode": "correlated",
+      "trials": 1000,
+      "readings": 27,
+      "roots": 3,
+      "false_naive": 254,
+      "false_group": 220,
+      "group_abstained": 780,
+      "group_conflict": 780
+    }
+  ],
+  "correct_claim": [
+    {
+      "mode": "independent",
+      "corroborated": 683
+    },
+    {
+      "mode": "cloned",
+      "corroborated": 0
+    }
+  ]
+}
