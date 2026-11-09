@@ -1,0 +1,27 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Jane 092 · FLAY Examines FLAY</title><style>
+:root{--bg:#080b11;--panel:#151b26;--ink:#ebf1fc;--cyan:#47f5de;--orange:#fb8b36;--muted:#99a9bf;--line:#344258}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 78% 1%,#394150,transparent 44%),var(--bg);color:var(--ink);font-family:system-ui,sans-serif}main{max-width:1080px;margin:auto;padding:35px 22px 70px}.caps{letter-spacing:.21em;color:var(--cyan);font-size:12px}h1{font-size:clamp(30px,5vw,56px);margin:12px 0}.sub{color:var(--muted)}.hero{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:28px 0}.panel{border:1px solid var(--line);border-radius:16px;padding:23px;background:#151b26eb;box-shadow:0 8px 22px #0007}.big{font-size:30px;color:var(--cyan)}.orange{color:var(--orange)}.graph{font-family:ui-monospace,Consolas,monospace;white-space:pre;overflow:auto;line-height:1.55;font-size:14px;color:#e1e9f2}.tools{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}button{border-radius:8px;border:1px solid var(--line);background:#283543;color:white;padding:10px 13px;cursor:pointer}button[aria-pressed="true"]{border-color:var(--cyan);background:#155954}table{border-collapse:collapse;width:100%;font-size:14px}th,td{text-align:left;padding:11px;border-bottom:1px solid var(--line)}th{color:var(--cyan)}.scroll{overflow-x:auto}.note{border-left:3px solid var(--orange);padding-left:14px;color:var(--muted)}@media(max-width:690px){.hero{grid-template-columns:1fr}}</style></head><body><main>
+<div class="caps">JANE / 092 / EVIDENCE-CARRYING LEARNING</div><h1>FLAY examines FLAY</h1><p class="sub">Can one Jane replace an insufficient method without corrupting what already worked?</p>
+<div class="hero"><section class="panel"><div class="caps">FROZEN FAILURE</div><p class="big orange">HOLD −1</p><p>“What causes this pattern?”</p><p class="sub">JANE 091 has only a comparison schema. The original failure is preserved.</p></section><section class="panel"><div class="caps">CANDIDATE EVALUATION</div><p class="big">+4 recovered · 0 regressions</p><p>PROMOTED · 20 local unit tests</p><p class="sub">Candidate from a synthetic scout packet; promoted into method registry, not into semantic memory.</p></section></div>
+<div class="panel"><div class="caps">ONE JANE · FOUR DIRECTIONS</div><pre class="graph">                   U / SEMANTIC
+                 What is the claim?
+                         |
+   L / ABSTRACTIVE -- JANE {{j}} -- R / HOLOGRAPHIC
+    What if wrong?       |         What methods transfer?
+                         |
+                   D / SOMATIC
+             What follows if believed?
+                         |
+                SCOUTS OFFER METHODS
+                         |
+                   JANE SELECTS
+                         |
+                 FROZEN HOLDOUT
+                     /      \
+                 PASS        −1
+                   |          |
+              METHOD GATE   PRESERVE
+                   |
+              NEXT UNKNOWN</pre></div>
+<div class="panel" style="margin-top:18px"><div class="caps">HOLDOUT · SELECT A CASE</div><div class="tools"><button aria-pressed="true" id="all" onclick="setFilter('all')">All cases</button><button id="causal" aria-pressed="false" onclick="setFilter('causal')">Causal cases</button><button id="other" aria-pressed="false" onclick="setFilter('other')">Comparison & unknown</button></div><div class="scroll"><table><thead><tr><th>Input</th><th>Frozen method</th><th>Candidate method</th><th>Expected</th></tr></thead><tbody><tr><td>What causes this pattern?</td><td>HOLD_-1</td><td>temporal_order</td><td>temporal_order</td></tr><tr><td>What drives the swarm response?</td><td>HOLD_-1</td><td>alternative_explanations</td><td>alternative_explanations</td></tr><tr><td>Which condition produces the signal?</td><td>HOLD_-1</td><td>intervention_or_natural_experiment</td><td>intervention_or_natural_experiment</td></tr><tr><td>Who is responsible for the change?</td><td>HOLD_-1</td><td>replication</td><td>replication</td></tr><tr><td>How do I distinguish A from B?</td><td>baseline</td><td>baseline</td><td>baseline</td></tr><tr><td>Compare heat and cooling.</td><td>contrast</td><td>contrast</td><td>contrast</td></tr><tr><td>How do I distinguish red from blue?</td><td>replication</td><td>replication</td><td>replication</td></tr><tr><td>Could I understand the stars?</td><td>HOLD_-1</td><td>HOLD_-1</td><td>HOLD_-1</td></tr></tbody></table></div></div>
+<p class="note">Boundaries: synthetic evidence; question-family cue words predefined; candidate method supplied by scouts. No independent science verification, online agent autonomy, or live Git-to-Git dispatch. Hashes attest bytes only. </p>
+<p class="sub">Local result SHA-256: 3781f8b1ad6ad8d9f2941113ddb4ca5dcfc19bb3ff6264da2a2d41000a680454</p></main><script>function setFilter(filter){for(const name of ['all','causal','other'])document.getElementById(name).setAttribute('aria-pressed',name===filter);for(const tr of document.querySelectorAll('tbody tr')){const q=tr.firstElementChild.textContent.toLowerCase();const causal=['cause','drives','produces','responsible'].some(k=>q.includes(k));tr.hidden=filter==='causal'?!causal:filter==='other'?causal:false;}}</script></body></html>
