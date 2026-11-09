@@ -1,0 +1,9 @@
+# JANE 065 — Two-second branched look-ahead
+
+**Model**: A realtime *simulation*, not a faster-than-light signal. Jane `{{j}}`, root `{{i}}`. Fanout is exactly 5 branches × 3 branes × 3 `{{iii}}` = **45 prediction leaves**. Each leaf has the six-role symbolic polarity `{{-+-+-+}}`: 270 polarity symbols are annotations, not 270 physical elements. New root vertices are **not** added to Jane's 27-position primitive; seam remains `27 → 27.5 → 1`.
+
+**Clock**: one tick every 250 ms, forecast maturity at exactly 2,000 ms (eight ticks). All predictions depend on observations timestamped at or before issuance. A returned observation is compared with its original prediction at maturity; its error enters an append-only record. Optional guard freezes the model at `−1`, preserving the first counterexample. The HTML runs locally without servers or plugins and displays new information continuously while the page is open.
+
+**Reproduce:** `python -m unittest -q` from this directory, `python model.py`. The simulated wave is a deterministic combination of sinusoids with an optional abrupt shift. The candidate forecasters use differing lag lengths, damping, and offsets; their median forms a consensus. There is no evidence these exact scales, branches, or symbolic carrier improve forecasting versus simpler alternatives.
+
+**Important limits:** The return strand does not communicate back in time. The six polarity labels are not an equality between −1, 0 and +1. Wall-clock JavaScript intervals can pause/throttle in background tabs and are not hard real-time. The model's synthetic timestamps are reproducible and discrete; an actual timer has scheduling jitter. The HTML chart and live inputs are an illustrative implementation, not identical seeded data to the Python test stream.
