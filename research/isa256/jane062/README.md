@@ -1,0 +1,11 @@
+# JANE 062 — Interleaved Adaptive Gait
+
+Reproducible **classical software experiment**, not physical locomotion or proven autonomous RSI. Preserve JANE{{j}}, payload {{i}}, `{{[6x6x6(4x4(2x2[i]))]}}`, 27 positions, 27→27.5→1 seam and exact 60/30/15/7.5/5/2.5/1/1 two-strand schedule.
+
+Run: `python -m unittest -q` then `python build.py`. Baseline is the **unaltered** JANE 060 Guard, imported from frozen060.py; canonical059.py is also unchanged. Fixed predeclared scouts use rolling least-squares slope with 9 or 13 readings to switch the guard's confirmation count (not to remove all checks). Helix is a 16-step transport schedule; at alternating ± stops it counts proposals and return-checks. It supplies **no new evidence** and no independent observer: the same local observations drive the candidate. Diodic direction is software-enforced.
+
+Holdout trial: 30 seeds (200–229) × 360 observations for each of jitter, ramp and cycle = 32,400 decisions per policy. Jitter truth=17.44, Gaussian std .19; ramp 4.5→27.35 with std .16; cycle twice 1→27.5 with std .14. 15 unittest methods, not 40. `results.json` is ground truth for measured totals. The tournament function accepts a `train_seeds` parameter but does not train or consume it: candidate configurations are hand-defined. The simulation reports spurious switching as changes that did not match a true-state transition, not as externally observed faults.
+
+Promotion gate: no increases in *scenario-level* errors, spurious transitions, or missed wrap; total errors strictly lower; nominal work units ≤20× baseline. The **moderate** scout qualifies in this synthetic test; this is a measured conditional policy choice, not proof of open-ended self-improvement. Stationary jitter still has hundreds of false transitions, real-world robustness and independent held-out deployment unverified. `work_units` approximates linear-regression operations per sample, not CPU-time profiling.
+
+No GitHub Pages or online CI assertions are warranted until checked separately.
