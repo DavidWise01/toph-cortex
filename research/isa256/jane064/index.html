@@ -1,0 +1,26 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JANE 064 | Recursion to −1</title><style>:root{color-scheme:dark}body{background:#080f19;color:#e9f5f3;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;max-width:1060px;margin:auto;padding:24px}header{border-bottom:1px solid #29414d;padding-bottom:15px}h1{color:#86f1df}small,.muted{color:#97afb9}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:24px 0}.card{background:#12202c;border:1px solid #29414d;border-radius:12px;padding:16px}.pass{color:#92e9b2}.fail{color:#ff958c}.step{display:flex;justify-content:space-between;gap:16px;padding:12px;margin:6px 0;border-radius:7px;background:#14232d}.step.failbg{background:#361f27;border:1px solid #b45c60}code{color:#a7e9e0}button{background:#163e49;color:#e9ffff;border:1px solid #4a8c96;border-radius:7px;padding:9px;cursor:pointer}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#0d1722;padding:14px;border-radius:9px}#details{min-height:110px}</style></head><body><header><small>JANE {{j}} / ROOT {{i}} / 27 → 27.5 → 1</small><h1>064 — Recursion Ladder to −1</h1><p>Ten ascending tests. Freeze the rules. Stop at the first real failure. Preserve the counterexample.</p></header><div class="grid"><div class="card"><small>Ladder</small><h2>9 PASS / 1 FAIL</h2></div><div class="card"><small>Promotions</small><h2>v0 → v1 → v2</h2></div><div class="card"><small>Shift penalty</small><h2 class="fail">−20 points</h2></div><div class="card"><small>Unit regression</small><h2 class="pass">10 / 10</h2></div></div><h2>Forward → Backward → Forward</h2><pre>5 PROPAGATE → 8 DOMINATE → 13 EMERGE
+        JANE {{j}}  [FROZEN EVALUATOR]
+                 |
+       OBSERVE → PROPOSE (A,B,C)
+                 |
+         TEST → COMPARE
+                 |
+       ACCEPT? → APPEND → REPEAT
+                 |
+        TEST 10: SHIFT → −1
+                 |
+        STOP; PRESERVE v0</pre><h2>Ten gates</h2><div id="steps"></div><h2>Selected evidence</h2><pre id="details">Select a gate to read its result.</pre><p class="muted">Self-contained HTML based on the executed deterministic result. Simulated classification, not internet autonomy or quantum hardware.</p><script>
+const tests=[
+['Closure','P0 threshold=80; exactly 3 scout policies'],
+['Isolation','Frozen dataclass; proposed values 70,60,50'],
+['Deterministic replay','Identical input produces identical evaluation'],
+['Bounded candidates and audit','At most 3 candidates, ledger intact'],
+['First-generation promotion','v0=80 → v1=70; accuracy 70% → 80%'],
+['No-op rejection','Frozen baseline unchanged, rejection appended to the ledger'],
+['Second-generation promotion','v1=70 → v2=60; accuracy 80% → 90%'],
+['Unseen-order generalization','Reordered synthetic inputs; same label distribution'],
+['Evidence integrity and budget','3 ledger entries, 800/2000 fixed work units'],
+['Unseen distribution shift','FAIL −1: boundary=90. Original v0: 90%. New v2: 70%. Regression: 20 percentage points.']];
+const rows=document.getElementById('steps'),detail=document.getElementById('details');
+tests.forEach(([label,description],i)=>{const button=document.createElement('button');button.className='step '+(i===9?'failbg':'');button.style.width='100%';button.innerHTML='<span>'+(i+1)+'. '+label+'</span><strong class="'+(i===9?'fail':'pass')+'">'+(i===9?'−1 FAIL':'PASS')+'</strong>';button.addEventListener('click',()=>detail.textContent='TEST '+(i+1)+' — '+label+'\n'+description);rows.append(button)});detail.textContent='TEST 10 — −1 FAILURE\n'+tests[9][1];
+</script></body></html>
