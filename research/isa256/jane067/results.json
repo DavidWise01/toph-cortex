@@ -1,0 +1,66 @@
+{
+  "address_examples": [
+    [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      4,
+      4,
+      3,
+      2,
+      0
+    ],
+    [
+      9,
+      4,
+      3,
+      2,
+      0
+    ]
+  ],
+  "normal": {
+    "steps": 120,
+    "settled": 112,
+    "pending": 8,
+    "mae_original": 0.868448,
+    "mae_routed": 0.868448,
+    "same_predictions": true,
+    "same_error_series": true,
+    "state": "RUNNING",
+    "first_failure": null,
+    "routed_leaves": 45,
+    "prim_addresses": 600,
+    "unused_addresses": 555,
+    "routing_digest": "d37fa08d1bd5eab87b69e1dd245c9f0e2963e257ebbf77496f4fbee06284a7e9"
+  },
+  "strict": {
+    "steps": 10,
+    "settled": 2,
+    "pending": 7,
+    "mae_original": 0.745413,
+    "mae_routed": 0.745413,
+    "same_predictions": true,
+    "same_error_series": true,
+    "state": "-1 HALTED",
+    "first_failure": [
+      "-1",
+      2250,
+      0.772025
+    ],
+    "routed_leaves": 45,
+    "prim_addresses": 600,
+    "unused_addresses": 555,
+    "routing_digest": "d37fa08d1bd5eab87b69e1dd245c9f0e2963e257ebbf77496f4fbee06284a7e9"
+  }
+}
