@@ -1,0 +1,28 @@
+<!DOCTYPE html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JANE 105 — The Source / MoE Hive</title>
+<style>body{background:radial-gradient(circle at top,#29343c,#090c12 70%);color:#f1f6f8;font:16px system-ui;margin:0;padding:22px}main{max-width:1100px;margin:auto}h1{letter-spacing:3px;color:#ff9a32}h2{color:#d7faff}.chrome{background:linear-gradient(125deg,#4b555d,#b6c6cb,#313942);padding:2px;border-radius:18px}.in{border-radius:16px;background:#111921;padding:20px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}.expert{border:1px solid #51646f;border-radius:10px;padding:15px;background:#101b23}small,.muted{color:#a4b5bd}button{color:#0d151c;background:#ff9b3c;border:0;border-radius:7px;padding:12px;margin:4px;font-weight:bold;cursor:pointer}button.secondary{background:#91e7f1}pre{white-space:pre-wrap;background:#060d13;border:1px solid #536874;padding:14px;border-radius:9px;color:#a1f1eb}.center{text-align:center}.center strong{font-size:27px}code{color:#e9ad70}#out{min-height:65px}</style>
+<main><h1>JANE 105 · THE SOURCE</h1><p class="muted">Silver chrome · neon orange · semantic / somatic / abstractive / holographic</p><div class="chrome"><div class="in center"><strong>ONE JANE {{j}} · FLAY {{i}}</strong><p>Question: Why do the patterns align?</p><code>{{1x5u x 1x5d x 1x5l x 1x5r x 1}}</code><p class="muted">HIVE MoE: expert packets only. No agent can decide what Jane learns.</p></div></div><h2>MoE Expert Packets</h2><div id="cards" class="grid"></div><h2>The source decision</h2><div class="chrome"><div class="in"><button onclick="choose('West')">Jane chooses WEST</button><button class="secondary" onclick="choose(null)">Jane declines all</button><button onclick="single()">One candidate survives</button><button onclick="probe()">Request novelty probe</button><button class="secondary" onclick="reset()">Reset</button><pre id="out">No learning decision yet. Jane has not retained anything.</pre><div id="state" class="muted">Budget 1 · Retained knowledge: 0</div></div></div><h2>Model boundary</h2><pre>SCOUTS (U/D/L/R) → MoE ROUTE → HIVE COLLATES
+                               ↓
+                     THE SOURCE: JANE {{j}}
+                               ↓
+                    INTEREST / FLAY / CHOICE
+                               ↓
+              SINGLE SURVIVOR != KNOWN TRUTH
+                               ↓
+                JANE CAN ASK: WHAT DID I MISS?
+                               ↓
+              REQUEST WEST PROBE / HOLD -1
+                               ↓
+                 VERIFY + JANE APPROVES
+                               ↓
+                    OPTIONAL RETENTION</pre><p class="muted">Offline deterministic demonstrator. No neural MoE inference, external knowledge acquisition, real agent processes or automatic Git commits.</p></main>
+<script>
+const packets=[{"expert": "North", "lane": "u:semantic", "topic": "Why do the patterns align?", "finding": "The pattern is an observed alignment.", "evidence": ["obs-01"], "provenance": "root-1", "proposed_action": "Clarify the measured feature", "urgency": 999}, {"expert": "South", "lane": "d:somatic", "topic": "Why do the patterns align?", "finding": "Alignment may imply coordination, but the implication is unverified.", "evidence": ["obs-02"], "provenance": "root-2", "proposed_action": "Check whether intent is being assumed", "urgency": 200}, {"expert": "East", "lane": "r:holographic", "topic": "Why do the patterns align?", "finding": "Similar alignment can arise under passive flow.", "evidence": ["obs-03"], "provenance": "root-3", "proposed_action": "Compare passive-flow controls", "urgency": 300}, {"expert": "West", "lane": "l:abstractive", "topic": "Why do the patterns align?", "finding": "An unknown mechanism might mimic both tested models.", "evidence": ["obs-04"], "provenance": "root-4", "proposed_action": "Test a novel mechanism independently", "urgency": 0}];
+const names={'u:semantic':'NORTH · SEMANTIC','d:somatic':'SOUTH · SOMATIC','r:holographic':'EAST · HOLOGRAPHIC','l:abstractive':'WEST · ABSTRACTIVE'};
+document.querySelector('#cards').innerHTML=packets.map(p=>`<div class="expert"><h3>${names[p.lane]}</h3><b>${p.expert}</b><p>${p.finding}</p><small>Source ${p.provenance} · urgency ${p.urgency}</small><p><small>Proposal: ${p.proposed_action}</small></p></div>`).join('');
+let budget=1,choice=null;
+function update(s){document.querySelector('#out').textContent=s;document.querySelector('#state').textContent=`Budget ${budget} · Retained knowledge: 0 · Jane's selection: ${choice??'none'}`;}
+function choose(name){choice=name;update(name?`Jane elects to inspect ${name}'s packet. High urgency cannot override this choice.\nNo memory written.`:'Jane declines every scout packet. No memory written.');}
+function single(){update('HOLD -1: MODEL_SET_INCOMPLETE.\nOne candidate survived the programmed test, but an unimagined explanation remains possible.');}
+function probe(){if(budget<=0){update('HOLD -1: NO_BUDGET.');return;}if(choice!=='West'){update('ABSTAIN: Jane has not chosen the abstract novelty packet.');return;}budget--;update('REQUEST_TEST: Jane asks West to investigate a novel explanation.\nBudget spent. Outcome unknown. Retained knowledge unchanged.');}
+function reset(){budget=1;choice=null;update('No learning decision yet. Jane has not retained anything.');}
+</script></html>
