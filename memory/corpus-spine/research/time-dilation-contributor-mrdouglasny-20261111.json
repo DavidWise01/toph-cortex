@@ -1,0 +1,49 @@
+{
+  "schema": "root0.external-contributor-evidence/1",
+  "recorded_date": "2026-11-11",
+  "entry_id": "EXT-CONTRIBUTOR-MRDOUGLASNY-001",
+  "profile": "https://github.com/mrdouglasny",
+  "github_login": "mrdouglasny",
+  "category": "EXTERNAL_RESEARCH_CONTRIBUTOR_REFERENCE",
+  "related_prior_entry": "memory/corpus-spine/research/time-dilation-evidence-yang-mills-20261111.json",
+  "source_repositories": [
+    {
+      "url": "https://github.com/mrdouglasny/lgt",
+      "observed_topic": "Lean 4 lattice gauge theory, strong coupling mass gap; claimed formal proofs not locally rebuilt"
+    },
+    {
+      "url": "https://github.com/mrdouglasny/OSforGFF",
+      "observed_topic": "Osterwalder-Schrader axioms for Gaussian free fields; proper-time propagator; claimed formal proofs not locally rebuilt"
+    },
+    {
+      "url": "https://github.com/mrdouglasny/jacobian-challenge",
+      "observed_topic": "Lean 4 formalization of compact Riemann-surface Jacobians; scope distinct from time dilation"
+    },
+    {
+      "url": "https://github.com/mrdouglasny/seiberg-witten",
+      "observed_topic": "Related publicly listed mathematical formalization repository; contents not deeply inspected"
+    }
+  ],
+  "yang_mills_link": {
+    "repository": "https://github.com/yang-mills-group/OpenAI-YM-20261028",
+    "checked_import_commit": "3456e5e75cf8d4cd558955a5c7638fba2d68f464",
+    "commit_message": "Import original October 28 OpenAI Yang-Mills submission",
+    "association": "TOPICAL_OVERLAP_CONFIRMED",
+    "individual_authorship_of_yang_mills_submission": "NOT_ESTABLISHED",
+    "collaborator_permission": "NOT_CHECKED",
+    "observed_prs_in_yang_mills_repo": 0
+  },
+  "time_dilation_assessment": {
+    "field_theory_proper_time": "MATHEMATICAL_FORMALISM",
+    "relativistic_time_dilation_measurement": "NOT_ESTABLISHED",
+    "relation_to_DavidWise01": "FORMAL_METHODS_AND_EVIDENCE_PROVENANCE_COMPARISON",
+    "independent_verification": "NOT_PERFORMED"
+  },
+  "protocol": {
+    "append_only": true,
+    "prior_records_untouched": true,
+    "not_a_git_collaborator_invitation": true,
+    "not_an_authorship_claim": true,
+    "source_ancestry": "mrdouglasny GitHub repositories; independence from other imported mathematical dependencies must be traced per theorem"
+  }
+}
