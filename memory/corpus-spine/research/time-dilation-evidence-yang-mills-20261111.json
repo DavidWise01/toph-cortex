@@ -1,0 +1,77 @@
+{
+  "schema": "root0.time-dilation-external-evidence/1",
+  "recorded_date": "2026-11-11",
+  "entry_id": "EXT-YM-20261028-001",
+  "classification": "THIRD_PARTY_FORMAL_MATHEMATICS_REFERENCE",
+  "title": "Yang-Mills Lean 4 spacetime and time-kernel comparison",
+  "external_source": {
+    "url": "https://github.com/yang-mills-group/OpenAI-YM-20261028/tree/main/YM",
+    "repository": "yang-mills-group/OpenAI-YM-20261028",
+    "inspected_commit": "3456e5e75cf8d4cd558955a5c7638fba2d68f464",
+    "inspected_paths": [
+      "README.md",
+      "YM/Mink/Geometry.lean",
+      "YM/Mink/Lorentz.lean",
+      "YM/Mink/Boost.lean",
+      "YM/TimeKernel/Trace.lean",
+      "YM/TimeKernel/Unit.lean"
+    ],
+    "description": "Lean 4 Yang-Mills construction, Poincare/Lorentz geometry, time-kernel cyclic traces, Wightman reconstruction and lattice limits"
+  },
+  "comparison": {
+    "corpus": "DavidWise01 GitHub, sampled indexed artifacts; not an exhaustive audit of all repositories",
+    "paths": [
+      "DavidWise01/toph-cortex/memory/corpus-spine/TEMPORAL_DIODE.md",
+      "DavidWise01/toph-cortex/bin/referent_watermark.py",
+      "DavidWise01/toph-cortex/memory/corpus-spine/research/time-dilation-evidence-citenet-origin-followup-20261105.json",
+      "DavidWise01/toph-cortex/research/isa256/JANE-one-cell-homeostasis-024.md",
+      "DavidWise01/oasis/README.md"
+    ],
+    "overlap": [
+      "time-related invariants and formal boundary discipline",
+      "traceable mathematical/algorithmic construction",
+      "attention to assumptions, evidence provenance and reproducibility"
+    ],
+    "distinctions": [
+      "YM Minkowski quadratic form and Lorentz boosts model relativistic symmetries; ROOT0 temporal diode is an append-only event-provenance protocol",
+      "YM TimeKernel traces are analytic cyclic integral objects, not physical clock measurements",
+      "ROOT0 network RTT and Git timestamps are explicitly not physical time dilation"
+    ],
+    "result": "RELATED_MATHEMATICAL_REFERENCE_NOT_PHYSICAL_TIME_DILATION_EVIDENCE"
+  },
+  "claims": [
+    {
+      "claim": "External repository contains a Minkowski interval quadratic form and Lorentz boost constructions",
+      "status": "SOURCE_INSPECTED"
+    },
+    {
+      "claim": "External repository contains cyclic trace and time-kernel convergence statements",
+      "status": "SOURCE_INSPECTED"
+    },
+    {
+      "claim": "Its README reports formal Lean kernel replay; these build results have been independently reproduced here",
+      "status": "NOT_REPRODUCED"
+    },
+    {
+      "claim": "This establishes experimentally measured relativistic time dilation",
+      "status": "NOT_ESTABLISHED"
+    },
+    {
+      "claim": "This shows derivation or copying between repositories",
+      "status": "NOT_ESTABLISHED"
+    }
+  ],
+  "provenance": {
+    "external_ancestry": "yang-mills-group/OpenAI-YM-20261028",
+    "owned_ancestry": "DavidWise01 ecosystem",
+    "independent_external_source": true,
+    "github_and_0root_mirrors_count_as_one_owned_ancestry": true
+  },
+  "protocol": {
+    "append_only_new_file": true,
+    "existing_files_unchanged": true,
+    "quorum": null,
+    "independent_replication": false,
+    "next_test": "Derive Minkowski interval preservation and an explicit clock-worldline proper-time ratio; separately test any ROOT0 mapping for dimensional and empirical validity."
+  }
+}
