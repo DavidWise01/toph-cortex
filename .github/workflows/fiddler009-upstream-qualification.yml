@@ -1,0 +1,40 @@
+name: FIDDLER-009 pinned upstream source qualification
+
+on:
+  push:
+    paths:
+      - 'research/fiddler009_verify_upstream.py'
+      - '.github/workflows/fiddler009-upstream-qualification.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pinned-source-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify four pinned Git blobs and run source classes
+        run: |
+          python research/fiddler009_verify_upstream.py > fiddler009-original-module-results.json
+          python -m json.tool fiddler009-original-module-results.json >/dev/null
+          python - <<'PY'
+          import json
+          p = json.load(open('fiddler009-original-module-results.json'))
+          assert p['mode'] == 'ORIGINAL_MODULES_BLOB_VERIFIED'
+          assert len(p['sources']) == 4
+          assert p['counts']['single'] == 24
+          assert p['counts']['multiturn'] == 9
+          print(p['counts'])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fiddler009-original-module-results
+          path: fiddler009-original-module-results.json
+          if-no-files-found: warn
