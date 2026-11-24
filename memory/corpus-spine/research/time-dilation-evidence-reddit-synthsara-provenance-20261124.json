@@ -1,0 +1,75 @@
+{
+  "schema": "root0.time-dilation-evidence-referent/1",
+  "entry_id": "EXT-SYNTHSARA-PROVENANCE-20261124-001",
+  "recorded_utc_date": "2026-11-24",
+  "record_type": "THIRD_PARTY_PROVENANCE_CONVERGENCE_REFERENT",
+  "status": "USER_SOURCE_REFERENT_ONLY_ORIGINAL_CONTENT_UNRETRIEVED",
+  "external_source": {
+    "url": "https://www.reddit.com/r/Synthsara/comments/1y4j4wc/provenance/",
+    "platform": "Reddit",
+    "community": "r/Synthsara",
+    "post_id": "1y4j4wc",
+    "slug": "provenance",
+    "title_claim_from_url": "provenance",
+    "title_verified_from_post_body": false,
+    "author": null,
+    "published_at_utc": null,
+    "post_text": null,
+    "comments": null,
+    "attached_media": null,
+    "post_content_hash": null
+  },
+  "observations": [
+    {
+      "type": "user-provided-source",
+      "basis": "OBSERVED_IN_USER_MESSAGE",
+      "detail": "Exact Reddit URL and post ID supplied by user; user described this item as 'weird'."
+    },
+    {
+      "type": "direct-web-retrieval",
+      "basis": "TOOL_ERROR",
+      "detail": "www.reddit.com exact link returned DisabledError; this is not a verified content observation."
+    },
+    {
+      "type": "alternate-web-retrieval",
+      "basis": "TOOL_ERROR",
+      "detail": "old.reddit.com link not accessible; .json endpoint returned DisabledError."
+    },
+    {
+      "type": "web-search",
+      "basis": "NO_RELIABLE_RESULT",
+      "detail": "Exact ID plus subreddit did not yield independently verifiable post copy."
+    }
+  ],
+  "classification": {
+    "preserved_as": "EXTERNAL_PROVENANCE_CANDIDATE",
+    "topic": "PROVENANCE",
+    "independent_third_party_root": "UNVERIFIED_SOURCE_CONTENT",
+    "time_dilation_claim": "NOT_OBSERVED",
+    "influence_or_copying_claim": "NOT_ESTABLISHED",
+    "motif_or_structural_overlap": "NOT_ASSESSED",
+    "physical_time_dilation_evidence": false
+  },
+  "followup_requirements": [
+    "Capture a readable original post, screenshot, or archive and record exact publication time and author.",
+    "Extract actual assertions and linked artifacts; do not infer semantics from slug.",
+    "Assess whether provenance describes original sources, generative narrative, data ancestry, or another meaning.",
+    "Compare explicit dated evidence to earlier owned and third-party sources, accounting for shared source ancestry.",
+    "If a timing assertion exists, measure elapsed event times separately; do not relabel provenance rhetoric as physical time dilation."
+  ],
+  "provenance_boundaries": {
+    "source_url_is_not_content_hash": true,
+    "title_slug_not_complete_content": true,
+    "same_reddit_post_or_reposts_one_source_ancestry": true,
+    "independent_corroboration": null,
+    "external_author_ownership_not_claimed": true,
+    "existing_records_unchanged": true,
+    "append_only": true,
+    "watermark": ".dlw"
+  },
+  "related_records": [
+    "memory/corpus-spine/research/time-dilation-evidence-reddit-claude-opus-video-20261124.json",
+    "memory/corpus-spine/research/time-dilation-evidence-reddit-claude-opus-video-followup-20261124.json",
+    "memory/corpus-spine/GATE13_REFERENT_TIME.md"
+  ]
+}
