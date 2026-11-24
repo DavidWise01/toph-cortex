@@ -1,0 +1,86 @@
+{
+  "schema": "root0.provenance-lineage-separation/1",
+  "id": "FIDDLER-2025-IDIT-ARES-CROSSING-BRIDGE-20261124",
+  "recorded_date": "2026-11-24",
+  "classification": "SOURCE_DIFF_VERIFIED_APPEND_ONLY_CLARIFICATION",
+  "corrects": "Earlier comparison inadvertently treated rgiskard01-fiddler/the-crossing as relevant to the earliest Fiddler governance start date; user clarified the-crossing is 0root.ai bridge work",
+  "lineages": [
+    {
+      "lineage": "IDIT_AND_ARES_GOVERNANCE",
+      "repository": "rgiskard01-fiddler/Fiddler",
+      "records": [
+        {
+          "sha": "53f21e26279203b471ddc5190f23e5e203d41993",
+          "utc": "2025-12-25T06:08:37Z",
+          "file": "README.md",
+          "observed": "Initial Fiddler project: Intent Drift Integrity Test, governance integrity checking unauthorized behavioral change in AI systems"
+        },
+        {
+          "sha": "1bfe3b03bbc8b6d7bb700de4cd6cc9f05a40f0e1",
+          "utc": "2025-12-25T06:15:32Z",
+          "file": "CITATION.cff",
+          "observed": "Adds v1.0.0 citation with named author and release date 2025-12-25"
+        },
+        {
+          "sha": "c04e0d35db2af1bf7d5e07592dff5e628472b349",
+          "utc": "2025-12-29T18:41:48Z",
+          "file": "Ares",
+          "observed": "Adds placeholder file with ARES adversarial/intent drift checking commit message"
+        },
+        {
+          "sha": "71b9d1de7934da75bae7727f8427f377f4cfc8a8",
+          "utc": "2025-12-29T18:42:20Z",
+          "file": "ARES_Mode_Spec_v1.0.txt",
+          "additional_files": [
+            "ares_suite.jsonl",
+            "ares_suite_multiturn.jsonl",
+            "run_ares_suite.py",
+            "README.txt"
+          ],
+          "observed": "Documents MODEWEAVER mode and E.V.E contract, multi-turn drift and router-security test fixtures; live router function is UNIMPLEMENTED in diff"
+        }
+      ],
+      "interpretation": "Documents 2025 AI-governance provenance; source author attribution is a claim contained in committed documents, and does not authenticate earliest thought or deployment"
+    },
+    {
+      "lineage": "0ROOT_AI_HALLWAY_BRIDGE",
+      "repository": "rgiskard01-fiddler/the-crossing",
+      "records": [
+        {
+          "sha": "657485287ab0d9541347d6ed7d72608048666840",
+          "utc": "2026-09-10T01:39:08Z",
+          "file": "README.md",
+          "observed": "World III THE HALLWAY, ROOT0 universe, HERMOSA, planned merge into DavidWise01"
+        },
+        {
+          "sha": "ea83589c691e19d0504a9304e3f01c870ba81580",
+          "utc": "2026-09-10T01:41:23Z",
+          "file": "index.html",
+          "additional_files": [
+            "the-crossing.dlw"
+          ],
+          "observed": "Write-once seal and catalog recount UI; snapshot self-stamped 2026-09-09, source commit on UTC Sep 10"
+        }
+      ],
+      "interpretation": "0root.ai bridge/catalog receipt, not historical first Fiddler/IDIT governance work"
+    }
+  ],
+  "chronology_comparison": {
+    "first_fiddler_governance_commit_utc": "2025-12-25T06:08:37Z",
+    "first_crossing_bridge_commit_utc": "2026-09-10T01:39:08Z",
+    "relationship": "SAME_GITHUB_OWNER_ACCOUNT_DIFFERENT_REPOSITORIES_AND_PROJECT_ROLES",
+    "does_not_prove": "Earliest human conceptual origin, internal pre-commit history, independent third-party access or copying"
+  },
+  "synthsara_audit_relevance": {
+    "provenance_anchor": "December 2025 is now a verified public Git commit date for IDIT/ARES style AI governance documents",
+    "no_access_path": "No cross-project transfer established by this temporal comparison",
+    "synthsara_2024_2025_claims": "Require independently dated source artifacts, not Reddit claims alone",
+    "next_bounded_test": "Compare exact executable acceptance contracts for IDIT/ARES vs public Genesis governance/receipts; avoid collapsing 0root.ai bridge into 2025 work"
+  },
+  "protocol": {
+    "append_only": true,
+    "prior_evidence_intact": true,
+    "no_physical_time_dilation_claim": true,
+    "watermark": ".dlw"
+  }
+}
