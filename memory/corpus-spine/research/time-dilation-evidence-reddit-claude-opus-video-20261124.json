@@ -1,0 +1,80 @@
+{
+  "schema": "root0.time-dilation-evidence-referent/1",
+  "recorded_utc_date": "2026-11-24",
+  "entry_id": "EXT-CLAUDE-OPUS-VIDEO-20261124-001",
+  "record_type": "AI_ASSISTED_MEDIA_CREATION_TIME_COMPRESSION_CANDIDATE",
+  "status": "USER_REFERENT_REGISTERED_SOURCE_BODY_AND_VIDEO_NOT_VERIFIED",
+  "external_source": {
+    "uri": "https://www.reddit.com/r/ClaudeAI/comments/1y42kqt/i_asked_opus_to_make_me_a_video_telling_me_the/",
+    "platform": "Reddit",
+    "community": "r/ClaudeAI",
+    "post_id": "1y42kqt",
+    "user_supplied": true,
+    "title_fragment_from_url": "i_asked_opus_to_make_me_a_video_telling_me_the",
+    "published_at_utc": null,
+    "author": null,
+    "content_sha256": null,
+    "media_sha256": null,
+    "original_video_url": null,
+    "original_post_text": null
+  },
+  "observation": {
+    "what": "User nominated a Reddit post apparently concerning a request for Claude Opus to create a video; registered as a potential example of AI-assisted production-time compression within the time-dilation evidence stream.",
+    "how": "Retained user-supplied original Reddit HTTPS referent. Attempted direct Reddit and old Reddit access through web retrieval, which failed. Exact post ID and URL are user-supplied rather than independently content-authenticated.",
+    "why": "Potential evidence category: perceived output time or AI-assisted media generation; future content inspection could reveal prompt, claimed duration, artifact, creation steps, and whether elapsed wall-clock time was measured.",
+    "reproducible_claim_details": null,
+    "measured_generation_time_seconds": null,
+    "human_baseline_time_seconds": null,
+    "time_compression_ratio": null
+  },
+  "claims": [
+    {
+      "statement": "A Reddit URL in r/ClaudeAI points to a post with slug referencing asking Opus to make a video.",
+      "status": "USER_PROVIDED_REFERENT_AND_URL_SLUG_ONLY"
+    },
+    {
+      "statement": "The linked video or post demonstrates measurable AI production-time compression.",
+      "status": "NOT_ESTABLISHED"
+    },
+    {
+      "statement": "This linked post demonstrates literal relativistic/gravitational time dilation.",
+      "status": "NOT_ESTABLISHED"
+    },
+    {
+      "statement": "The original creator, prompt, workflow, video content, durations and result were verified.",
+      "status": "NOT_VERIFIED"
+    }
+  ],
+  "epistemic_boundary": "Source pointer preserved, but direct Reddit fetch was blocked and no post body, attachments, author, publication timestamp, production timings, or independent reproduction were obtained. The user's requested category is evidence of time dilation; interpretation remains a candidate for experienced or workflow time compression only, not literal physical time dilation.",
+  "independence": {
+    "source_root": "REDDIT_CLAUDEAI_POST_1y42kqt",
+    "third_party_candidate": true,
+    "media_reposts_not_new_independent_witnesses": true,
+    "owned_corpus_mirror_not_independent": true
+  },
+  "verification_needed": [
+    "Obtain a viewable archived original Reddit post and exact author/post UTC timestamp.",
+    "Inspect the linked video or screenshot without guessing its contents.",
+    "Capture original prompt, model version, toolchain, execution timestamps and editing steps.",
+    "Distinguish on-screen story time or apparent generation speed from actual elapsed production time.",
+    "Compare against matched human-only production effort before claiming time savings.",
+    "If a quantitative result is asserted, preserve original data and independently reproduce."
+  ],
+  "protocol": {
+    "append_only": true,
+    "existing_evidence_unchanged": true,
+    "physical_time_dilation_claim": false,
+    "source_url_is_not_content_hash": true,
+    "three_independent_observers": [
+      "A",
+      "B",
+      "C"
+    ],
+    "quorum": null,
+    "independent_replication": false
+  },
+  "relation": [
+    "memory/corpus-spine/research/time-dilation-evidence-reddit-claude-handwritten-weights-20261105.json",
+    "memory/corpus-spine/GATE13_REFERENT_TIME.md"
+  ]
+}
