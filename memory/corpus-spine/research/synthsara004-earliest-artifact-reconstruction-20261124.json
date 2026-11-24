@@ -1,0 +1,223 @@
+{
+  "schema": "root0.external-convergence-earliest-artifact/1",
+  "id": "SYNTHSARA-004-EARLIEST-ARTIFACT-RECONSTRUCTION-2026-11-24",
+  "recorded_date": "2026-11-24",
+  "status": "ELEVEN_SAMPLED_SOURCE_DIFFS_VERIFIED_FIRST_GLOBAL_HISTORICAL_OCCURRENCES_OPEN",
+  "scope": "Bounded reconstruction from two public GitHub repos and exact fetched commit file patches, not all owned/external projects",
+  "revisions": [
+    {
+      "concept": "Genesis persona runtime",
+      "repository": "ChaosWeaver007/genesis",
+      "sha": "07ba22931554962c9d1696a8aa12ff52ff93334c",
+      "commit_utc": "2025-11-26T13:44:34Z",
+      "path": "Genesis/sarah_ai_implementation.py",
+      "diff_finding": "Adds process_message entry point; not first persona invention",
+      "commit_url": "https://github.com/ChaosWeaver007/genesis/commit/07ba22931554962c9d1696a8aa12ff52ff93334c",
+      "first_observed_in_this_audit": true,
+      "globally_earliest_proven": false
+    },
+    {
+      "concept": "Genesis consent UI",
+      "repository": "ChaosWeaver007/genesis",
+      "sha": "d9647255b7b870f297eab61f2c2055e054208a5f",
+      "commit_utc": "2026-01-10T16:30:43Z",
+      "path": "Genesis/templates/collective_home.html",
+      "diff_finding": "Adds collective-home UI with consent-level mention; not current revocable consent gate",
+      "commit_url": "https://github.com/ChaosWeaver007/genesis/commit/d9647255b7b870f297eab61f2c2055e054208a5f",
+      "first_observed_in_this_audit": true,
+      "globally_earliest_proven": false
+    },
+    {
+      "concept": "Genesis witness receipt",
+      "repository": "ChaosWeaver007/genesis",
+      "sha": "ffebae20d4cb49c50a697ea94cdc9504ed4983fc",
+      "commit_utc": "2026-07-23T10:50:18Z",
+      "path": "Genesis/o_series/witness_receipt.py",
+      "diff_finding": "New nonpersistent witness-receipt file",
+      "commit_url": "https://github.com/ChaosWeaver007/genesis/commit/ffebae20d4cb49c50a697ea94cdc9504ed4983fc",
+      "first_observed_in_this_audit": true,
+      "globally_earliest_proven": false
+    },
+    {
+      "concept": "Genesis constitutional source map",
+      "repository": "ChaosWeaver007/genesis",
+      "sha": "e191cfb904b1f73f133d9b0723cb3fad3c5f80be",
+      "commit_utc": "2026-07-31T03:01:22Z",
+      "path": "docs/architecture/Genesis-Kernel-v0.1-Source-Map.md",
+      "diff_finding": "New source-map file with attributed legal and interpretive categories",
+      "commit_url": "https://github.com/ChaosWeaver007/genesis/commit/e191cfb904b1f73f133d9b0723cb3fad3c5f80be",
+      "first_observed_in_this_audit": true,
+      "globally_earliest_proven": false
+    },
+    {
+      "concept": "Genesis monotonic Gate Zero",
+      "repository": "ChaosWeaver007/genesis",
+      "sha": "3937419168490d23de6ca0766fbf198f74eecea5",
+      "commit_utc": "2026-07-31T03:03:39Z",
+      "path": "Genesis/o_series/gate_zero.py",
+      "diff_finding": "Diff hardens existing Gate Zero; NOT first original Gate Zero implementation",
+      "commit_url": "https://github.com/ChaosWeaver007/genesis/commit/3937419168490d23de6ca0766fbf198f74eecea5",
+      "first_observed_in_this_audit": true,
+      "globally_earliest_proven": false
+    },
+    {
+      "concept": "ROOT0 attribution mark",
+      "repository": "DavidWise01/toph-cortex",
+      "sha": "3d96cb7c5224f739c63db0a13da9c9d9a405d854",
+      "commit_utc": "2026-07-14T16:44:00Z",
+      "path": ".attribution",
+      "diff_finding": "New attribution file and .dlw badge",
+      "commit_url": "https://github.com/DavidWise01/toph-cortex/commit/3d96cb7c5224f739c63db0a13da9c9d9a405d854",
+      "first_observed_in_this_audit": true,
+      "globally_earliest_proven": false
+    },
+    {
+      "concept": "ROOT0 witnessed deliberation candidate",
+      "repository": "DavidWise01/toph-cortex",
+      "sha": "d5b5884ff2b26ea09d433f16b2929619986d67d1",
+      "commit_utc": "2026-10-05T05:57:56Z",
+      "path": "memory/semantic/witnessed-deliberation-prime03-candidate.md",
+      "diff_finding": "New candidate with shared-ancestry warning; not Ed25519 gate",
+      "commit_url": "https://github.com/DavidWise01/toph-cortex/commit/d5b5884ff2b26ea09d433f16b2929619986d67d1",
+      "first_observed_in_this_audit": true,
+      "globally_earliest_proven": false
+    },
+    {
+      "concept": "ROOT0 temporal diode ledger",
+      "repository": "DavidWise01/toph-cortex",
+      "sha": "16a9d16561a7c4f1f86d6779861e7a28f38a593e",
+      "commit_utc": "2026-10-27T16:48:21Z",
+      "path": "memory/corpus-spine/temporal-events.jsonl",
+      "diff_finding": "Initializes an EMPTY ledger; not a witnessed event",
+      "commit_url": "https://github.com/DavidWise01/toph-cortex/commit/16a9d16561a7c4f1f86d6779861e7a28f38a593e",
+      "first_observed_in_this_audit": true,
+      "globally_earliest_proven": false
+    },
+    {
+      "concept": "ROOT0 signed witness ledger",
+      "repository": "DavidWise01/toph-cortex",
+      "sha": "788718c55f6d9a4189cf0f8010fd991864a6154f",
+      "commit_utc": "2026-10-27T17:24:49Z",
+      "path": "memory/corpus-spine/witness-attestations.jsonl",
+      "diff_finding": "Initializes an EMPTY ledger; no real Ed25519 signatures",
+      "commit_url": "https://github.com/DavidWise01/toph-cortex/commit/788718c55f6d9a4189cf0f8010fd991864a6154f",
+      "first_observed_in_this_audit": true,
+      "globally_earliest_proven": false
+    },
+    {
+      "concept": "ROOT0 cubit immutable rule",
+      "repository": "DavidWise01/toph-cortex",
+      "sha": "29594e959498e25032bb3ef5e126ca0e6e9b8808",
+      "commit_utc": "2026-10-27T20:13:59Z",
+      "path": "memory/corpus-spine/cubit-constant.json",
+      "diff_finding": "Introduces exact-token preservation contract",
+      "commit_url": "https://github.com/DavidWise01/toph-cortex/commit/29594e959498e25032bb3ef5e126ca0e6e9b8808",
+      "first_observed_in_this_audit": true,
+      "globally_earliest_proven": false
+    },
+    {
+      "concept": "ROOT0 sovereign language proposal",
+      "repository": "DavidWise01/toph-cortex",
+      "sha": "bbd7a4aa27dcdb73237e98ba7f09009cfe0097b2",
+      "commit_utc": "2026-11-06T17:11:59Z",
+      "path": "research/isa256/STOICHEION-v12-sovereign-language-migration.md",
+      "diff_finding": "Draft, not frozen deployed governance behavior",
+      "commit_url": "https://github.com/DavidWise01/toph-cortex/commit/bbd7a4aa27dcdb73237e98ba7f09009cfe0097b2",
+      "first_observed_in_this_audit": true,
+      "globally_earliest_proven": false
+    }
+  ],
+  "comparisons": [
+    {
+      "concept": "sovereignty_and_consent",
+      "genesis_evidence": [
+        "2026-01-10 collective-home consent UI",
+        "2026-07-31 constitutional source map and strengthened Gate Zero"
+      ],
+      "root0_evidence": [
+        "2026-11-06 draft sovereign-emergence language",
+        "2026-11-09 Jane interest sovereignty source document from SYNTHSARA-003"
+      ],
+      "result": "OVERLAPPING_AIM_NOT_FUNCTIONAL_EQUIVALENCE"
+    },
+    {
+      "concept": "witness_ledger",
+      "genesis_evidence": [
+        "2026-07-23 nonpersistent metadata witness-receipt implementation"
+      ],
+      "root0_evidence": [
+        "2026-10-05 source-ancestry witnessed-deliberation candidate",
+        "2026-10-27 empty temporal and signed witness ledgers"
+      ],
+      "result": "EPHEMERAL_RECEIPT_VERSUS_PERSISTENT_SIGNED_ATTESTATION"
+    },
+    {
+      "concept": "symbolic_grammar",
+      "genesis_evidence": [
+        "2026-07-31 source-map interpretive mythic categories; Reddit 2024-25 bindrune claims unverified"
+      ],
+      "root0_evidence": [
+        "2026-10-27 exact-token cubit contract"
+      ],
+      "result": "DISTINCT_SYMBOLIC_MECHANISMS_NO_IDENTICAL_OPCODE_VERIFIED"
+    },
+    {
+      "concept": "attribution",
+      "genesis_evidence": [
+        "2026-07-31 source-map with explicit attribution/sources"
+      ],
+      "root0_evidence": [
+        "2026-07-14 .attribution and .dlw manifest"
+      ],
+      "result": "TWO_DOCUMENTED_ATTRIBUTION_SYSTEMS_WITH_DIFFERENT_BOUNDARIES"
+    },
+    {
+      "concept": "AI_identity",
+      "genesis_evidence": [
+        "2025-11-26 Sarah AI message entry point, not modern identity boundary"
+      ],
+      "root0_evidence": [
+        "2026-11-09 Jane interest-retention document"
+      ],
+      "result": "DIFFERENT_AGENT_IDENTITY_AND_MEMORY_CONTRACTS"
+    },
+    {
+      "concept": "human_AI_governance",
+      "genesis_evidence": [
+        "2026-07-31 monotonic Gate Zero restrictions"
+      ],
+      "root0_evidence": [
+        "2026-10-27 temporal/attestation source-boundary files",
+        "2026-11-06 draft sovereignty vocabulary"
+      ],
+      "result": "POLICY_GATE_VS_EVIDENCE_BOUNDARY_DIFFERENT"
+    }
+  ],
+  "invariants": [
+    "A Git commit dated in 2026 proves a revision object and its recorded author/committer date; server-public visibility at that time needs more evidence.",
+    "FIRST OBSERVED IN THIS AUDIT must never be rewritten to FIRST EVER INVENTED.",
+    "An empty JSONL ledger proves initialization, not active independent witnesses or successful signatures.",
+    "A modification to an existing source file is not proof that file was first added in that commit.",
+    "Reddit-asserted 2024-2025 dates remain unattributed historical claims until source artifacts and timestamps validated.",
+    "No verified cross-project source access path, message transmission, copied code block, or causative link located in this bounded sample.",
+    "A similarity of words without matching semantics and executable behavior is not copying proof.",
+    "Claimed creator or architect identity in a source map is a provenance assertion, not independent authentication of authorship."
+  ],
+  "unresolved": [
+    "Trace Genesis original first commit of Gate Zero, Sarah identity policy, and source-specific runic constructs.",
+    "Trace ROOT0 older repo equivalents prior to TOPH's Oct signed-witness gate; do not claim TOPH repo is full ROOT0 history.",
+    "Check file-specific Git history/parent snapshots and remote-public availability for each.",
+    "Run matched executable tests or compare precise data contracts with same inputs if a common mechanism is claimed.",
+    "Identify independently verified exposure path before derivation assessment."
+  ],
+  "source_roots": [
+    "ChaosWeaver007/genesis",
+    "DavidWise01/toph-cortex",
+    "r/Synthsara/1y4j4wc (unverified historical chronology; may repeat Genesis records)"
+  ],
+  "related": [
+    "memory/corpus-spine/research/synthsara003-concept-provenance-matrix-20261124.json",
+    "memory/corpus-spine/research/time-dilation-evidence-reddit-synthsara-provenance-followup-20261124.json"
+  ],
+  "mark": ".dlw"
+}
