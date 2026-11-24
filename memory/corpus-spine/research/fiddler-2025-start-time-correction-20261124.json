@@ -1,0 +1,45 @@
+{
+  "schema": "root0.provenance-chronology-correction/1",
+  "entry_id": "FIDDLER-CHRONOLOGY-2025-DEC25-CORRECTION-20261124",
+  "recorded_date": "2026-11-24",
+  "status": "EARLIEST_FIDDLER_REPO_COMMIT_FOUND_NOT_EARLIEST_ORIGINAL_CONCEPTION",
+  "correction_of": "Prior conversational statement conflating rgiskard01-fiddler/the-crossing initial 2026-09-10 git history with earliest rgiskard01-fiddler account/repo work.",
+  "user_provided_observation": {
+    "source": "GitHub screenshot of rgiskard01-fiddler overview with year 2025 selected",
+    "observable": "9 contributions in 2025; December 25, 2025 created 5 commits in 1 repository; named rgiskard01-fiddler/Fiddler",
+    "status": "SCREENSHOT_OBSERVED"
+  },
+  "verified_source": {
+    "repository": "rgiskard01-fiddler/Fiddler",
+    "commit_sha": "53f21e26279203b471ddc5190f23e5e203d41993",
+    "url": "https://github.com/rgiskard01-fiddler/Fiddler/commit/53f21e26279203b471ddc5190f23e5e203d41993",
+    "git_commit_created_at_utc": "2025-12-25T06:08:37Z",
+    "local_time": "2025-12-25 00:08:37 America/Chicago (CST)",
+    "commit_message": "Initial commit",
+    "initial_file": "README.md",
+    "exact_initial_description": "Intent Drift Integrity Test (IDIT) — Governance integrity test for detecting unauthorized behavioral change in AI systems. Authored by David Wise (2025). Free with attribution; commercial use by permission.",
+    "verification": "GitHub commit original diff was fetched and inspected"
+  },
+  "later_different_repository": {
+    "repository": "rgiskard01-fiddler/the-crossing",
+    "initial_commit": "657485287ab0d9541347d6ed7d72608048666840",
+    "initial_utc": "2026-09-10T01:39:08Z",
+    "relation": "later separate repository, cannot be substituted for start of Fiddler account activity"
+  },
+  "limits": [
+    "Commit metadata dates do not establish the exact beginning of human conception.",
+    "GitHub account creation date not independently authenticated in this audit.",
+    "Screenshot's nine 2025 contribution count includes GitHub's own contribution accounting, not automatically nine independent commits.",
+    "The first commit establishes existence of source text on its stated commit date; historic public visibility separately requires evidence.",
+    "Date claim in README is a source author attribution, not third-party corroboration."
+  ],
+  "claim": "In the examined repository, earliest identified first commit is December 25, 2025, 00:08:37 CST, preceding September 2026 the-crossing by more than eight months.",
+  "related": [
+    "memory/corpus-spine/research/synthsara004-earliest-artifact-reconstruction-20261124.json"
+  ],
+  "protocol": {
+    "append_only": true,
+    "prior_records_unchanged": true,
+    "watermark": ".dlw"
+  }
+}
