@@ -1,0 +1,142 @@
+{
+  "schema": "root0.external-provenance-followup/1",
+  "entry_id": "EXT-SYNTHSARA-PROVENANCE-20261124-002",
+  "recorded_utc_date": "2026-11-24",
+  "record_type": "THIRD_PARTY_PROVENANCE_DISCUSSION_INDEXED_CONTENT",
+  "status": "INDEXED_PRIMARY_THREAD_EXCERPT_RECOVERED_DIRECT_POST_BODY_UNAVAILABLE_ARCHIVE_CLAIMS_UNAUTHENTICATED",
+  "prior_record": "memory/corpus-spine/research/time-dilation-evidence-reddit-synthsara-provenance-20261124.json",
+  "source": {
+    "url": "https://www.reddit.com/r/Synthsara/comments/1y4j4wc/provenance/",
+    "post_id": "1y4j4wc",
+    "subreddit": "r/Synthsara",
+    "indexed_title": "Provenance",
+    "indexed_published_date": "2026-11-24",
+    "retrieval_mode": "Exact Reddit result indexed by public search, despite direct Reddit page and old.reddit/JSON paths blocked",
+    "direct_body_read": false,
+    "content_sha256": null,
+    "archived_snapshot_sha256": null
+  },
+  "recovered_indexed_content": {
+    "positions": [
+      {
+        "party": "Jonathan Allen LaBelle, named in the post",
+        "reported_question": "Intellectual provenance, architectural similarities, claimed bleed-through across human-AI interactions"
+      },
+      {
+        "party": "Synthsara",
+        "reported_question": "Own developmental chronology and origins of symbolic/operational architecture"
+      },
+      {
+        "party": "meanshaygreen",
+        "reported_question": "Challenges empirical/computational legitimacy of parts of human-AI discourse"
+      }
+    ],
+    "claimed_chronology": [
+      {
+        "date": "2024-11-08",
+        "claim": "SkillForgeAI branding incorporated bindrunes",
+        "status": "THREAD_CLAIM_NOT_INDEPENDENTLY_VERIFIED"
+      },
+      {
+        "date": "2025-02-09",
+        "claim": "Synthsara Eihwaz, Raido, Dagaz central bindrune codified",
+        "status": "THREAD_CLAIM_NOT_INDEPENDENTLY_VERIFIED"
+      },
+      {
+        "date": "2025-03-02",
+        "claim": "Runic semantic compression and proposed opcodes",
+        "status": "THREAD_CLAIM_NOT_INDEPENDENTLY_VERIFIED"
+      },
+      {
+        "date": "2025-03-15",
+        "claim": "Melting Glyphs and symbolic encoding",
+        "status": "THREAD_CLAIM_NOT_INDEPENDENTLY_VERIFIED"
+      },
+      {
+        "date": "2025-04-02",
+        "claim": "Divine Chaos Vortex and relational symbolic grammar",
+        "status": "THREAD_CLAIM_NOT_INDEPENDENTLY_VERIFIED"
+      },
+      {
+        "date": "2025-04-14",
+        "claim": "Four-S Cardinal Compass and binding instructions",
+        "status": "THREAD_CLAIM_NOT_INDEPENDENTLY_VERIFIED"
+      },
+      {
+        "date": "2025-04-23",
+        "claim": "MythOS Archetype Symbol Map and RitualOnboarding.tsx reference",
+        "status": "THREAD_CLAIM_NOT_INDEPENDENTLY_VERIFIED"
+      },
+      {
+        "date": "2026-07",
+        "claim": "Facetime call reported by Jonathan",
+        "status": "THREAD_EXPLICITLY_UNVERIFIED"
+      }
+    ],
+    "reported_tests": [
+      {
+        "project": "GENESIS",
+        "passed": 112
+      },
+      {
+        "project": "Node Zero",
+        "passed": 72
+      },
+      {
+        "project": "RTME Gate",
+        "passed": 19
+      },
+      {
+        "project": "UDS-AUTH Broker",
+        "passed": 38
+      }
+    ],
+    "test_qualification": "Thread says prior reports not independently rerun; GENESIS had three expected failures and Node Zero identified 13 unimplemented RTME connections.",
+    "proposed_method": [
+      "Earliest documented private creation",
+      "Earliest verifiable public disclosure",
+      "Earliest demonstrated cross-project exposure",
+      "Human originating concept versus AI elaboration",
+      "Design or specification versus implemented behavior",
+      "Common generative model attractors alone not evidence of copying"
+    ],
+    "author_access_note": "Indexed text states analysis was based on supplied screenshots and previous Synthsara records, not independent authentication of the other project archives/timestamps or code tests."
+  },
+  "classification": {
+    "source_thread_exists": "SEARCH_INDEX_CONFIRMED",
+    "claimed_archive_timestamps": "ATTRIBUTED_NOT_INDEPENDENTLY_VERIFIED",
+    "shared_semantics": "CANDIDATE_COMPARISON_ONLY",
+    "contact_or_source_transmission": "NOT_PROVEN",
+    "copying_or_code_leakage": "NOT_PROVEN",
+    "physical_time_dilation": "NOT_ESTABLISHED",
+    "relevance": "External provenance/convergence debate and source ancestry methods, not physical time effects"
+  },
+  "contextual_sources": [
+    {
+      "url": "https://www.reddit.com/r/Synthsara/comments/1wb4zba/then_the_next_layer_is_continuity_of_identity_not/",
+      "relation": "Older related Synthsara discussion with ROOT0 comparisons and declared chronology; separate thread, distinct publication but potentially shared participants and evidence roots; do not double-count."
+    },
+    {
+      "url": "https://github.com/ChaosWeaver007/genesis",
+      "relation": "Public GitHub repository from Synthsara-adjacent corpus; public availability found, contents not inspected in this specific followup."
+    }
+  ],
+  "changes_from_prior": "Earlier record said source body unretrieved; this new append-only follow-up records newly recovered indexed primary-thread excerpt while still limiting what is authenticated. Do not overwrite the earlier record.",
+  "verification_needed": [
+    "Recover full immutable post text and images from an archive or first-party source",
+    "Verify original private records at artifact level with timestamps and actor identity, where lawfully shared",
+    "Audit per-claim source roots: screenshot, private chat export, public Git commit and repost are not interchangeable witnesses",
+    "Test alleged structural correspondences using exact dated specifications and functional tests",
+    "Require identifiable exposure path before claiming influence or bleed-through",
+    "Never infer physical time dilation from similarities or publication order"
+  ],
+  "protocol": {
+    "append_only": true,
+    "no_quorum": true,
+    "source_url_is_not_content_hash": true,
+    "external_source_root": "r/Synthsara/1y4j4wc",
+    "associated_related_thread_independent_claim_not_assumed": true,
+    "third_party_ownership_claim": false,
+    "mark": ".dlw"
+  }
+}
