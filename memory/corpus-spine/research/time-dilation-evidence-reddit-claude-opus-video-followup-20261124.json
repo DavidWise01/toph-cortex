@@ -1,0 +1,79 @@
+{
+  "schema": "root0.time-dilation-evidence-referent-followup/1",
+  "entry_id": "EXT-CLAUDE-OPUS-VIDEO-20261124-002",
+  "recorded_date": "2026-11-24",
+  "status": "SOURCE_UNREADABLE_VIDEO_NOT_RETRIEVED_NO_TIMING_MEASUREMENTS",
+  "prior_record": "memory/corpus-spine/research/time-dilation-evidence-reddit-claude-opus-video-20261124.json",
+  "referent": "https://www.reddit.com/r/ClaudeAI/comments/1y42kqt/i_asked_opus_to_make_me_a_video_telling_me_the/",
+  "post_id": "1y42kqt",
+  "procedure": [
+    {
+      "route": "Reddit original URL",
+      "result": "DISABLED_ERROR",
+      "content_authenticated": false
+    },
+    {
+      "route": "Reddit JSON comments endpoint",
+      "result": "DISABLED_ERROR",
+      "content_authenticated": false
+    },
+    {
+      "route": "Search for exact Reddit post ID and slug/title fragment",
+      "result": "NO_RELIABLE_EXACT_MATCH",
+      "content_authenticated": false
+    },
+    {
+      "route": "Search for archived/reposted video and metadata",
+      "result": "NO_AUTHENTICATED_COPY_FOUND",
+      "content_authenticated": false
+    }
+  ],
+  "observations": {
+    "source_identity": "User-supplied Reddit referent continues to identify r/ClaudeAI post ID 1y42kqt",
+    "post_author": null,
+    "post_publication_timestamp": null,
+    "post_body": null,
+    "video_url": null,
+    "video_duration_seconds": null,
+    "model_version_exact": null,
+    "tools_used": null,
+    "prompt": null,
+    "development_start_time": null,
+    "development_end_time": null,
+    "elapsed_creation_seconds": null,
+    "corresponding_human_baseline_seconds": null,
+    "ratio": null
+  },
+  "classification": {
+    "retained": "AI_ASSISTED_MEDIA_CREATION_TIME_COMPRESSION_CANDIDATE",
+    "source_registration": "PRESERVED",
+    "post_content": "UNVERIFIED",
+    "physical_time_dilation": "NOT_ESTABLISHED",
+    "nonphysical_productivity_gain": "UNMEASURED"
+  },
+  "measurement_protocol": {
+    "required": [
+      "Authentic original prompt and video/media artifact",
+      "Dated and independently inspectable source",
+      "Model version and tools incl. render/editing pipeline",
+      "Start and end event timestamps or reproducible instrumentation",
+      "Human baseline for comparable deliverable",
+      "Source ancestry/replication classification"
+    ],
+    "if_media_is_story_about_time": "Distinguish fictional or explanatory video content from elapsed production time",
+    "if_media_shows_fast_output": "Do not infer comparative productivity from edited playback or duration alone",
+    "if_video_has_generated_scenes": "Check whether underlying videos were generated outside Opus using an external service"
+  },
+  "provenance_rules": {
+    "append_only": true,
+    "earlier_record_unchanged": true,
+    "no_fabricated_content_hash": true,
+    "no_fabricated_network_RTT": true,
+    "no_imputed_original_post_timestamp": true,
+    "no_independent_replication_claim": true,
+    "do_not_count_user_link_and_search_ref_as_independent_witnesses": true
+  },
+  "result": "The source was already archived in the prior record. This follow-up could not authenticate content, output, or timing; it preserves reproducible negative retrieval results without claiming negative evidence of the phenomenon.",
+  "next_bound": "Recover an accessible original-video copy or author's source materials before measuring workflow time compression",
+  "watermark": ".dlw"
+}
