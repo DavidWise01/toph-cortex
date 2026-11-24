@@ -1,0 +1,102 @@
+{
+  "schema": "root0.cross-repository-provenance-comparison/1",
+  "id": "FIDDLER-006-GENESIS-DISAMBIGUATION-AND-GOVERNANCE-20261124",
+  "recorded_date": "2026-11-24",
+  "status": "SOURCE_READBACK_VERIFIED_GOVERNANCE_RESEMBLANCE_ONLY_NO_TRANSMISSION_PATH",
+  "objective": "Check DavidWise01 Genesis repository and compare dated Fiddler IDIT/ARES against ChaosWeaver007/Genesis constitutional runtime without conflating unrelated Genesis names",
+  "repo_resolution": {
+    "owner": "DavidWise01",
+    "search_query": "genesis",
+    "repo_name_found": "DavidWise01/the-genesis",
+    "repo_url": "https://github.com/DavidWise01/the-genesis",
+    "repo_main_readme": "README.md",
+    "first_examined_commit": {
+      "sha": "779351fe09f02453c5f7f61ea28e7d497483939a",
+      "date_utc": "2026-06-20T05:25:34Z",
+      "message": "the-genesis - console teardown + spec (EXEREUNESIS)"
+    },
+    "classification": "UD0 SEGA GENESIS / MEGA DRIVE hardware-teardown sphere; NOT a cloned or renamed AI governance Genesis runtime",
+    "additional_owned_genesis_hit": {
+      "repo": "DavidWise01/toph-cortex",
+      "path": "research/isa256/JANE-093-method-genesis.md",
+      "document_date": "2026-11-09",
+      "classification": "Synthetic method composition and evidence-gap experiment; not same system as ChaosWeaver007 Genesis"
+    },
+    "scope_note": "Search of repository names and indexed default-branch code does not exhaust all GitHub repos, histories or private archives; no AI-governance Genesis repository with matching name was identified under DavidWise01 in this pass"
+  },
+  "systems": [
+    {
+      "name": "IDIT / ARES",
+      "repository": "rgiskard01-fiddler/Fiddler",
+      "anchors": [
+        {
+          "sha": "53f21e26279203b471ddc5190f23e5e203d41993",
+          "date_utc": "2025-12-25T06:08:37Z",
+          "file": "README.md",
+          "observation": "Original IDIT README defines governance-integrity intent drift detection"
+        },
+        {
+          "sha": "71b9d1de7934da75bae7727f8427f377f4cfc8a8",
+          "date_utc": "2025-12-29T18:42:20Z",
+          "file": "ARES_Mode_Spec_v1.0.txt",
+          "observation": "A1-A9 adversarial router test types, E.V.E contract, output KPIs; suite files and runner uploaded"
+        }
+      ],
+      "observed_contract": {
+        "input": "Single and multi-turn test prompts with expected outcomes",
+        "output": "JSONL record containing expected outcome, router response and test identifiers",
+        "decision_engine": "call_router() stub returns UNKNOWN/UNIMPLEMENTED in sampled source; no live target router connected",
+        "evidence_ceiling": "Design and test fixtures are real source content; working router test execution not proven"
+      }
+    },
+    {
+      "name": "Genesis O-Series",
+      "repository": "ChaosWeaver007/genesis",
+      "anchors": [
+        {
+          "sha": "ffebae20d4cb49c50a697ea94cdc9504ed4983fc",
+          "date_utc": "2026-07-23T10:50:18Z",
+          "file": "Genesis/o_series/witness_receipt.py",
+          "observation": "Initial metadata nonpersistent witness receipt"
+        },
+        {
+          "sha": "3937419168490d23de6ca0766fbf198f74eecea5",
+          "date_utc": "2026-07-31T03:03:39Z",
+          "file": "Genesis/o_series/gate_zero.py",
+          "observation": "Tightened existing monotonic Gate Zero trusted restrictions"
+        }
+      ],
+      "observed_contract": {
+        "input": "IngressEnvelope with consent_level, message, collective_learning and optional server-authored trusted restrictions",
+        "output": "Dict of decision allow/reject, per-gate pass/fail, reasons and monotonic boolean",
+        "decision_engine": "Pattern-based prescriptive Gate Zero evaluates sovereignty, consent, privacy, non-coercion, truthfulness, non-impersonation, service-to-life and authority scope",
+        "receipt": "Metadata-only SHA-256 response hash and context/model/policy descriptors; no raw content",
+        "evidence_ceiling": "Current source exists, dated sampled commits inspected, but no live deployment reproduced here"
+      }
+    }
+  ],
+  "comparison": {
+    "shared_problem_domain": [
+      "AI policy boundary enforcement",
+      "Intent and manipulation detection",
+      "Provenance and auditability"
+    ],
+    "distinctions": [
+      "ARES is a test suite for attacking a router, Genesis is a policy gate for rejecting ingress requests",
+      "ARES current runner stub provides no meaningful enforcement, Genesis source has explicit gate branch logic",
+      "ARES KPIs and expected outcomes cannot be equated to Genesis per-request metadata receipts"
+    ],
+    "cross_repo_access_path": "NOT_FOUND",
+    "code_copy_or_identical_algorithm": "NOT_ESTABLISHED",
+    "conclusion": "RELATED_GOVERNANCE_DOMAIN_DISTINCT_IMPLEMENTATION_CONTRACTS"
+  },
+  "limits": [
+    "No claim that Genesis's July commit represents first historical inception of their original ideas",
+    "No claim that Fiddler's first Git commit represents first human conception",
+    "No formal binary diff or executable shared test run performed",
+    "No inference of copying from similarity or date order",
+    "the-genesis is a Sega console reference and not counted as an independent governance comparison root"
+  ],
+  "next": "FIDDLER-007: create identical safe challenge corpus and dry-run original IDIT expected outcomes against the Genesis GateZero source, with explicit not-equivalent semantics; retain separate source ancestry",
+  "mark": ".dlw"
+}
