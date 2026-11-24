@@ -17,7 +17,7 @@ SOURCES = [
 ]
 
 def blob_hash(data):
-    return hashlib.sha1(b"blob " + str(len(data)).encode("ascii") + b"\\x00" + data).hexdigest()
+    return hashlib.sha1(b"blob " + str(len(data)).encode("ascii") + b"\x00" + data).hexdigest()
 
 def run():
     work = pathlib.Path(tempfile.mkdtemp(prefix="fiddler009_"))
