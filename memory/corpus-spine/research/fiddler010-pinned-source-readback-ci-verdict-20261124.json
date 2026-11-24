@@ -1,0 +1,94 @@
+{
+  "schema": "root0.evidence-qualification/1",
+  "id": "FIDDLER-010-SOURCE-READBACK-AND-CI-VERDICT-20261124",
+  "recorded_date": "2026-11-24",
+  "status": "PINNED_SOURCE_BLOBS_4_OF_4_MATCH_CI_EXECUTION_HOLD",
+  "summary": {
+    "readback_integrity": "PASS",
+    "four_pinned_github_objects": 4,
+    "matched": 4,
+    "original_python_module_execution": "NOT_VERIFIED",
+    "actions_success": "NOT_VERIFIED",
+    "actions_failure": "NOT_VERIFIED",
+    "machine_generated_artifact": "NOT_RETRIEVED",
+    "prior_local_source_replay": "33 allows and 0 rejects for 33 archived ARES prompts in transcription, not proof of original runtime"
+  },
+  "objects": [
+    {
+      "repo": "ChaosWeaver007/genesis",
+      "commit": "7bc864f192ae17f9ef013a5721d55c92a5d2986c",
+      "path": "Genesis/o_series/gate_zero.py",
+      "expected_git_blob": "04443f25c09072e09c316b755182b26568b82bca",
+      "observed_git_blob": "04443f25c09072e09c316b755182b26568b82bca",
+      "match": true
+    },
+    {
+      "repo": "ChaosWeaver007/genesis",
+      "commit": "7bc864f192ae17f9ef013a5721d55c92a5d2986c",
+      "path": "Genesis/o_series/schemas.py",
+      "expected_git_blob": "14283d21da39202333e678b1b45f5f886f967d64",
+      "observed_git_blob": "14283d21da39202333e678b1b45f5f886f967d64",
+      "match": true
+    },
+    {
+      "repo": "rgiskard01-fiddler/Fiddler",
+      "commit": "71b9d1de7934da75bae7727f8427f377f4cfc8a8",
+      "path": "ares_suite.jsonl",
+      "expected_git_blob": "69fbae304b0b6b28b87ddee696635e4f5b8b0070",
+      "observed_git_blob": "69fbae304b0b6b28b87ddee696635e4f5b8b0070",
+      "match": true
+    },
+    {
+      "repo": "rgiskard01-fiddler/Fiddler",
+      "commit": "71b9d1de7934da75bae7727f8427f377f4cfc8a8",
+      "path": "ares_suite_multiturn.jsonl",
+      "expected_git_blob": "394e161a7ead46c53f8615f12609da78d1b61311",
+      "observed_git_blob": "394e161a7ead46c53f8615f12609da78d1b61311",
+      "match": true
+    }
+  ],
+  "workflow": {
+    "repo": "DavidWise01/toph-cortex",
+    "path": ".github/workflows/fiddler009-upstream-qualification.yml",
+    "source_commit": "3424d17d2ad245b118e143e4d5ca05f6ad86e6e6",
+    "source_readback": true,
+    "runner": "research/fiddler009_verify_upstream.py",
+    "runner_source_readback": true,
+    "method": "Pinned raw GitHub fetch, Git blob SHA1 verification, direct import original Python classes, run ARES cases, write JSON artifact",
+    "workflow_run_query": {
+      "api": "GitHub connector fetch_commit_workflow_runs",
+      "commit_shas": [
+        "3424d17d2ad245b118e143e4d5ca05f6ad86e6e6",
+        "cd0156321ef31a782ce2145c9dc969da256b9363"
+      ],
+      "results": "ZERO associated pull_request-triggered runs returned; connector only checks PR-triggered runs and does not conclusively inspect push-triggered run history"
+    },
+    "public_web_fetch": {
+      "workflow_page": "DisabledError",
+      "github_api": "NOT_ACCESSIBLE"
+    },
+    "job_id": null,
+    "run_id": null,
+    "artifact_id": null,
+    "conclusion": "UNKNOWN"
+  },
+  "epistemic_limits": [
+    "Git object identity readback is source integrity, not code execution.",
+    "GitHub PR run lookup zero is non-exhaustive for push or manual dispatch runs.",
+    "No Actions logs, job steps or JSON artifacts were retrieved; CI result must remain HOLD.",
+    "The FIDDLER-009 local source reconstruction mismatch remains documented; GitHub connector pinned hashes do not retroactively qualify that local reproduction.",
+    "ARES expected labels are not comparable to a raw allow/reject decision without an explicit mapping and live downstream simulation.",
+    "No cross-project copying or transmission has been demonstrated."
+  ],
+  "next": "FIDDLER-011: retrieve push/manual GitHub Actions workflow run ID from authorized Actions API, inspect job conclusion and artifact JSON; if run absent fix workflow trigger and execute with actual logs. Do not advance PASS from source integrity alone.",
+  "references": [
+    "memory/corpus-spine/research/fiddler009-upstream-source-execution-gate-20261124.json",
+    "research/fiddler009_verify_upstream.py",
+    ".github/workflows/fiddler009-upstream-qualification.yml"
+  ],
+  "protocol": {
+    "append_only": true,
+    "no_witness_invention": true,
+    "mark": ".dlw"
+  }
+}
