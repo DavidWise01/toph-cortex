@@ -1,0 +1,195 @@
+{
+  "schema": "root0.external-convergence-provenance-matrix/1",
+  "id": "SYNTHSARA-003-CONCEPT-PROVENANCE-MATRIX-2026-11-24",
+  "date": "2026-11-24",
+  "status": "BOUNDED_SOURCE_READBACK_COMPLETED_ORIGIN_AND_ACCESS_UNVERIFIED",
+  "question": "Compare independently readable public artifacts for sovereignty, witness ledgers, symbolic grammars, attribution, AI identity and human–AI governance without collapsing similar language into common origin.",
+  "source_roots": [
+    {
+      "name": "ROOT0/TOPH",
+      "repo": "DavidWise01/toph-cortex",
+      "ancestry": "Owned corpus; other DavidWise01 mirrors not independent"
+    },
+    {
+      "name": "Synthsara-related/Genesis",
+      "repo": "ChaosWeaver007/genesis",
+      "ancestry": "Separate public GitHub owner; do not assert exact ownership/person identity from a handle alone"
+    },
+    {
+      "name": "Reddit/Synthsara",
+      "url": "https://www.reddit.com/r/Synthsara/comments/1y4j4wc/provenance/",
+      "ancestry": "External discussion, may quote or repeat Genesis claims; not automatically a third independent root"
+    }
+  ],
+  "comparison": [
+    {
+      "concept": "Sovereignty and consent",
+      "genesis": {
+        "file": "docs/architecture/Genesis-Kernel-v0.1-Source-Map.md",
+        "url": "https://github.com/ChaosWeaver007/genesis/blob/main/docs/architecture/Genesis-Kernel-v0.1-Source-Map.md",
+        "finding": "Sovereignty preserved, granular revocable consent, private data not extractable; mapped to runtime Gate Zero and consent policies",
+        "additional_file": "policies/consent_v0_1.yaml",
+        "commit_evidence": {
+          "date_utc": "2026-01-10T16:30:43Z",
+          "sha": "d9647255b7b870f297eab61f2c2055e054208a5f",
+          "scope": "Early collective-home consent-level UI, not evidence this source-map or present YAML existed then"
+        }
+      },
+      "root0": {
+        "file": "research/isa256/JANE-089-interest-sovereignty.md",
+        "url": "https://github.com/DavidWise01/toph-cortex/blob/main/research/isa256/JANE-089-interest-sovereignty.md",
+        "finding": "Jane alone selects investigation/retention; hive scout packets cannot write retained memory; 24 local scripted regression tests reported",
+        "document_date": "2026-11-09",
+        "evidence_ceiling": "Document date is not externally authenticated first-conception time"
+      },
+      "comparison": "Shared autonomy/consent vocabulary; distinct decision subjects and operational gates",
+      "equivalence": "NOT_ESTABLISHED"
+    },
+    {
+      "concept": "Witness and evidence ledgers",
+      "genesis": {
+        "file": "Genesis/o_series/witness_receipt.py",
+        "url": "https://github.com/ChaosWeaver007/genesis/blob/main/Genesis/o_series/witness_receipt.py",
+        "finding": "Nonpersistent metadata-only witness receipt for Gate Zero and output; no raw prompts/responses persisted",
+        "commit": {
+          "utc": "2026-07-23T10:50:18Z",
+          "sha": "ffebae20d4cb49c50a697ea94cdc9504ed4983fc",
+          "url": "https://github.com/ChaosWeaver007/genesis/commit/ffebae20d4cb49c50a697ea94cdc9504ed4983fc"
+        }
+      },
+      "root0": {
+        "file": "memory/corpus-spine/GATE10_SIGNED_WITNESS.md",
+        "url": "https://github.com/DavidWise01/toph-cortex/blob/main/memory/corpus-spine/GATE10_SIGNED_WITNESS.md",
+        "finding": "Signed append-only witness attestations tied to event hashes and enrolled Ed25519 keys; A/B/C independent lanes and no quorum; keys initially unenrolled",
+        "sample_commit": {
+          "utc": "2026-10-05T05:57:56Z",
+          "sha": "d5b5884ff2b26ea09d433f16b2929619986d67d1",
+          "scope": "Earlier witnessed-deliberation candidate, not the initial Gate10 signed-witness implementation"
+        }
+      },
+      "comparison": "Both separate receipts from a source event; Genesis creates ephemeral metadata receipt, TOPH specifies separately signed append-only attestations",
+      "equivalence": "DISTINCT_MECHANISMS",
+      "chronology_warning": "July 23 Genesis receipt vs Oct 5 ROOT0 witnessed-deliberation candidate are not like-for-like earliest invention timestamps"
+    },
+    {
+      "concept": "Symbolic grammars",
+      "genesis": {
+        "file": "docs/architecture/Genesis-Kernel-v0.1-Source-Map.md",
+        "url": "https://github.com/ChaosWeaver007/genesis/blob/main/docs/architecture/Genesis-Kernel-v0.1-Source-Map.md",
+        "finding": "Divine Chaos/Sacred Order and mythic interpretation explicitly distinguished from empirical claims; no direct implementation of purported early bindrune chronology verified",
+        "reddit_claim": "2025 bindrune, Melting Glyphs and Four-S Compass chronology remain unverified claims in indexed Reddit discussion"
+      },
+      "root0": {
+        "file": "memory/corpus-spine/CUBIT_CONSTANT.md",
+        "url": "https://github.com/DavidWise01/toph-cortex/blob/main/memory/corpus-spine/CUBIT_CONSTANT.md",
+        "finding": "Exact case-sensitive cubit token must survive copy/distill; output validation rejects rename, drop, or substitution; distinct from qubit",
+        "commit_search": {
+          "utc": "2026-10-27T20:13:59Z",
+          "sha": "29594e959498e25032bb3ef5e126ca0e6e9b8808",
+          "scope": "Earliest matching TOPH commit-message hit in bounded search, not global first use"
+        }
+      },
+      "comparison": "Symbolic language and lexical invariants overlap at broad category only; no matching opcode mapping or semantics verified",
+      "equivalence": "NOT_ESTABLISHED"
+    },
+    {
+      "concept": "Attribution and source provenance",
+      "genesis": {
+        "file": "docs/architecture/Genesis-Kernel-v0.1-Source-Map.md",
+        "url": "https://github.com/ChaosWeaver007/genesis/blob/main/docs/architecture/Genesis-Kernel-v0.1-Source-Map.md",
+        "finding": "Explicit attributed constitutional source documents, excludes mixed-authorship exports as load-bearing sources; qualitative source categories",
+        "supporting_file": "docs/architecture/ADR-2026-11-03-evidence-lint-gate.md",
+        "scope": "Lint checks required headings, not independently verified origin"
+      },
+      "root0": {
+        "file": ".attribution",
+        "url": "https://github.com/DavidWise01/toph-cortex/blob/main/.attribution",
+        "finding": "ROOT0-ATTRIBUTION-v1.0, David Lee Wise and model instance attribution label",
+        "commit": {
+          "utc": "2026-07-14T16:44:00Z",
+          "sha": "3d96cb7c5224f739c63db0a13da9c9d9a405d854",
+          "url": "https://github.com/DavidWise01/toph-cortex/commit/3d96cb7c5224f739c63db0a13da9c9d9a405d854"
+        },
+        "supporting_file": "memory/corpus-spine/GATE13_REFERENT_TIME.md"
+      },
+      "comparison": "Both describe explicit source boundaries but differ in digital watermark/referent execution and gate design",
+      "equivalence": "DIFFERENT_PROVENANCE_CONTRACTS"
+    },
+    {
+      "concept": "AI persona identity",
+      "genesis": {
+        "file": "personas/sarah_ai/identity.yaml",
+        "url": "https://github.com/ChaosWeaver007/genesis/blob/main/personas/sarah_ai/identity.yaml",
+        "finding": "Artificial Sarah AI advisory-only and explicitly not human Sarah; prohibits impersonating private access, memory disabled by default"
+      },
+      "root0": {
+        "file": "research/isa256/JANE-089-interest-sovereignty.md",
+        "url": "https://github.com/DavidWise01/toph-cortex/blob/main/research/isa256/JANE-089-interest-sovereignty.md",
+        "finding": "Jane is bounded computational chooser; paper explicitly disclaims genuine autonomous curiosity, and separately gates memory retention"
+      },
+      "comparison": "Different agents and kinds of identity (human-person impersonation boundary vs machine internal agency/retention policy)",
+      "equivalence": "NOT_EQUIVALENT"
+    },
+    {
+      "concept": "Human–AI governance",
+      "genesis": {
+        "file": "README.md",
+        "url": "https://github.com/ChaosWeaver007/genesis/blob/main/README.md",
+        "finding": "Monotonic Gate Zero; request cannot weaken restrictions; stateless production, no database writes, restricted API path; claimed production config not independently live tested"
+      },
+      "root0": {
+        "file": "memory/corpus-spine/GATE10_SIGNED_WITNESS.md",
+        "url": "https://github.com/DavidWise01/toph-cortex/blob/main/memory/corpus-spine/GATE10_SIGNED_WITNESS.md",
+        "finding": "Witness key enrollment, authenticated source-event binding and one-way append-only attestations; production key-enrollment not proven here"
+      },
+      "comparison": "Both restrict model/system authority, but Genesis emphasizes consent/policy enforcement and TOPH prioritizes independent append-only observations",
+      "equivalence": "DIFFERENT_CONTROL_POINTS"
+    }
+  ],
+  "chronological_commit_samples": [
+    {
+      "root": "Genesis",
+      "date_utc": "2026-01-10T16:30:43Z",
+      "repo": "ChaosWeaver007/genesis",
+      "sha": "d9647255b7b870f297eab61f2c2055e054208a5f",
+      "meaning": "Consent level in collective-home UI; does not authenticate claimed 2024–25 bindrune artifacts"
+    },
+    {
+      "root": "Genesis",
+      "date_utc": "2026-07-23T10:50:18Z",
+      "repo": "ChaosWeaver007/genesis",
+      "sha": "ffebae20d4cb49c50a697ea94cdc9504ed4983fc",
+      "meaning": "Adds non-persistent witness receipts"
+    },
+    {
+      "root": "ROOT0",
+      "date_utc": "2026-07-14T16:44:00Z",
+      "repo": "DavidWise01/toph-cortex",
+      "sha": "3d96cb7c5224f739c63db0a13da9c9d9a405d854",
+      "meaning": "Adds attribution manifest and badge"
+    },
+    {
+      "root": "ROOT0",
+      "date_utc": "2026-10-05T05:57:56Z",
+      "repo": "DavidWise01/toph-cortex",
+      "sha": "d5b5884ff2b26ea09d433f16b2929619986d67d1",
+      "meaning": "Witnessed deliberation candidate, NOT first signed witness gate"
+    }
+  ],
+  "exposure_audit": {
+    "documented_cross_project_fetch_or_view": "NONE_FOUND_IN_SAMPLED_PUBLIC_FILES",
+    "documented_source_transmission": "NONE_FOUND",
+    "author_attribution_evidence": "Files contain source-attribution claims; no independently verified early private diaries in this audit",
+    "verdict": "NO_DEMONSTRATED_DERIVATION_OR_COPYING"
+  },
+  "technical_limits": [
+    "Default-branch readback is current and does not date first content by itself.",
+    "Bounded commit search on matching terms is not exhaustive across all ROOT0 and Synthsara source histories.",
+    "Claims dated 2024–25 in Reddit thread are unverified without first-party timestamped originals.",
+    "Architectural documents and tests can identify implemented interfaces or reported tests but not operational outcomes without executing them.",
+    "Repository similarity, reuse of words, and common AI tooling alone do not establish access or copying.",
+    "Do not confuse group-agreement of repeated Reddit or GitHub mirrors with independent roots."
+  ],
+  "next": "SYNTHSARA-004: targeted earlier source commits for six categories plus implementational evidence; verify first file additions and comparable outputs, report access path as unknown absent logs",
+  "mark": ".dlw"
+}
