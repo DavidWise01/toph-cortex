@@ -1,0 +1,25 @@
+{
+  "schema": "root0.time-dilation-evidence-referent/1",
+  "entry_id": "EXT-NULL-CONE-GRAVITY-20261126-001",
+  "recorded_date": "2026-11-26",
+  "referent": "https://www.reddit.com/r/LLMPhysics/comments/1y62xtk/stanford_physicist_proposes_a_quantum_theory_of/",
+  "primary_source": "https://arxiv.org/abs/2611.34924v1",
+  "author": "Venkatesa Chandrasekaran",
+  "title": "An algebraic quantization of gravity from the null cone",
+  "reported_submission_utc": "2026-11-25T18:58:55Z",
+  "observations": [
+    "Abstract describes reduced phase space on intersecting null cones and derivation of semiclassical Einstein equations at one loop.",
+    "Indexed Reddit discussion quotes acknowledgement of months of GPT-6 Astra collaboration and approximately 400 million tokens; acknowledgement not directly verified against full paper."
+  ],
+  "classification": "EXTERNAL_THEORETICAL_RESEARCH_AND_AI_WORKFLOW_LEAD",
+  "limitations": [
+    "Direct Reddit fetch failed; indexed excerpts available.",
+    "Full paper not audited; no measured clock dilation, controlled workflow speedup or ROOT0 ancestry established.",
+    "Reddit discussion and paper share underlying source ancestry."
+  ],
+  "protocol": {
+    "append_only": true,
+    "observation_only": true,
+    "watermark": ".dlw"
+  }
+}
