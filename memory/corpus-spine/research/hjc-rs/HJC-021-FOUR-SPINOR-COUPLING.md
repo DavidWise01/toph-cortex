@@ -1,0 +1,5 @@
+# HJC-021 — Four-spinor coupling
+
+ROOT0 · .dlw
+
+Executed NumPy/SciPy 16-dimensional four-spin-1/2 model, initial tensor product of AB and CD singlets, isotropic nearest-neighbor ring exchange H=sum sigma_i dot sigma_j/4, collective z rotation and exp(-i g theta H). Couplings 0,.1,.5,1; angles 0..720 inclusive step15. 196 states, 396 assertions passed: norms, equal AB/CD singlet probabilities, Hermiticity, control closure, initial total-spin zero and commutator [H,S^2]=0. Fidelity at 360/720: control 1/1, weak .7408813728906046/.3216186271093945, medium 1/1, strong 1/1 (rounded). Minimum sampled local singlet probability: 1,.32161862710939454,.24999999999999983,.24999999999999983. Total spin zero conserved mathematically by rotational symmetry, not an additional particle or unique state. Four spinors collectively have + sign after 360 degrees even though individual spinors have - sign. Coupling parameter dimensionless, not physical weak/strong forces. No spatial toroidal simulation, 729-site evolution, physical Planck clock, or native Rust execution. Next: perturb exchange symmetry and vary coupling continuously to characterize resonances. Append only.
