@@ -1,0 +1,5 @@
+# HJC-018 — Dynamic barycentric referent
+
+ROOT0 · .dlw
+
+Executed NumPy softened Newtonian gravity, 729 masses, G=1/729, epsilon=.35, dt=.04, 150 steps per run, 6 runs. Seeds 1311,729,108; mass uniform .6..1.4, position Gaussian sigma .3, velocity Gaussian sigma .04. Central initial coordinate zero and mass one. Each seed repeated with translation (13,-7,4) and boost (.2,-.1,.3). 27 assertions passed. Initial/final central offsets: .0386450922/.7677946586, .0548969552/.2442834079, .0248228236/.4184030224. Maximum relative coordinate discrepancies 3.99680289e-14,4.79616347e-14,3.46389584e-14. Maximum COM prediction error 7.19849295e-15; max relative internal energy error 4.84422211e-7. The central occupant wandered in all three cases; barycentric coordinates agree under tested Galilean transformations. This is classical numerical covariance, not quantum entanglement, physical Planck speed, or universal singlet stability. Phase III 2/8. Next: distinguish local density center, potential minimum, barycenter and central occupant. Append only.
