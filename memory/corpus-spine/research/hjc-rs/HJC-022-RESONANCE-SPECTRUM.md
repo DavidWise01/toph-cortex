@@ -1,0 +1,5 @@
+# HJC-022 — Cloverleaf resonance spectrum
+
+ROOT0 · .dlw
+
+Executed NumPy eigensystem evolution of four spin-1/2 sites, AB/CD singlet product initial state, 401 coupling values 0..2 step .005, 360/720 degree boundaries, three Hamiltonians (uniform isotropic ring H, H+.3 isotropic AB exchange, H+.3 Z_A Z_B/4). 2406 states, 6416 assertions passed. Singlet subspace dimension 2. Minimum total singlet probabilities 0.9999999999999989, 0.9999999999999997, 0.9964493635122222 respectively. Frobenius commutator with S^2: 0, 9.93e-16, .8485281374. Maximum norm error 7.78e-16. Fidelity >=.9999 grid points at 360: uniform 0,.5,1,1.5,2; bond asymmetry 0,.46,.925,1.385; directional 0,.975. At 720: uniform 0,.25,.5,.75,1,1.25,1.5,1.75,2; bond asymmetry 0,.23,1.155,1.385; directional 0 only. Finite grid is not exhaustive resonance proof. Couplings are dimensionless, not foundational physical force constants. No spatial toroid dynamics, 729-site quantum evolution, Rust or Pages execution. Phase III 6/8. Next: perturbation tolerance and singlet leakage envelope. Append only.
