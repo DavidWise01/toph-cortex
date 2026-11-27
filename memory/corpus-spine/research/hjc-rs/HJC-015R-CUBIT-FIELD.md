@@ -1,0 +1,5 @@
+# HJC-015R — Cubit field relaxation
+
+ROOT0 · .dlw
+
+Executed NumPy model of 728 variable grid points plus fixed origin, 9^3 total. Chebyshev shells 26 strong, 98 medium, 604 weak. Overdamped radial spring confinement toward radii 1.4, 2.6, 4.5 with strengths 3,2,1; axial rotation and outward centrifugal surrogate 0.12 omega^2 (x,y,0). dt=.005, 4000 steps each, four angular drives 0,.5,1,2. Measured covariance minor/major axis ratios 1.000000, .6463987581, .1716681210, .0653359539. RMS radial errors at end 1.6272334e-9, .1071141622, .5531758013, 3.7828756350. Centroid norm below 1.2e-16, minimum radius 1.4 in all runs. Three assertions executed: 728 points, centered distributions, positive radii. No physical self-gravity, particle interaction, quantum entanglement, torus topology or long-term equilibrium demonstrated. Shell assignments and force law imposed. Next: pairwise softened Newtonian gravity, velocity integration, energy diagnostics and singlet reaction accounting. Prior records preserved.
