@@ -1,0 +1,21 @@
+name: HJC-008 Rust qualification
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'memory/corpus-spine/research/hjc-rs/hjc-008/**'
+      - '.github/workflows/hjc-008-rust.yml'
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: memory/corpus-spine/research/hjc-rs/hjc-008
+    steps:
+      - uses: actions/checkout@v4
+      - name: Record toolchain
+        run: rustc --version && cargo --version
+      - name: Native regression suite
+        run: cargo test --all-targets
