@@ -1,0 +1,5 @@
+# HJC-026 — Spatial neighbor interfaces and spinor exchange
+
+ROOT0 · .dlw
+
+Executed Python/NumPy enumeration of HJC-025 routing convention over 729 Cartesian sites. Unique face-neighbor edges 1944: 1764 within channels, 174 cross-channel, 6 central. Matrix [[0,42,4,41],[42,0,41,4],[4,41,0,42],[41,4,42,0]]. J=M/42. Four-spin isotropic H=sum_{i<j} J_ij S_i dot S_j, initial AB/CD singlets, 721 angles 0..4pi inclusive. Eight assertions passed: total and central edges, partition, matrix symmetry, inversion covariance, Hermiticity, total-spin commutation, norm and spin expectation. Max norm error 1.5543122344752192e-15, max absolute total-spin-squared expectation 1.1146150086104697e-16, commutator Frobenius norm 7.691850745534255e-16. Fidelity 360/720 .7173834220004102/.30734264689289575, minimum .2702590636974208. Static adjacency supplies dimensionless exchange coefficients; no dynamic spatial feedback or physical calibration. Center interfaces counted but not an extra quantum spin. Phase IV 2/8. Next band-stratified interface exchange. Rust and Pages not qualified. Append only.
