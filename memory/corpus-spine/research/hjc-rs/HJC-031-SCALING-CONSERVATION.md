@@ -1,0 +1,5 @@
+# HJC-031 — Scaling and relational conservation
+
+ROOT0 · .dlw
+
+Executed local Python/NumPy scale.py, grids 9,17,33,65 cubed, HJC-026 routing convention and unweighted exchange normalized by maximum interface count. 33 assertions passed, 2884 four-spin states. Sites 729/4913/35937/274625; channel populations 182/1228/8984/68656; total interfaces 1944/13872/104544/811200; cross interfaces 174/606/2238/8574; central interfaces six each. Matrix adjacent AB=CD 42/148/552/2128, BC=DA 41/147/551/2127, AC=BD 4/8/16/32. Fidelity at 360 degrees .717383422/.907230861/.973905475/.993118250; at 720 .307342647/.675155300/.899260298/.972725699. Maximum norm error 1.9984e-15, spin expectation magnitude 1.1951e-16, commutator 1.6911e-15. Baseline 9-cube matrix reproduced exactly. This is a static graph census and four-spin reduced model, not 274625 quantum spins or dynamic gravity. Normalization changes with grid size; no fixed physical length or force calibration. Rust compiler not found in current container. Pages not deployed. Phase IV 7/8. Next freeze with source provenance and scaling law proof. Append only.
