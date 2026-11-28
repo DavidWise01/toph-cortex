@@ -1,0 +1,5 @@
+# HJC-028 — Gravity-modulated exchange
+
+ROOT0 · .dlw
+
+Executed Python/NumPy/SciPy experiment, 729 equal masses, G=1/729, softening .35, velocity Verlet over model time 4 with 100 and 200 steps. HJC-027 174 cross-channel edges and band weights preserved. Distance multiplier (1.25/(d^2+.25))^1.5, spin evolution parameter 0..4pi, endpoint-averaged Hamiltonian per step, exact eigensystem unitary. Fine-run static fidelity 360/720 .2947477853176468/.9409061270408069, dynamic .2850514153678228/.9708236237597192. Fine final interface distances .9365184184883417.. .9754590167710615. 13 assertions passed. Fine norm error 3.774758283725532e-15, total spin squared error 1.129558623984904e-16, commutator 7.685438196903496e-15, gravitational relative energy error 4.983714491734576e-8, COM norm 6.892038227418491e-18. Coarse/fine final fidelity difference 5.717085618917039e-6. One-way modulation only, no spin backreaction, no physical calibration or quantum gravity claim. Phase IV 4/8. Next asymmetric perturbation resilience. Rust and Pages unverified. Append only.
